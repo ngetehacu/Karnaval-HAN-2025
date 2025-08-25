@@ -38,9 +38,53 @@
         #dropdownMenu::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 10px; }
         #dropdownMenu::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
         #dropdownMenu::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        #loadingOverlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 9999; flex-direction: column; gap: 1rem;
+            backdrop-filter: blur(4px);
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <svg class="animate-spin h-10 w-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="text-lg font-semibold text-gray-700">Memuat data dari server...</p>
+    </div>
+
+    <!-- Modal Kode Akses -->
+    <div id="kodeAksesModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
+        <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-bold text-gray-900">Masukkan Kode Akses</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Untuk melanjutkan, masukkan kode akses yang telah diberikan untuk:
+                    </p>
+                    <p id="modalLembagaNama" class="text-lg font-bold text-blue-600 my-2"></p>
+                    <form id="kodeAksesForm">
+                        <input type="password" id="kodeAksesInput" placeholder="******" class="w-full px-4 py-3 text-center bg-gray-100 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-lg tracking-widest">
+                        <p id="kodeAksesError" class="text-red-500 text-sm mt-2 hidden">Kode akses salah. Coba lagi.</p>
+                    </form>
+                </div>
+                <div class="items-center px-4 py-3 gap-2 flex">
+                    <button id="cancelKodeAkses" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">
+                        Batal
+                    </button>
+                    <button id="submitKodeAkses" type="button" class="w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all">
+                        Lanjutkan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="w-full max-w-md mx-auto bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white">
 
@@ -96,11 +140,11 @@
                     <h2 id="displayNamaLembaga" class="text-xl text-indigo-700 font-bold"></h2>
                 </div>
             </div>
-            <p class="text-gray-600 mb-4 font-fredoka text-2xl">Ayo kita hitung!</p>
+            <p class="text-gray-600 mb-4 font-fredoka text-2xl">Ayo kita ambil nomor!</p>
             <div id="spinnerDisplay" class="text-8xl font-fredoka text-gray-800 my-8 bg-gray-100 p-6 rounded-2xl pulse-bg-animation">000</div>
             <div class="space-y-3">
                 <button id="spinBtn" class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">
-                    Putar Sekarang!
+                    Ambil Nomor!
                 </button>
                 <button id="cancelBtn" class="w-full bg-transparent text-gray-600 font-semibold py-2 px-4 rounded-xl hover:bg-gray-100 transition-all text-sm">
                     Batalkan & Pilih Lagi
@@ -174,10 +218,21 @@
                 </button>
             </div>
         </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8 border-t-2 border-gray-100 pt-4">
+            <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
+            <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
+            <p class="text-xs text-gray-400 mt-2">Author: Dhiya</p>
+        </div>
     </div>
 
     <script>
+        // --- URL Google Apps Script Web App ---
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz-IVwGOP8M4y2c04iUpS0tSkSkxKQIhBFexVCsTKO7UdPamGxuHRZRfYPSAueLTGGrsA/exec';
+
         // --- Mengambil elemen dari DOM ---
+        const loadingOverlay = document.getElementById('loadingOverlay');
         const inputSection = document.getElementById('inputSection');
         const spinnerSection = document.getElementById('spinnerSection');
         const resultSection = document.getElementById('resultSection');
@@ -206,103 +261,58 @@
         const dropdownMenu = document.getElementById('dropdownMenu');
         const cancelBtn = document.getElementById('cancelBtn');
         const searchContainer = document.getElementById('searchContainer');
+        // Elemen Modal Kode Akses
+        const kodeAksesModal = document.getElementById('kodeAksesModal');
+        const kodeAksesForm = document.getElementById('kodeAksesForm');
+        const cancelKodeAkses = document.getElementById('cancelKodeAkses');
+        const submitKodeAkses = document.getElementById('submitKodeAkses');
+        const modalLembagaNama = document.getElementById('modalLembagaNama');
+        const kodeAksesInput = document.getElementById('kodeAksesInput');
+        const kodeAksesError = document.getElementById('kodeAksesError');
+
 
         // --- Variabel untuk menyimpan data ---
         const SPIN_DURATION = 3000;
         const SPIN_INTERVAL = 50;
-        const MAX_NUMBER = 100;
-        let daftarPeserta = [];
-        let lembagaTersedia = [];
+        let maxNumber = 0; // Akan diisi dari jumlah data lembaga
+        let daftarPeserta = []; // Data peserta terdaftar dari server
+        let masterLembagaData = []; // Data master lembaga dari server
+        let lembagaTersedia = []; // Lembaga yang belum mendaftar
         let selectedLembaga = null;
-        
-        const masterLembagaData = [
-            { nama: "TK NEGERI DARUL FIRDAUS", npsn: "69937411", status: "Negeri", kecamatan: "Haruai", jumlah: 28, guru1: "Norlatifah, S.Pd", jabatan1: "Guru", guru2: "Lusiawati, S.Pd", jabatan2: "Guru", guru3: "Mina Aulia", jabatan3: "Guru" },
-            { nama: "TK Olive Rumah Kreatif", npsn: "70000157", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 20, guru1: "Meldawati", jabatan1: "Kepala sekolah", guru2: "Rinanda herawati", jabatan2: "Guru", guru3: "Iin noriah", jabatan3: "Guru" },
-            { nama: "TK AL FIRDAUS", npsn: "30313165", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 25, guru1: "Ria Dewi Novalita, S.AP,.S.Pd.,Gr", jabatan1: "Kepala Sekolah", guru2: "Minawati,S.Pd.", jabatan2: "Guru", guru3: "Siti Noorjanah,S.Pd", jabatan3: "Guru" },
-            { nama: "TK NEGERI WARDATUSSHOLIHIN", npsn: "30313305", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 30, guru1: "RILAWATI, S.PD", jabatan1: "Guru Kelas", guru2: "YUSSI SEPTIANI DIAR YUSUF, S.PD", jabatan2: "GURU KELAS", guru3: "LIA SAFITRI, S.PD", jabatan3: "GURU KELAS" },
-            { nama: "TKN Amanah", npsn: "69913822", status: "Negeri", kecamatan: "Tanta", jumlah: 25, guru1: "Masrita.S.Pd.", jabatan1: "PLT Kepala Sekolah", guru2: "Inawati.S.Pd.", jabatan2: "Guru kelompok A", guru3: "Risayanti.S.Pd", jabatan3: "Guru kelompok B" },
-            { nama: "TK DAHLIA", npsn: "70012143", status: "Swasta", kecamatan: "Tanta", jumlah: 25, guru1: "Endang Sucilawati,S.Pd", jabatan1: "Kepala Sekolah", guru2: "Hikmah Fuji Astuti,S.Pd", jabatan2: "Guru", guru3: "Yuliana,S.Pd", jabatan3: "Guru" },
-            { nama: "TK DARUT TAHFUDZ", npsn: "69935926", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Risni eva.", jabatan1: "Guru TK", guru2: "Ida sulasmi", jabatan2: "Guru TK", guru3: "Nurhayati", jabatan3: "Guru TK" },
-            { nama: "TK Kemala Bhayangkari 12 Tabalong", npsn: "30313215", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Fitriani Sasmita, S.Pd.AUD", jabatan1: "Guru", guru2: "Siti Muliati, S.Pd.AUD", jabatan2: "Guru", guru3: "Gustin Novitasari, S.Pd", jabatan3: "Guru" },
-            { nama: "TK KARTIKA V-34", npsn: "30313209", status: "Swasta", kecamatan: "Tanjung", jumlah: 30, guru1: "Sahrizada Hamisah,S.Pd.AUD", jabatan1: "Kepala Sekolah", guru2: "Endang Puji Astuti,S.Pd.AUD", jabatan2: "Guru", guru3: "Intan Putri Palupi,S.Pd", jabatan3: "Guru" },
-            { nama: "TK SKTA SMARTKEY ISLAMIC MONTESSORI", npsn: "70052191", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Mifta Nurul Jannah, S. Kom", jabatan1: "Kepala Sekolah", guru2: "Mariana, S. AB", jabatan2: "Guru Kelas", guru3: "Riyo Ade Pratama", jabatan3: "Guru Kelas" },
-            { nama: "TK Negeri Pertiiwi", npsn: "30313257", status: "Negeri", kecamatan: "Tanta", jumlah: 26, guru1: "Norsinah. A Ma. Pd", jabatan1: "Guru kelompok A", guru2: "Norhasanah. S.Pd", jabatan2: "Guru kelompok B", guru3: "Hamsiah", jabatan3: "Guru pendamping kelompok A" },
-            { nama: "TK 'Aisyiyah Bustanul Athfal II", npsn: "30313160", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Wida Asmawati, S.Pd", jabatan1: "Guru", guru2: "Rezki Annisa Utami, S.Pd", jabatan2: "Guru", guru3: "Zahratun Nida, S.Pd", jabatan3: "Guru" },
-            { nama: "RA DARUL ULUM KURANJI", npsn: "69750879", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Hj. Pahriana S.Pd", jabatan1: "Kepala sekolah", guru2: "Sariati S.Pd", jabatan2: "Wali kelas", guru3: "Nia selvia", jabatan3: "Wali kelas" },
-            { nama: "TK Negeri Pembina Bintang Ara", npsn: "30313219", status: "Negeri", kecamatan: "Bintang Ara", jumlah: 20, guru1: "Maria Ulfah, S.Pd", jabatan1: "Kepada Sekolah", guru2: "Triyani, S.Pd", jabatan2: "Bendahara", guru3: "Sunarti,S.Pd", jabatan3: "Guru" },
-            { nama: "TKIT Az zahra", npsn: "69913819", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Siti zulaikhah", jabatan1: "Wakil kepala sekolah", guru2: "Erna Susanti", jabatan2: "Bagian kurikulum Kelompok B", guru3: "HermaErliana", jabatan3: "Bagian Kurikulum. Kelompok A" },
-            { nama: "TK Rumah Qur'ani", npsn: "69814548", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Winy Emelda", jabatan1: "Kepala Sekolah", guru2: "Dona Anggraeni A", jabatan2: "Guru Kelas", guru3: "Neni wijaya", jabatan3: "Guru kelas" },
-            { nama: "TK. NEGERI MELATI", npsn: "30313232", status: "Negeri", kecamatan: "Tanta", jumlah: 25, guru1: "RINI IRIANI, S Pd", jabatan1: "Guru Kelompok. A", guru2: "SRI HIDAYATI, S. Pd", jabatan2: "Guru Kelompok. B", guru3: "SRI SUDARIYATI, S. Pd", jabatan3: "Plt.KEPALA TK.NEGERI MELATI" },
-            { nama: "TK AISYIYAH VIII MURUNG PUDAK", npsn: "70001042", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Sri Hadiah", jabatan1: "Wali kelas Kelompok B", guru2: "Rabiatul Utami", jabatan2: "Wali kelas kelompok B", guru3: "Dzulfa Tutiani", jabatan3: "Wali kelas kelompok A" },
-            { nama: "ATKNIT AR RISALAH", npsn: "69981590", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Sumarna, S.Pd", jabatan1: "Kepala Sekolah", guru2: "Rusmina, S.Pd", jabatan2: "Guru TK.B", guru3: "Masniah", jabatan3: "Guru TK.A" },
-            { nama: "TKN Pembina Haruai", npsn: "30313249", status: "Negeri", kecamatan: "Haruai", jumlah: 30, guru1: "Ika Lisnawati", jabatan1: "Guru Kelas", guru2: "Tuti Eliyana", jabatan2: "Guru Kelas", guru3: "Dahlia", jabatan3: "Guru Kelas" },
-            { nama: "Tk Negeri Pembina Tanjung", npsn: "30314349", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "Sari Arbayana,S.Pd", jabatan1: "Guru Kelas", guru2: "Mariana,S.Pd", jabatan2: "Guru Kelas", guru3: "Eka Rahayu Kasumawati,S.Pd", jabatan3: "Guru kelas" },
-            { nama: "TKN PERTIWI VII", npsn: "30313260", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "Ana Juariah,S.Pd", jabatan1: "Guru Kelompol B", guru2: "Alishatun Fajeriah,S.Pd", jabatan2: "Guru kelompok B", guru3: "Dwi Siti Astuti,S.Pd", jabatan3: "Guru Kelompok A" },
-            { nama: "TK NEGERI PEMBINA MURUNG PUDAK", npsn: "30313250", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 30, guru1: "HAYATUL QOBRA, S.Pd.AUD", jabatan1: "GURU", guru2: "AROMITA ARIFA, S.Pd", jabatan2: "GURU", guru3: "SRI YULIA AZMIATI, S.Pd", jabatan3: "GURU" },
-            { nama: "TK RAUDHATUL ATHFAL TANJUNG", npsn: "69750883", status: "Swasta", kecamatan: "Tanjung", jumlah: 30, guru1: "Rachmawati ,S.Pd", jabatan1: "Kepala sekolah", guru2: "Sawiyah,S.Pd", jabatan2: "guru", guru3: "Sri Hartati Anggeriyani,S.Pd", jabatan3: "guru" },
-            { nama: "TK Harapan Kita Laburan", npsn: "30313198", status: "Swasta", kecamatan: "Tanta", jumlah: 30, guru1: "Tuti Handayani", jabatan1: "Guru", guru2: "Erma Puji Rahayu", jabatan2: "Guru", guru3: "Andriani Nurchasanah", jabatan3: "Guru" },
-            { nama: "TK HARAPAN IBU", npsn: "30313195", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 20, guru1: "RUSNARTI", jabatan1: "KEPALA SEKOLAH", guru2: "MULIANI HELDA", jabatan2: "GURU KELOMPOK B", guru3: "DYAH AYU PHINASTIKA", jabatan3: "GURU KELOMPOK B" },
-            { nama: "TK Satu Atap Kasiau", npsn: "69894083", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 25, guru1: "Gusti Narela, S.Pd", jabatan1: "Kepala sekolah", guru2: "Yuliana M, S.AP", jabatan2: "Bendahara", guru3: "Nurmayanti, S.I.Kom", jabatan3: "Sekretaris" },
-            { nama: "TKIT RUMAH LEBAH", npsn: "69948703", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Lamiah,S.Pd", jabatan1: "Guru kelas", guru2: "Miftahul Jannah", jabatan2: "Guru Kelas", guru3: "Rizky Aryanti,S.Pd", jabatan3: "Guru Kelas" },
-            { nama: "TK Negeri Ar Rohman", npsn: "69911364", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Rita Yuliana", jabatan1: "Guru", guru2: "Sakdiah", jabatan2: "Guru", guru3: "Reny M", jabatan3: "Guru" },
-            { nama: "TK PENGHULU RASYID", npsn: "69911498", status: "Swasta", kecamatan: "Tanjung", jumlah: 25, guru1: "Marpuah", jabatan1: "Kepala Sekolah", guru2: "Siti Mursyidah", jabatan2: "Guru", guru3: "Fatimah", jabatan3: "Guru Pendamping" },
-            { nama: "TK NEGERI PEMBINA TANTA", npsn: "30313259", status: "Negeri", kecamatan: "Tanta", jumlah: 30, guru1: "Salasiah, S.Pd.AUD", jabatan1: "Kepala Sekolah", guru2: "Salabiah, S.Pd", jabatan2: "Guru kelas", guru3: "Elly Purwanti, S.Pd", jabatan3: "Guru kelas" },
-            { nama: "Sekolah Alam Sarabakawa", npsn: "69952573", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 25, guru1: "Saleha", jabatan1: "Guru kelas", guru2: "Mutia Rahmah", jabatan2: "Guru kelas", guru3: "Yuni Arif Hermawan", jabatan3: "Guru kelas" },
-            { nama: "TK NEGERI IDHATA II", npsn: "69913832", status: "Negeri", kecamatan: "Tanjung", jumlah: 16, guru1: "SITI HAPSAH,S.Pd.AUD", jabatan1: "Kepala Sekolah", guru2: "SITI SYAPINAH,S.Pd", jabatan2: "Guru", guru3: "MARIATUL HUSNA,S.Pd", jabatan3: "Guru" },
-            { nama: "TK AISYIYAH BUSTANUL ATHFAL I TANJUNG", npsn: "30331681", status: "Swasta", kecamatan: "Tanjung", jumlah: 25, guru1: "Sri Mawarti, S. Pd", jabatan1: "Kepala Sekolah", guru2: "Hereka Yunita Safitri, S. Pd", jabatan2: "Guru", guru3: "Salma Shopia Azza, S.E", jabatan3: "Guru" },
-            { nama: "Tk negeri mangkusip", npsn: "30313221", status: "Negeri", kecamatan: "Tanta", jumlah: 19, guru1: "Sarmini", jabatan1: "Kepala TK", guru2: "Dini agustina", jabatan2: "Guru", guru3: "Nofi ahyani", jabatan3: "Guru" },
-            { nama: "TK NEGERI PEETIWI III", npsn: "30313255", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "EVA AULASARI,S.Pd.AUD", jabatan1: "PLH KEPALA SEKOLAH", guru2: "KASTINI,S.Pd", jabatan2: "Guru", guru3: "MURDIANTI,S.Pd AUD", jabatan3: "GURU" },
-            { nama: "TK NEGERI TUNAS ABADI", npsn: "30313304", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "Sri Norliana", jabatan1: "Guru", guru2: "Nunung", jabatan2: "Guru", guru3: "Mawarni", jabatan3: "Guru" },
-            { nama: "TK Negeri Kartika Sari", npsn: "30313208", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 25, guru1: "Neni Palupi", jabatan1: "Guru", guru2: "Fenny Maya sari", jabatan2: "Guru", guru3: "Sri Wahyuni", jabatan3: "Guru" },
-            { nama: "TKN Mekar Sari", npsn: "30313158", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 25, guru1: "Jumiasih", jabatan1: "guru kelas", guru2: "Rusdiana", jabatan2: "Guru Kelas", guru3: "Misnawati", jabatan3: "Guru" },
-            { nama: "TN NEGERI TARBIYATUL AULAD", npsn: "69911507", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "DEWI HARIATI,S.Pd", jabatan1: "Bendahara sekolah", guru2: "RIDA ANDRIANI", jabatan2: "Guru", guru3: "SRI WULANDARI", jabatan3: "Guru" },
-            { nama: "TK Negeri Raudatul Jannah", npsn: "30313266", status: "Negeri", kecamatan: "Pugaan", jumlah: 15, guru1: "Hairul Hidayah", jabatan1: "Kepala sekolah", guru2: "Nurhatama", jabatan2: "Guru", guru3: "Rohil Mursalah", jabatan3: "Guru" },
-            { nama: "TK Sunshine", npsn: "70024190", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 3, guru1: "Yohana Simarmata", jabatan1: "Kepala Sekolah", guru2: "Rahmaniah", jabatan2: "Guru", guru3: "Vivi", jabatan3: "Guru" },
-            { nama: "TK Negeri Dharma santi", npsn: "30313190", status: "Negeri", kecamatan: "Tanjung", jumlah: 27, guru1: "Rifuliani", jabatan1: "Kepala sekolah", guru2: "Maisyarah", jabatan2: "Guru", guru3: "Yetik Indrawati", jabatan3: "Guru" },
-            { nama: "TK NEGERI IDHATA I", npsn: "30313205", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Lyli Hayati, S.Pd", jabatan1: "Kepala Sekolah", guru2: "Gustianingsih, S.Pd.AUD", jabatan2: "Guru", guru3: "Lisa Trisnawati, S.Pd", jabatan3: "Guru" },
-            { nama: "TK Tunas Harapan", npsn: "30313289", status: "Swasta", kecamatan: "Tanjung", jumlah: 30, guru1: "Eryani,S.Pd.AUD", jabatan1: "Kepala Sekolah", guru2: "Maserah, A.Ma.Pd.TK", jabatan2: "Guru", guru3: "Fitriani,S.AP", jabatan3: "Guru" },
-            { nama: "TK NEGERI ANGGREK", npsn: "30313169", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "Yuni Zarkiah, S.Pd.AUD", jabatan1: "Kepala Satuan Pendidikan", guru2: "Melda Fatriani Sari, S.Pd", jabatan2: "Wali kelompok B", guru3: "Marliana, S.Pd", jabatan3: "Wali kelompok A" },
-            { nama: "TK NEGERI IDHATA IV", npsn: "30313206", status: "Negeri", kecamatan: "Tanjung", jumlah: 28, guru1: "Sri Hidayatun,S.Pd AUD", jabatan1: "Kepala Sekolah", guru2: "Aisyah Mupidah,S.pd", jabatan2: "Guru Kelas A", guru3: "Halimatus Sakdiah", jabatan3: "Guru Kelas B" },
-            { nama: "TK Hijrah", npsn: "70043129", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Norbayah., S.Pd", jabatan1: "Wali Kelas", guru2: "Salma", jabatan2: "Wali Kelas", guru3: "Taufik Hidayat", jabatan3: "Guru tahfidz" },
-            { nama: "TK KARYA BHAKTI Maburai", npsn: "30313212", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 25, guru1: "Ely Rahmah, S.Pd", jabatan1: "Kepala Sekolah", guru2: "Emillia Melda", jabatan2: "Guru Kelas", guru3: "Sartika Dewi, S.Pd", jabatan3: "Guru Kelas" },
-            { nama: "TK Negeri Bunga Bangsa", npsn: "30313179", status: "Negeri", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Hj. Sofia Ariati, S. Pd AUD", jabatan1: "Kepala TK", guru2: "Jasmaniah, S. Pd", jabatan2: "Guru kelas", guru3: "ERNAWATI, S. Pd", jabatan3: "Guru kelas" },
-            { nama: "TK Negeri Tunas Muda", npsn: "30313297", status: "Negeri", kecamatan: "Haruai", jumlah: 30, guru1: "Pujiati SPd", jabatan1: "PLT", guru2: "Sundari S.Pd", jabatan2: "Guru kelas B2", guru3: "Fini Normayanti S,Pd", jabatan3: "Guru kelas A1" },
-            { nama: "TK Negeri Pertiwi I Tanjung", npsn: "30313253", status: "Negeri", kecamatan: "Tanjung", jumlah: 30, guru1: "Hj.Haiyarah S.Pd", jabatan1: "Kepala Tk", guru2: "Siti Maimunah S.Pd", jabatan2: "Guru Tk", guru3: "Erni Millyana S.Pd", jabatan3: "Guru Tk" },
-            { nama: "TK MUTIARA SALSABILA", npsn: "69967198", status: "Swasta", kecamatan: "Tanjung", jumlah: 30, guru1: "LINDAWATI,S.Pd.I", jabatan1: "Guru Kelas", guru2: "RAEMINA MAULIYATIN,S.Pd", jabatan2: "Guru Kelas", guru3: "NURLIANTI,S.Pd", jabatan3: "Guru Kelas" },
-            { nama: "Tk Negeri Tunas Mulya", npsn: "30313302", status: "Negeri", kecamatan: "Kelua", jumlah: 15, guru1: "Hadriah.S.Pd Aud", jabatan1: "Kepala sekolah", guru2: "Norsyam.S.Pd", jabatan2: "Guru kelompok A", guru3: "Hayati Fahriah. S.Pdi", jabatan3: "Guru kelompok B" },
-            { nama: "TK Negeri Lestari Budaya", npsn: "30313220", status: "Negeri", kecamatan: "Bintang Ara", jumlah: 30, guru1: "Irawati Anggraini", jabatan1: "Plt.Kepala Sekolah dan guru kelompok B", guru2: "Wiwik Sugiyanti", jabatan2: "Guru Kelompok A1", guru3: "Elizabeth Septi Kurnianti", jabatan3: "Guru kelompok A2" },
-            { nama: "TK Harapan Kita", npsn: "69911384", status: "Swasta", kecamatan: "Bintang Ara", jumlah: 1, guru1: "JUBAIDAH", jabatan1: "Guru", guru2: "MASDIANA", jabatan2: "GURU", guru3: "YENI YUSMITA", jabatan3: "Plt Kepsek" },
-            { nama: "TK PUAIN KANAN", npsn: "30313261", status: "Swasta", kecamatan: "Tanta", jumlah: 20, guru1: "Jaimah,S.pd", jabatan1: "Kepala sekolah", guru2: "Sintiya", jabatan2: "Guru", guru3: "Nurul Jannah", jabatan3: "Guru" },
-            { nama: "TK IT Avicenna", npsn: "70008572", status: "Swasta", kecamatan: "Tanta", jumlah: 30, guru1: "Hapsari nur'Aini", jabatan1: "Guru", guru2: "Pandan puspita", jabatan2: "Guru", guru3: "Rusidah", jabatan3: "Guru" },
-            { nama: "TK NEGERI DARMA MULIA", npsn: "69814601", status: "Negeri", kecamatan: "Tanta", jumlah: 15, guru1: "Barniah, S. Pd. AUD", jabatan1: "PLT TK Negeri Darma Mulia", guru2: "Sarmila, S. Pd", jabatan2: "Guru kel. A", guru3: "Maimunah, S. Pd", jabatan3: "Guru kelompok B" },
-            { nama: "TK 'AISYIYAH BUSTANUL ATHFAL VII", npsn: "30331680", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 30, guru1: "Siti Zakiah, S.Pd", jabatan1: "Guru Kelas", guru2: "Mislawati A ,S.Pd", jabatan2: "Guru kelas", guru3: "Yuliani ,S.Pd", jabatan3: "Guru kelas" },
-            { nama: "TKN AR-RAHMAN", npsn: "69914442", status: "Negeri", kecamatan: "Tanjung", jumlah: 19, guru1: "Jariah.S.Pd", jabatan1: "PLh TKN AR-RAHMAN", guru2: "Warnilawati S.Sos.i", jabatan2: "Guru TKN AR-RAHMAN", guru3: "Siti Hanifah.S.Pd", jabatan3: "Guru TKN AR-RAHMAN" },
-            { nama: "TK Negeri Antasari", npsn: "30313170", status: "Negeri", kecamatan: "Kelua", jumlah: 12, guru1: "Eka Nor Afni,S.Pd", jabatan1: "Plt TK Negeri Antasari", guru2: "Winda Anggeraini S.Pd", jabatan2: "Guru", guru3: "Siti Rahmadaniah,S.Pd", jabatan3: "Guru" },
-            { nama: "KB Al-Ikhsan", npsn: "69814572", status: "Swasta", kecamatan: "Haruai", jumlah: 1, guru1: "Wati Hayrini", jabatan1: "Pendidik / guru", guru2: "Tri Karlina Karim", jabatan2: "Wali murid", guru3: "0", jabatan3: "0" },
-            { nama: "TK negeri ihya ulumuddin", npsn: "30313207", status: "Negeri", kecamatan: "Upau", jumlah: 25, guru1: "Dina mariana s.pd", jabatan1: "Guru", guru2: "Sri Wahyuningsih s.pd", jabatan2: "Guru", guru3: "Aliyah safitri", jabatan3: "Guru" },
-            { nama: "TK GHAIWA", npsn: "70002277", status: "Swasta", kecamatan: "Tanjung", jumlah: 30, guru1: "Siti Mushlihah Abdillah", jabatan1: "Guru", guru2: "Melda Rahmawati", jabatan2: "Guru", guru3: "Siti Rahmah", jabatan3: "Guru" },
-            { nama: "Tk negeri tunas karya", npsn: "30313293", status: "Negeri", kecamatan: "Kelua", jumlah: 14, guru1: "Suhartini", jabatan1: "Kepala sekolah", guru2: "Rahmi farida", jabatan2: "Guru TK A", guru3: "Siti inayati", jabatan3: "Guru TK B" },
-            { nama: "TK Negeri Harapan Indah", npsn: "30313196", status: "Negeri", kecamatan: "Muara Harus", jumlah: 23, guru1: "Dewi jayanti, S.Pd", jabatan1: "Guru Kelas A", guru2: "Yuyun Anggraini, S.Pd", jabatan2: "Guru Kelas A", guru3: "Norhatimah", jabatan3: "Guru Kelas B" },
-            { nama: "TK Mawar Sari", npsn: "30313226", status: "Swasta", kecamatan: "Murung Pudak", jumlah: 20, guru1: "Tati Herliani, S.Pd", jabatan1: "Guru Kelompok B", guru2: "Tia Alvio Nita", jabatan2: "Guru Kelompok A", guru3: "Rusminarsih, S.Pd.AUD", jabatan3: "Kepala TK" },
-            { nama: "TK NEGERI TUNAS MULIA TANTA HULU", npsn: "30313299", status: "Negeri", kecamatan: "Tanta", jumlah: 24, guru1: "Nourlina Hayati, S.Pd.AUD", jabatan1: "Kepala Sekolah", guru2: "Rr Eva Yulianti, S.Pd", jabatan2: "Guru Kelas TKST", guru3: "Faridah, S.Pd", jabatan3: "Guru Kelas TK" },
-            { nama: "TK NEGERI HARAPAN KITA", npsn: "30313199", status: "Negeri", kecamatan: "Banua Lawas", jumlah: 16, guru1: "Aluh Haniah, S.Pd.AUD", jabatan1: "Kepala Sekolah", guru2: "Nur Riska Sari, S.Pd", jabatan2: "Guru", guru3: "Aulia Rahmah, S.AP", jabatan3: "Operator" },
-            { nama: "TK Negeri Mawar", npsn: "30313225", status: "Negeri", kecamatan: "Tanta", jumlah: 25, guru1: "Evie Wanasari", jabatan1: "Kepala sekolah", guru2: "Hermawati", jabatan2: "Guru", guru3: "Indah", jabatan3: "Guru" },
-            { nama: "TK Negeri Sinar Harapan", npsn: "30313272", status: "Negeri", kecamatan: "Tanjung", jumlah: 26, guru1: "Sumarni,. S. Pd", jabatan1: "Kepala Sekolah", guru2: "Mira Diana, S.Pd", jabatan2: "Guru", guru3: "Anitha Rusdiani, S.Pd", jabatan3: "Guru" },
-            { nama: "Tk. Nusa Indah", npsn: "69814570", status: "Swasta", kecamatan: "Tanta", jumlah: 20, guru1: "Yuliana", jabatan1: "Kepala Sekolah", guru2: "Annisa", jabatan2: "Guru Kelas", guru3: "Noor Anita", jabatan3: "Guru Kelas" },
-            { nama: "TK NEGERI IDHATA KELUA", npsn: "30313251", status: "Negeri", kecamatan: "Kelua", jumlah: 15, guru1: "RIDA TILLAH, S.Pd", jabatan1: "guru", guru2: "NIKMAH, S.Pd", jabatan2: "guru", guru3: "RINI RIFARIAH, S.Pd", jabatan3: "guru" },
-            { nama: "TKN Pembina Upau", npsn: "30313286", status: "Negeri", kecamatan: "Upau", jumlah: 30, guru1: "Yunisa", jabatan1: "Guru kelas", guru2: "Mery Yanti", jabatan2: "Guru kelas", guru3: "Sihana", jabatan3: "Guru Kelas" },
-            { nama: "TKIT AR RISALAH TANJUNG", npsn: "70024192", status: "Swasta", kecamatan: "Tanjung", jumlah: 30, guru1: "Nurul Huda, S. Pd", jabatan1: "Kepala Sekolah", guru2: "Nur Khalisa Azizah, S. Pd", jabatan2: "Wali Kelas", guru3: "Pitria, S. Pd", jabatan3: "Wali Kelas" },
-            { nama: "TK Budi Dharma", npsn: "30313175", status: "Swasta", kecamatan: "Tanta", jumlah: 15, guru1: "Meryana Nyandang", jabatan1: "Kepsek", guru2: "Anike Verarow Inung", jabatan2: "Guru", guru3: "Maria Theresia", jabatan3: "Guru" },
-            { nama: "TK NEGERI PEMBINA KELUA", npsn: "30313237", status: "Negeri", kecamatan: "Kelua", jumlah: 15, guru1: "ANTUNG ATIAH, S.Pd", jabatan1: "Kepala Sekolah", guru2: "HENI WIDIARTI, S.Pd", jabatan2: "Guru Kelas", guru3: "HERMIN WELES, S.Pd", jabatan3: "Guru Kelas" }
-        ];
 
-        function saveData() { localStorage.setItem('daftarPesertaData', JSON.stringify(daftarPeserta)); }
+        // --- Fungsi untuk memuat data dari Google Sheets ---
+        async function loadDataFromServer() {
+            loadingOverlay.style.display = 'flex';
+            try {
+                const [pesertaRes, lembagaRes] = await Promise.all([
+                    fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`),
+                    fetch(`${WEB_APP_URL}?action=getLembagaList&t=${new Date().getTime()}`)
+                ]);
 
-        function loadData() {
-            const savedPeserta = localStorage.getItem('daftarPesertaData');
-            if (savedPeserta) { daftarPeserta = JSON.parse(savedPeserta); }
-            const lembagaTerdaftar = daftarPeserta.map(p => p.nama);
-            lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftar.includes(l.nama));
+                if (!pesertaRes.ok) throw new Error(`Gagal mengambil daftar peserta (Status: ${pesertaRes.status})`);
+                if (!lembagaRes.ok) throw new Error(`Gagal mengambil daftar lembaga (Status: ${lembagaRes.status})`);
+                
+                const pesertaData = await pesertaRes.json();
+                const lembagaData = await lembagaRes.json();
+
+                daftarPeserta = pesertaData.data || [];
+                masterLembagaData = lembagaData.data || [];
+                
+                // Atur jumlah maksimal nomor berdasarkan jumlah lembaga
+                maxNumber = masterLembagaData.length;
+
+                const lembagaTerdaftarNpsn = daftarPeserta.map(p => p.npsn);
+                lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.includes(l.npsn));
+
+                updateDaftarTampilan();
+                renderLembagaList(lembagaTersedia);
+
+            } catch (error) {
+                console.error('Error saat memuat data:', error);
+                alert(`Gagal terhubung ke server. Pastikan skrip Google Anda telah di-deploy dengan benar dan periksa koneksi internet Anda.\n\nDetail Error: ${error.message}`);
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
         }
 
         function updateDaftarTampilan() {
@@ -324,12 +334,12 @@
             daftarBodyResult.innerHTML = rowsHtmlResult;
             daftarBodyView.innerHTML = rowsHtmlView;
         }
-
+        
         function renderLembagaList(items) {
             dropdownMenu.innerHTML = '';
             if (items.length === 0) {
                 const div = document.createElement('div');
-                div.textContent = 'Tidak ditemukan';
+                div.textContent = 'Semua lembaga sudah terdaftar';
                 div.className = 'p-3 text-center text-gray-500';
                 dropdownMenu.appendChild(div);
                 return;
@@ -341,10 +351,10 @@
                 div.addEventListener('click', () => {
                     searchInput.value = item.nama;
                     selectedLembaga = item;
-                    detailNpsnSpan.textContent = item.npsn;
-                    detailStatusSpan.textContent = item.status;
-                    detailKecamatanSpan.textContent = item.kecamatan;
-                    detailJumlahSpan.textContent = `${item.jumlah} orang`;
+                    detailNpsnSpan.textContent = `: ${item.npsn}`;
+                    detailStatusSpan.textContent = `: ${item.status}`;
+                    detailKecamatanSpan.textContent = `: ${item.kecamatan}`;
+                    detailJumlahSpan.textContent = `: ${item.jumlah} orang`;
                     detailGuruDiv.innerHTML = `
                         <p>1. ${item.guru1} (${item.jabatan1})</p>
                         <p>2. ${item.guru2} (${item.jabatan2})</p>
@@ -356,7 +366,7 @@
                 dropdownMenu.appendChild(div);
             });
         }
-
+        
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.toLowerCase();
             const filtered = lembagaTersedia.filter(l => l.nama.toLowerCase().includes(query));
@@ -376,7 +386,7 @@
                 dropdownMenu.classList.add('hidden');
             }
         });
-
+        
         dataForm.addEventListener('submit', function(event) {
             event.preventDefault();
             if (!selectedLembaga) {
@@ -384,51 +394,103 @@
                 return;
             }
             errorMessage.classList.add('hidden');
-            resultNamaLembaga.textContent = selectedLembaga.nama;
-            displayNamaLembaga.textContent = selectedLembaga.nama;
-            inputSection.classList.add('hidden');
-            spinnerSection.classList.remove('hidden');
+            
+            modalLembagaNama.textContent = selectedLembaga.nama;
+            kodeAksesModal.classList.remove('hidden');
+            kodeAksesInput.focus();
+        });
+
+        function handleKodeAksesSubmit() {
+            const kodeInput = kodeAksesInput.value;
+            if (kodeInput === String(selectedLembaga.kode_akses)) {
+                kodeAksesError.classList.add('hidden');
+                kodeAksesModal.classList.add('hidden');
+                kodeAksesInput.value = '';
+                
+                resultNamaLembaga.textContent = selectedLembaga.nama;
+                displayNamaLembaga.textContent = selectedLembaga.nama;
+                inputSection.classList.add('hidden');
+                spinnerSection.classList.remove('hidden');
+            } else {
+                kodeAksesError.classList.remove('hidden');
+            }
+        }
+
+        kodeAksesForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleKodeAksesSubmit();
+        });
+
+        submitKodeAkses.addEventListener('click', handleKodeAksesSubmit);
+
+        cancelKodeAkses.addEventListener('click', () => {
+            kodeAksesModal.classList.add('hidden');
+            kodeAksesError.classList.add('hidden');
+            kodeAksesInput.value = '';
         });
 
         spinBtn.addEventListener('click', function() {
             const nomorSudahDipakai = daftarPeserta.map(p => p.nomor);
-            if (nomorSudahDipakai.length >= MAX_NUMBER) {
+            if (nomorSudahDipakai.length >= maxNumber) {
                 spinBtn.classList.add('hidden');
                 nomorHabisMessage.classList.remove('hidden');
                 spinnerDisplay.textContent = "---";
                 return;
             }
             spinBtn.disabled = true;
-            spinBtn.textContent = 'Memutar...';
+            spinBtn.textContent = 'Mengambil...';
             spinBtn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             spinBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+
             let spinInterval = setInterval(() => {
-                const randomNumber = Math.floor(Math.random() * MAX_NUMBER) + 1;
+                const randomNumber = Math.floor(Math.random() * maxNumber) + 1;
                 spinnerDisplay.textContent = String(randomNumber).padStart(3, '0');
             }, SPIN_INTERVAL);
+
             setTimeout(() => {
-                clearInterval(spinInterval);
                 let finalNumber;
                 do {
-                    finalNumber = Math.floor(Math.random() * MAX_NUMBER) + 1;
+                    finalNumber = Math.floor(Math.random() * maxNumber) + 1;
                 } while (nomorSudahDipakai.includes(finalNumber));
                 
-                daftarPeserta.push({ 
-                    nomor: finalNumber, 
-                    ...selectedLembaga 
-                });
-                
-                saveData();
-                loadData();
+                const dataUntukDisimpan = { nomor: finalNumber, ...selectedLembaga };
 
-                const formattedFinalNumber = String(finalNumber).padStart(3, '0');
-                spinnerDisplay.textContent = formattedFinalNumber;
-                nomorUrutDisplay.textContent = formattedFinalNumber;
-                updateDaftarTampilan();
-                setTimeout(() => {
-                    spinnerSection.classList.add('hidden');
-                    resultSection.classList.remove('hidden');
-                }, 1000);
+                fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'savePendaftaran', data: dataUntukDisimpan })
+                })
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+                    return res.json();
+                })
+                .then(response => {
+                    if(response.status !== 'success') throw new Error(response.message || 'Server mengembalikan error saat menyimpan.');
+                    
+                    clearInterval(spinInterval);
+                    
+                    daftarPeserta.push(dataUntukDisimpan);
+                    updateDaftarTampilan();
+
+                    const formattedFinalNumber = String(finalNumber).padStart(3, '0');
+                    spinnerDisplay.textContent = formattedFinalNumber;
+                    nomorUrutDisplay.textContent = formattedFinalNumber;
+                    
+                    setTimeout(() => {
+                        spinnerSection.classList.add('hidden');
+                        resultSection.classList.remove('hidden');
+                    }, 1000);
+                })
+                .catch(err => {
+                    clearInterval(spinInterval);
+                    console.error('Error saat menyimpan:', err);
+                    alert(`Gagal menyimpan data ke server. Silakan coba lagi.\n\nDetail Error: ${err.message}`);
+                    
+                    spinBtn.disabled = false;
+                    spinBtn.textContent = 'Ambil Nomor!';
+                    spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
+                    spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                });
+
             }, SPIN_DURATION);
         });
         
@@ -436,20 +498,22 @@
             spinnerSection.classList.add('hidden');
             inputSection.classList.remove('hidden');
             spinBtn.disabled = false;
-            spinBtn.textContent = 'Putar Sekarang!';
+            spinBtn.textContent = 'Ambil Nomor!';
             spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
             spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
         });
 
-        resetBtn.addEventListener('click', function() {
+        resetBtn.addEventListener('click', async function() {
             resultSection.classList.add('hidden');
             inputSection.classList.remove('hidden');
             detailSekolahDiv.classList.add('hidden');
             searchInput.value = '';
             selectedLembaga = null;
-            renderLembagaList(lembagaTersedia);
+
+            await loadDataFromServer();
+
             spinBtn.disabled = false;
-            spinBtn.textContent = 'Putar Sekarang!';
+            spinBtn.textContent = 'Ambil Nomor!';
             spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
             spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             if (!nomorHabisMessage.classList.contains('hidden')) {
@@ -467,39 +531,53 @@
             inputSection.classList.remove('hidden');
         });
 
-        function exportToExcel() {
-            if (daftarPeserta.length === 0) return;
-            const headers = ['No. Urut', 'Nama Lembaga', 'NPSN', 'Status', 'Kecamatan', 'Jumlah Peserta', 'Guru 1', 'Jabatan 1', 'Guru 2', 'Jabatan 2', 'Guru 3', 'Jabatan 3'];
-            const rows = daftarPeserta.map(p => [
-                String(p.nomor).padStart(3, '0'), 
-                `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`, p.jumlah,
-                `"${p.guru1}"`, `"${p.jabatan1}"`, `"${p.guru2}"`, `"${p.jabatan2}"`, `"${p.guru3}"`, `"${p.jabatan3}"`
-            ]);
-            let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
-            var encodedUri = encodeURI(csvContent);
-            var link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "daftar_peserta_lomba_han_2025.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        async function exportToExcel() {
+            loadingOverlay.style.display = 'flex';
+            try {
+                const res = await fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`);
+                if (!res.ok) throw new Error(`Gagal mengambil data untuk export (Status: ${res.status})`);
+                const serverData = await res.json();
+                const dataToExport = serverData.data || [];
+
+                if (dataToExport.length === 0) {
+                    alert("Tidak ada data untuk di-export.");
+                    return;
+                };
+
+                const masterDataMap = new Map(masterLembagaData.map(item => [item.npsn, item]));
+                
+                const headers = ['No. Urut', 'Nama Lembaga', 'NPSN', 'Status', 'Kecamatan', 'Jumlah Peserta', 'Guru 1', 'Jabatan 1', 'Guru 2', 'Jabatan 2', 'Guru 3', 'Jabatan 3', 'Kode Akses'];
+                const rows = dataToExport.map(p => {
+                    const master = masterDataMap.get(p.npsn) || {};
+                    return [
+                        `'${String(p.nomor).padStart(3, '0')}`,
+                        `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`,
+                        master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`,
+                        `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`, `"${master.kode_akses || ''}"`
+                    ];
+                });
+                let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
+                var encodedUri = encodeURI(csvContent);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "daftar_peserta_lomba_han_2025.csv");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch(error) {
+                alert(`Gagal mengekspor data. \n\nDetail Error: ${error.message}`);
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
         }
         exportBtns.forEach(btn => btn.addEventListener('click', exportToExcel));
 
+        // --- Event Listener Utama ---
         document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            renderLembagaList(lembagaTersedia);
-            updateDaftarTampilan();
-            
-            document.body.addEventListener('mousemove', e => {
-                document.body.style.setProperty('--x', e.clientX + 'px');
-                document.body.style.setProperty('--y', e.clientY + 'px');
-            });
+            loadDataFromServer();
         });
+
     </script>
 
 </body>
 </html>
-
-
-
