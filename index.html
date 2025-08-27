@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lomba Hari Anak Nasional 2025 - Kab. Tabalong</title>
-    <!-- FAVICON BARU DITAMBAHKAN DI SINI -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
+    <!-- FAVICON -->
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png">
     <!-- Menggunakan Tailwind CSS untuk styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Menggunakan Google Fonts: Fredoka One for Headers, Inter for Body -->
@@ -93,12 +93,18 @@
         <!-- Tahap 1: Input Data Peserta -->
         <div id="inputSection">
             <div class="flex justify-center items-center gap-4 mb-6">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" class="h-16" alt="Logo Tut Wuri Handayani" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png" alt="Logo Tabalong" class="h-20" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
+                <img src="https://awsimages.detik.net.id/community/media/visual/2025/07/09/logo-hari-anak-nasional-2025-1752054507039.png?w=800" alt="Logo HAN" class="h-16" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
             </div>
             <div class="text-center mb-8">
                 <h1 class="text-3xl font-fredoka text-blue-600">Pengambilan Nomor Urut Peserta Karnaval</h1>
                 <p class="text-gray-600 mt-2 font-semibold">Hari Anak Nasional Tahun 2025<br>Kabupaten Tabalong</p>
             </div>
+            
+            <!-- Pesan Pembatasan Waktu -->
+            <div id="timeRestrictionMessage" class="text-center text-lg font-bold p-4 rounded-lg my-4 hidden"></div>
+
             <form id="dataForm" class="space-y-4">
                 <div class="relative" id="searchContainer">
                     <label for="searchLembaga" class="block text-sm font-medium text-gray-700 mb-2">Cari PAUD / TK Anda</label>
@@ -228,6 +234,11 @@
     </div>
 
     <script>
+        // --- PENGATURAN WAKTU ---
+        // Format: YYYY-MM-DDTHH:MM:SS (Contoh: '2025-08-28T08:00:00')
+        const TANGGAL_MULAI = '2025-09-08T08:00:00';
+        const TANGGAL_SELESAI = '2025-09-09T23:59:00';
+
         // --- URL Google Apps Script Web App ---
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz-IVwGOP8M4y2c04iUpS0tSkSkxKQIhBFexVCsTKO7UdPamGxuHRZRfYPSAueLTGGrsA/exec';
 
@@ -261,6 +272,7 @@
         const dropdownMenu = document.getElementById('dropdownMenu');
         const cancelBtn = document.getElementById('cancelBtn');
         const searchContainer = document.getElementById('searchContainer');
+        const timeRestrictionMessage = document.getElementById('timeRestrictionMessage');
         // Elemen Modal Kode Akses
         const kodeAksesModal = document.getElementById('kodeAksesModal');
         const kodeAksesForm = document.getElementById('kodeAksesForm');
@@ -280,9 +292,51 @@
         let lembagaTersedia = []; // Lembaga yang belum mendaftar
         let selectedLembaga = null;
 
+        // --- Fungsi untuk memeriksa batasan waktu ---
+        function checkTimeRestriction() {
+            const now = new Date();
+            const startTime = new Date(TANGGAL_MULAI);
+            const endTime = new Date(TANGGAL_SELESAI);
+            const submitButton = dataForm.querySelector('button[type="submit"]');
+            const formContent = [searchContainer, detailSekolahDiv];
+
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+
+            if (now < startTime) {
+                timeRestrictionMessage.innerHTML = `Pengambilan nomor akan dibuka pada:<br><strong class="text-lg">${startTime.toLocaleString('id-ID', options)}</strong>`;
+                timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
+                timeRestrictionMessage.classList.remove('hidden');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Belum Dibuka';
+                submitButton.className = 'w-full bg-gray-400 text-white font-bold py-3 px-4 rounded-xl shadow-md text-lg cursor-not-allowed';
+                formContent.forEach(el => el.classList.add('hidden'));
+                return false;
+            } else if (now > endTime) {
+                timeRestrictionMessage.innerHTML = `Waktu pengambilan nomor sudah berakhir pada:<br><strong class="text-lg">${endTime.toLocaleString('id-ID', options)}</strong>`;
+                timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-red-100 text-red-800';
+                timeRestrictionMessage.classList.remove('hidden');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sudah Ditutup';
+                submitButton.className = 'w-full bg-gray-400 text-white font-bold py-3 px-4 rounded-xl shadow-md text-lg cursor-not-allowed';
+                formContent.forEach(el => el.classList.add('hidden'));
+                return false;
+            } else {
+                timeRestrictionMessage.classList.add('hidden');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Ambil Nomor';
+                submitButton.className = 'w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg';
+                searchContainer.classList.remove('hidden');
+                return true;
+            }
+        }
+
         // --- Fungsi untuk memuat data dari Google Sheets ---
         async function loadDataFromServer() {
             loadingOverlay.style.display = 'flex';
+            if (!checkTimeRestriction()) {
+                loadingOverlay.style.display = 'none';
+                return;
+            }
             try {
                 const [pesertaRes, lembagaRes] = await Promise.all([
                     fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`),
@@ -298,7 +352,6 @@
                 daftarPeserta = pesertaData.data || [];
                 masterLembagaData = lembagaData.data || [];
                 
-                // Atur jumlah maksimal nomor berdasarkan jumlah lembaga
                 maxNumber = masterLembagaData.length;
 
                 const lembagaTerdaftarNpsn = daftarPeserta.map(p => p.npsn);
@@ -389,6 +442,7 @@
         
         dataForm.addEventListener('submit', function(event) {
             event.preventDefault();
+            if (!checkTimeRestriction()) return;
             if (!selectedLembaga) {
                 errorMessage.classList.remove('hidden');
                 return;
@@ -575,6 +629,7 @@
         // --- Event Listener Utama ---
         document.addEventListener('DOMContentLoaded', () => {
             loadDataFromServer();
+            setInterval(checkTimeRestriction, 60000); // Periksa waktu setiap menit
         });
 
     </script>
