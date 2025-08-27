@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lomba Hari Anak Nasional 2025 - Kab. Tabalong</title>
-    <!-- FAVICON -->
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png">
-    <!-- Menggunakan Tailwind CSS untuk styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Menggunakan Google Fonts: Fredoka One for Headers, Inter for Body -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,7 +29,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f0f9ff; /* sky-50 */
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23f8b195' fill-opacity='0.1'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.1'%3E%3Cpolygon fill='%23f67280' points='100 100 0 100 0 0 100 0 100 100'/%3E%3Cpolygon fill='%23c06c84' points='100 100 100 200 200 200 200 100 100 100'/%3E%3C/g%3E%3C/svg%3E"), 
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23f8b195' fill-opacity='0.1'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.1'%3E%3Cpolygon fill='%23f67280' points='100 100 0 100 0 0 100 0 100 100'/%3E%3Cpolygon fill='%23c06c84' points='100 100 100 200 200 200 200 100 100 100'/%3E%3C/g%3E%3C/svg%3E"),
                               url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-opacity='0.1' fill='%236c5b7b'%3E%3Ccircle cx='34' cy='15' r='6'/%3E%3Cpath d='M180 40 a10 10 0 0 1 0 20 a10 10 0 0 1 0 -20'/%3E%3Cpath d='M10 180 a12 12 0 0 1 0 24 a12 12 0 0 1 0 -24'/%3E%3Ccircle cx='150' cy='160' r='8'/%3E%3Cpath d='M50 80 l10 10 l-10 10 l-10 -10z'/%3E%3C/g%3E%3C/svg%3E");
             animation: floaty-background 80s linear infinite;
         }
@@ -47,20 +44,40 @@
             z-index: 9999; flex-direction: column; gap: 1rem;
             backdrop-filter: blur(4px);
         }
+        .timer-box {
+            display: inline-block;
+            padding: 0.5rem 0.75rem;
+            margin: 0 0.25rem;
+            background-color: rgba(255,255,255,0.5);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .timer-box span {
+            display: block;
+            font-weight: bold;
+        }
+        .timer-box span:first-child {
+            font-size: 1.75rem;
+            line-height: 1;
+        }
+        .timer-box span:last-child {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #4b5563; /* gray-600 */
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <!-- Loading Overlay -->
     <div id="loadingOverlay">
         <svg class="animate-spin h-10 w-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <p class="text-lg font-semibold text-gray-700">Memuat data dari server...</p>
+        <p class="text-lg font-semibold text-gray-700">Memuat data & sinkronisasi waktu...</p>
     </div>
 
-    <!-- Modal Kode Akses -->
     <div id="kodeAksesModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
         <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
             <div class="mt-3 text-center">
@@ -87,10 +104,34 @@
         </div>
     </div>
 
+    <div id="exportPasswordModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
+        <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-bold text-gray-900">Akses Terbatas</h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500">
+                        Masukkan kata sandi admin untuk melanjutkan proses export.
+                    </p>
+                    <form id="exportPasswordForm">
+                        <input type="password" id="exportPasswordInput" placeholder="******" class="w-full px-4 py-3 mt-3 text-center bg-gray-100 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-lg">
+                        <p id="exportPasswordError" class="text-red-500 text-sm mt-2 hidden">Kata sandi salah.</p>
+                    </form>
+                </div>
+                <div class="items-center px-4 py-3 gap-2 flex">
+                    <button id="cancelExport" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">
+                        Batal
+                    </button>
+                    <button id="submitExport" type="button" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all">
+                        Export
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="w-full max-w-md mx-auto bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white">
 
-        <!-- Tahap 1: Input Data Peserta -->
         <div id="inputSection">
             <div class="flex justify-center items-center gap-4 mb-6">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" class="h-16" alt="Logo Tut Wuri Handayani" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
@@ -102,18 +143,20 @@
                 <p class="text-gray-600 mt-2 font-semibold">Hari Anak Nasional Tahun 2025<br>Kabupaten Tabalong</p>
             </div>
             
-            <!-- Pesan Pembatasan Waktu -->
-            <div id="timeRestrictionMessage" class="text-center text-lg font-bold p-4 rounded-lg my-4 hidden"></div>
+            <div id="sisaWaktuContainer" class="text-center p-3 rounded-lg my-4 hidden"></div>
+            
+            <div id="timeRestrictionMessage" class="text-center font-semibold p-4 rounded-lg my-4 hidden"></div>
+            <div id="viewDaftarBeforeStartContainer" class="hidden"></div>
+
 
             <form id="dataForm" class="space-y-4">
                 <div class="relative" id="searchContainer">
                     <label for="searchLembaga" class="block text-sm font-medium text-gray-700 mb-2">Cari PAUD / TK Anda</label>
                     <input type="text" id="searchLembaga" placeholder="Ketik untuk mencari..." class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
                     <div id="dropdownMenu" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto p-1">
-                        <!-- Hasil pencarian akan muncul di sini -->
-                    </div>
+                        </div>
                 </div>
-                
+
                 <div id="detailSekolah" class="hidden space-y-3 text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
                     <div class="grid grid-cols-3 gap-x-2">
                         <strong class="col-span-1">NPSN</strong><span id="detailNpsn" class="col-span-2 text-gray-700"></span>
@@ -138,7 +181,6 @@
             </form>
         </div>
 
-        <!-- Tahap 2: Proses Spin Nomor -->
         <div id="spinnerSection" class="hidden text-center">
             <div class="bg-gradient-to-r from-purple-50 to-indigo-100 p-4 rounded-xl mb-6 border border-purple-200">
                 <div class="flex items-center justify-center gap-2">
@@ -161,7 +203,6 @@
             </div>
         </div>
 
-        <!-- Tahap 3: Hasil Nomor Urut -->
         <div id="resultSection" class="hidden text-center">
             <h2 class="text-3xl font-fredoka text-yellow-500 mb-3">Hore!</h2>
             <p class="text-gray-600 mb-6">Kamu mendapatkan nomor urut:</p>
@@ -193,27 +234,20 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="viewDaftarSection" class="hidden">
             <div class="text-center mb-6">
-                <h1 class="text-3xl font-fredoka text-blue-600">Daftar Peserta</h1>
-                 <p class="text-gray-600 mt-2">Rekapitulasi lembaga yang sudah terdaftar.</p>
+                <h1 id="viewDaftarTitle" class="text-3xl font-fredoka text-blue-600"></h1>
+                <p id="viewDaftarSubtitle" class="text-gray-600 mt-2"></p>
             </div>
             <div class="overflow-x-auto bg-white rounded-lg border max-h-96">
                 <table class="min-w-full text-sm table-auto">
-                    <thead class="bg-gray-50 sticky top-0">
-                        <tr>
-                            <th class="p-3 font-semibold text-gray-600">No.</th>
-                            <th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th>
-                            <th class="p-3 font-semibold text-gray-600 text-left">NPSN</th>
-                            <th class="p-3 font-semibold text-gray-600 text-left">Status</th>
-                            <th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th>
-                        </tr>
-                    </thead>
+                    <thead id="viewDaftarThead" class="bg-gray-50 sticky top-0">
+                        </thead>
                     <tbody id="daftarBodyView" class="divide-y divide-gray-200"></tbody>
                 </table>
             </div>
-            <div class="grid grid-cols-2 gap-4 mt-6">
+            <div id="viewDaftarActions" class="grid grid-cols-2 gap-4 mt-6">
                 <button id="kembaliBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" /></svg>
                     Kembali
@@ -225,7 +259,6 @@
             </div>
         </div>
 
-        <!-- Footer -->
         <div class="text-center mt-8 border-t-2 border-gray-100 pt-4">
             <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
             <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
@@ -234,10 +267,9 @@
     </div>
 
     <script>
-        // --- PENGATURAN WAKTU ---
-        // Format: YYYY-MM-DDTHH:MM:SS (Contoh: '2025-08-28T08:00:00')
-        const TANGGAL_MULAI = '2025-09-08T08:00:00';
-        const TANGGAL_SELESAI = '2025-09-09T23:59:00';
+
+        const TANGGAL_MULAI = '2025-08-27T08:00:00';
+        const TANGGAL_SELESAI = '2025-09-28T17:00:00'; 
 
         // --- URL Google Apps Script Web App ---
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz-IVwGOP8M4y2c04iUpS0tSkSkxKQIhBFexVCsTKO7UdPamGxuHRZRfYPSAueLTGGrsA/exec';
@@ -261,6 +293,9 @@
         const kembaliBtn = document.getElementById('kembaliBtn');
         const daftarBodyResult = document.getElementById('daftarBodyResult');
         const daftarBodyView = document.getElementById('daftarBodyView');
+        const viewDaftarTitle = document.getElementById('viewDaftarTitle');
+        const viewDaftarSubtitle = document.getElementById('viewDaftarSubtitle');
+        const viewDaftarThead = document.getElementById('viewDaftarThead');
         const exportBtns = document.querySelectorAll('.export-btn');
         const detailSekolahDiv = document.getElementById('detailSekolah');
         const detailNpsnSpan = document.getElementById('detailNpsn');
@@ -273,6 +308,8 @@
         const cancelBtn = document.getElementById('cancelBtn');
         const searchContainer = document.getElementById('searchContainer');
         const timeRestrictionMessage = document.getElementById('timeRestrictionMessage');
+        const viewDaftarBeforeStartContainer = document.getElementById('viewDaftarBeforeStartContainer');
+        const sisaWaktuContainer = document.getElementById('sisaWaktuContainer');
         // Elemen Modal Kode Akses
         const kodeAksesModal = document.getElementById('kodeAksesModal');
         const kodeAksesForm = document.getElementById('kodeAksesForm');
@@ -281,7 +318,16 @@
         const modalLembagaNama = document.getElementById('modalLembagaNama');
         const kodeAksesInput = document.getElementById('kodeAksesInput');
         const kodeAksesError = document.getElementById('kodeAksesError');
-
+        // Elemen Modal Export
+        const exportPasswordModal = document.getElementById('exportPasswordModal');
+        const exportPasswordForm = document.getElementById('exportPasswordForm');
+        const cancelExport = document.getElementById('cancelExport');
+        const submitExport = document.getElementById('submitExport');
+        const exportPasswordInput = document.getElementById('exportPasswordInput');
+        const exportPasswordError = document.getElementById('exportPasswordError');
+        // Elemen Tombol di Bagian Daftar
+        const viewDaftarActions = document.getElementById('viewDaftarActions');
+        const exportBtnView = document.getElementById('exportBtnView');
 
         // --- Variabel untuk menyimpan data ---
         const SPIN_DURATION = 3000;
@@ -291,41 +337,102 @@
         let masterLembagaData = []; // Data master lembaga dari server
         let lembagaTersedia = []; // Lembaga yang belum mendaftar
         let selectedLembaga = null;
+        let countdownInterval = null; // Variabel untuk interval timer
+
+        // --- PERUBAHAN DIMULAI ---
+        // Variabel untuk menyimpan waktu server yang andal
+        let reliableCurrentTime = null; 
+        // --- PERUBAHAN SELESAI ---
+
+        // --- Fungsi Timer ---
+        // --- DIUBAH: Fungsi ini sekarang menerima parameter 'now' ---
+        function updateTimer(targetDate, element, onEnd, prefix, suffix, now) {
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                onEnd();
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            element.innerHTML = `
+                <p class="mb-2 font-semibold">${prefix}</p>
+                <div>
+                    ${days > 0 ? `<div class="timer-box"><span>${String(days).padStart(2, '0')}</span><span>Hari</span></div>` : ''}
+                    <div class="timer-box"><span>${String(hours).padStart(2, '0')}</span><span>Jam</span></div>
+                    <div class="timer-box"><span>${String(minutes).padStart(2, '0')}</span><span>Menit</span></div>
+                    <div class="timer-box"><span>${String(seconds).padStart(2, '0')}</span><span>Detik</span></div>
+                </div>
+                ${suffix ? `<p class="mt-2 text-sm text-gray-500">${suffix}</p>` : ''}
+            `;
+        }
 
         // --- Fungsi untuk memeriksa batasan waktu ---
-        function checkTimeRestriction() {
-            const now = new Date();
+        // --- DIUBAH: Fungsi ini sekarang menerima parameter 'currentTime' dari server ---
+        function checkTimeRestriction(currentTime) {
+            clearInterval(countdownInterval); 
+            const now = currentTime; // Menggunakan waktu dari server
             const startTime = new Date(TANGGAL_MULAI);
             const endTime = new Date(TANGGAL_SELESAI);
             const submitButton = dataForm.querySelector('button[type="submit"]');
-            const formContent = [searchContainer, detailSekolahDiv];
-
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const formElements = [searchContainer, submitButton, viewDaftarBtn];
+            
+            const onTimerEnd = () => location.reload();
 
             if (now < startTime) {
-                timeRestrictionMessage.innerHTML = `Pengambilan nomor akan dibuka pada:<br><strong class="text-lg">${startTime.toLocaleString('id-ID', options)}</strong>`;
-                timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
+                sisaWaktuContainer.classList.add('hidden');
                 timeRestrictionMessage.classList.remove('hidden');
-                submitButton.disabled = true;
-                submitButton.textContent = 'Belum Dibuka';
-                submitButton.className = 'w-full bg-gray-400 text-white font-bold py-3 px-4 rounded-xl shadow-md text-lg cursor-not-allowed';
-                formContent.forEach(el => el.classList.add('hidden'));
+                timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
+                formElements.forEach(el => el.classList.add('hidden'));
+                
+                // Panggil timer pertama kali, lalu set interval
+                updateTimer(startTime, timeRestrictionMessage, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
+                countdownInterval = setInterval(() => {
+                    // Update 'now' setiap detik untuk countdown yang akurat
+                    now.setSeconds(now.getSeconds() + 1); 
+                    updateTimer(startTime, timeRestrictionMessage, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
+                }, 1000);
+
+                viewDaftarBeforeStartContainer.classList.remove('hidden');
+                viewDaftarBeforeStartContainer.innerHTML = `
+                    <button type="button" id="viewDaftarBeforeStartBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
+                        Lihat Lembaga Yang Belum Mendaftar
+                    </button>
+                `;
+                document.getElementById('viewDaftarBeforeStartBtn').addEventListener('click', () => {
+                    inputSection.classList.add('hidden');
+                    viewDaftarSection.classList.remove('hidden');
+                });
                 return false;
+
             } else if (now > endTime) {
-                timeRestrictionMessage.innerHTML = `Waktu pengambilan nomor sudah berakhir pada:<br><strong class="text-lg">${endTime.toLocaleString('id-ID', options)}</strong>`;
+                timeRestrictionMessage.innerHTML = `Waktu pengambilan nomor sudah berakhir.`;
                 timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-red-100 text-red-800';
                 timeRestrictionMessage.classList.remove('hidden');
-                submitButton.disabled = true;
-                submitButton.textContent = 'Sudah Ditutup';
-                submitButton.className = 'w-full bg-gray-400 text-white font-bold py-3 px-4 rounded-xl shadow-md text-lg cursor-not-allowed';
-                formContent.forEach(el => el.classList.add('hidden'));
+                sisaWaktuContainer.classList.add('hidden');
+                formElements.forEach(el => el.classList.add('hidden'));
+                viewDaftarBeforeStartContainer.classList.add('hidden');
                 return false;
             } else {
                 timeRestrictionMessage.classList.add('hidden');
-                submitButton.disabled = false;
-                submitButton.textContent = 'Ambil Nomor';
-                submitButton.className = 'w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg';
-                searchContainer.classList.remove('hidden');
+                sisaWaktuContainer.classList.remove('hidden');
+                sisaWaktuContainer.className = 'text-center p-3 rounded-lg my-4 bg-blue-100 text-blue-800';
+                formElements.forEach(el => el.classList.remove('hidden'));
+                viewDaftarBeforeStartContainer.classList.add('hidden');
+                
+                // Panggil timer pertama kali, lalu set interval
+                updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
+                countdownInterval = setInterval(() => {
+                    now.setSeconds(now.getSeconds() + 1);
+                    updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
+                }, 1000);
+
                 return true;
             }
         }
@@ -333,10 +440,25 @@
         // --- Fungsi untuk memuat data dari Google Sheets ---
         async function loadDataFromServer() {
             loadingOverlay.style.display = 'flex';
-            if (!checkTimeRestriction()) {
-                loadingOverlay.style.display = 'none';
-                return;
+            
+            // --- PERUBAHAN DIMULAI ---
+            try {
+                // 1. Ambil waktu dari World Time API (zona WITA/Makassar)
+                const timeResponse = await fetch('https://worldtimeapi.org/api/timezone/Asia/Makassar');
+                if (!timeResponse.ok) throw new Error('Gagal mengambil waktu dari server.');
+                const timeData = await timeResponse.json();
+                reliableCurrentTime = new Date(timeData.datetime); // Simpan waktu server
+                console.log("Waktu berhasil disinkronkan dari server:", reliableCurrentTime);
+            } catch (error) {
+                // 2. Jika gagal, gunakan waktu lokal sebagai cadangan
+                console.warn("Gagal sinkronisasi waktu, menggunakan waktu lokal:", error);
+                reliableCurrentTime = new Date();
+                alert("Peringatan: Gagal melakukan sinkronisasi waktu dengan server. Pastikan Anda terhubung ke internet. Waktu yang digunakan adalah waktu dari perangkat Anda.");
             }
+            // --- PERUBAHAN SELESAI ---
+
+            checkTimeRestriction(reliableCurrentTime); // Atur UI dan mulai timer dengan waktu yang andal
+            
             try {
                 const [pesertaRes, lembagaRes] = await Promise.all([
                     fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`),
@@ -357,7 +479,7 @@
                 const lembagaTerdaftarNpsn = daftarPeserta.map(p => p.npsn);
                 lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.includes(l.npsn));
 
-                updateDaftarTampilan();
+                updateDaftarTampilan(reliableCurrentTime);
                 renderLembagaList(lembagaTersedia);
 
             } catch (error) {
@@ -367,25 +489,93 @@
                 loadingOverlay.style.display = 'none';
             }
         }
+        
+        // --- DIUBAH: Fungsi ini sekarang menerima 'now' untuk menentukan tampilan ---
+        function updateDaftarTampilan(now) {
+            const startTime = new Date(TANGGAL_MULAI);
+            const isBeforeStart = now < startTime;
 
-        function updateDaftarTampilan() {
+            // 1. Update Result Table (on success screen)
             daftarPeserta.sort((a, b) => a.nomor - b.nomor);
             let rowsHtmlResult = '';
-            let rowsHtmlView = '';
             if (daftarPeserta.length === 0) {
-                const emptyMsg = '<tr><td colspan="5" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>';
                 rowsHtmlResult = '<tr><td colspan="3" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>';
-                rowsHtmlView = emptyMsg;
-                exportBtns.forEach(btn => btn.disabled = true);
             } else {
                 daftarPeserta.forEach(peserta => {
                     rowsHtmlResult += `<tr class="hover:bg-yellow-50 even:bg-blue-50/50"><td class="p-3 text-center font-bold text-blue-600">${String(peserta.nomor).padStart(3, '0')}</td><td class="p-3 text-left">${peserta.nama}</td><td class="p-3 text-left">${peserta.kecamatan}</td></tr>`;
-                    rowsHtmlView += `<tr class="hover:bg-yellow-50 even:bg-blue-50/50"><td class="p-3 text-center font-bold text-blue-600">${String(peserta.nomor).padStart(3, '0')}</td><td class="p-3 text-left break-words">${peserta.nama}</td><td class="p-3 text-left">${peserta.npsn}</td><td class="p-3 text-left">${peserta.status}</td><td class="p-3 text-left">${peserta.kecamatan}</td></tr>`;
                 });
-                exportBtns.forEach(btn => btn.disabled = false);
             }
             daftarBodyResult.innerHTML = rowsHtmlResult;
+
+            // 2. Update Main View Table (viewDaftarSection) based on time
+            let rowsHtmlView = '';
+            if (isBeforeStart) {
+                viewDaftarTitle.textContent = 'Lembaga Yang Belum Mendaftar';
+                viewDaftarSubtitle.textContent = 'Berikut adalah daftar lembaga yang masih tersedia untuk mendaftar.';
+                viewDaftarThead.innerHTML = `
+                    <tr>
+                        <th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th>
+                        <th class="p-3 font-semibold text-gray-600 text-left">NPSN</th>
+                        <th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th>
+                    </tr>`;
+                
+                exportBtnView.classList.add('hidden');
+                viewDaftarActions.classList.remove('grid-cols-2', 'gap-4');
+                viewDaftarActions.classList.add('grid-cols-1');
+
+
+                if (lembagaTersedia.length === 0) {
+                     rowsHtmlView = '<tr><td colspan="3" class="p-4 text-center text-gray-500">Semua lembaga sudah mendaftar.</td></tr>';
+                } else {
+                    lembagaTersedia.sort((a,b) => a.nama.localeCompare(b.nama)).forEach(lembaga => {
+                        rowsHtmlView += `
+                            <tr class="hover:bg-yellow-50">
+                                <td class="p-3 text-left break-words">${lembaga.nama}</td>
+                                <td class="p-3 text-left">${lembaga.npsn}</td>
+                                <td class="p-3 text-left">${lembaga.kecamatan}</td>
+                            </tr>`;
+                    });
+                }
+            } else { // During or after registration
+                viewDaftarTitle.textContent = 'Daftar Peserta';
+                viewDaftarSubtitle.textContent = 'Rekapitulasi lembaga yang sudah mengambil Nomor Peserta Karnaval';
+                 viewDaftarThead.innerHTML = `
+                    <tr>
+                        <th class="p-3 font-semibold text-gray-600">No. Urut</th>
+                        <th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th>
+                        <th class="p-3 font-semibold text-gray-600 text-left">NPSN</th>
+                        <th class="p-3 font-semibold text-gray-600 text-left">Status</th>
+                        <th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th>
+                    </tr>`;
+                
+                exportBtnView.classList.remove('hidden');
+                viewDaftarActions.classList.remove('grid-cols-1');
+                viewDaftarActions.classList.add('grid-cols-2', 'gap-4');
+
+                if (daftarPeserta.length === 0) {
+                    rowsHtmlView = '<tr><td colspan="5" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>';
+                } else {
+                    daftarPeserta.forEach(lembaga => {
+                        rowsHtmlView += `
+                            <tr class="hover:bg-yellow-50">
+                                <td class="p-3 text-center font-bold text-blue-600">${String(lembaga.nomor).padStart(3, '0')}</td>
+                                <td class="p-3 text-left break-words">${lembaga.nama}</td>
+                                <td class="p-3 text-left">${lembaga.npsn}</td>
+                                <td class="p-3 text-left">${lembaga.status}</td>
+                                <td class="p-3 text-left">${lembaga.kecamatan}</td>
+                            </tr>`;
+                    });
+                }
+            }
             daftarBodyView.innerHTML = rowsHtmlView;
+
+
+            // 3. Handle Export Buttons
+            if (daftarPeserta.length === 0) {
+                exportBtns.forEach(btn => btn.disabled = true);
+            } else {
+                exportBtns.forEach(btn => btn.disabled = false);
+            }
         }
         
         function renderLembagaList(items) {
@@ -442,7 +632,23 @@
         
         dataForm.addEventListener('submit', function(event) {
             event.preventDefault();
-            if (!checkTimeRestriction()) return;
+            
+            // --- PERUBAHAN DIMULAI ---
+            // Periksa ulang waktu saat submit menggunakan waktu server yang sudah disimpan
+            if (!reliableCurrentTime) {
+                alert("Waktu belum tersinkronisasi. Mohon muat ulang halaman.");
+                return;
+            }
+            const now = reliableCurrentTime;
+            // --- PERUBAHAN SELESAI ---
+
+            const startTime = new Date(TANGGAL_MULAI);
+            const endTime = new Date(TANGGAL_SELESAI);
+            if (now < startTime || now > endTime) {
+                alert("Waktu pendaftaran sudah berakhir atau belum dimulai.");
+                return;
+            }
+            
             if (!selectedLembaga) {
                 errorMessage.classList.remove('hidden');
                 return;
@@ -523,7 +729,7 @@
                     clearInterval(spinInterval);
                     
                     daftarPeserta.push(dataUntukDisimpan);
-                    updateDaftarTampilan();
+                    updateDaftarTampilan(reliableCurrentTime); // Gunakan waktu server untuk update
 
                     const formattedFinalNumber = String(finalNumber).padStart(3, '0');
                     spinnerDisplay.textContent = formattedFinalNumber;
@@ -564,7 +770,7 @@
             searchInput.value = '';
             selectedLembaga = null;
 
-            await loadDataFromServer();
+            await loadDataFromServer(); // loadDataFromServer sudah otomatis menggunakan waktu server
 
             spinBtn.disabled = false;
             spinBtn.textContent = 'Ambil Nomor!';
@@ -583,6 +789,29 @@
         kembaliBtn.addEventListener('click', () => {
             viewDaftarSection.classList.add('hidden');
             inputSection.classList.remove('hidden');
+        });
+
+        function handleExport() {
+            const password = exportPasswordInput.value;
+            if (password === 'admin') {
+                exportPasswordError.classList.add('hidden');
+                exportPasswordModal.classList.add('hidden');
+                exportPasswordInput.value = '';
+                exportToExcel();
+            } else {
+                exportPasswordError.classList.remove('hidden');
+            }
+        }
+
+        exportPasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleExport();
+        });
+        submitExport.addEventListener('click', handleExport);
+        cancelExport.addEventListener('click', () => {
+            exportPasswordModal.classList.add('hidden');
+            exportPasswordError.classList.add('hidden');
+            exportPasswordInput.value = '';
         });
 
         async function exportToExcel() {
@@ -624,12 +853,14 @@
                 loadingOverlay.style.display = 'none';
             }
         }
-        exportBtns.forEach(btn => btn.addEventListener('click', exportToExcel));
+        exportBtns.forEach(btn => btn.addEventListener('click', () => {
+             exportPasswordModal.classList.remove('hidden');
+             exportPasswordInput.focus();
+        }));
 
         // --- Event Listener Utama ---
         document.addEventListener('DOMContentLoaded', () => {
             loadDataFromServer();
-            setInterval(checkTimeRestriction, 60000); // Periksa waktu setiap menit
         });
 
     </script>
