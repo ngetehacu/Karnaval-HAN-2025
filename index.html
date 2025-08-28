@@ -75,7 +75,7 @@
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-        <p class="text-lg font-semibold text-gray-700">Memuat data & sinkronisasi waktu...</p>
+        <p class="text-lg font-semibold text-gray-700">Memuat data dari server...</p>
     </div>
 
     <div id="kodeAksesModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
@@ -402,7 +402,7 @@
                 viewDaftarBeforeStartContainer.innerHTML = `
                     <button type="button" id="viewDaftarBeforeStartBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2 mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
-                        Lihat Lembaga yang sudah Terdaftar
+                        Lihat lembaga yang Terdaftar
                     </button>
                 `;
                 document.getElementById('viewDaftarBeforeStartBtn').addEventListener('click', () => {
@@ -451,9 +451,9 @@
                 console.log("Waktu berhasil disinkronkan dari server:", reliableCurrentTime);
             } catch (error) {
                 // 2. Jika gagal, gunakan waktu lokal sebagai cadangan
-                console.warn("Gagal sinkronisasi waktu, menggunakan waktu lokal:", error);
+                // console.warn("Gagal sinkronisasi waktu, menggunakan waktu lokal:", error); // Baris ini dikomentari
                 reliableCurrentTime = new Date();
-                alert("Peringatan: Gagal melakukan sinkronisasi waktu dengan server. Pastikan Anda terhubung ke internet. Waktu yang digunakan adalah waktu dari perangkat Anda.");
+                // alert("Peringatan: Gagal melakukan sinkronisasi waktu dengan server. Pastikan Anda terhubung ke internet. Waktu yang digunakan adalah waktu dari perangkat Anda."); // Baris ini dikomentari
             }
             // --- PERUBAHAN SELESAI ---
 
@@ -867,5 +867,3 @@
 
 </body>
 </html>
-
-
