@@ -6,6 +6,7 @@
     <title>Lomba Hari Anak Nasional 2025 - Kab. Tabalong</title>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DIHAPUS: Library QR Code tidak lagi diperlukan -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -75,6 +76,27 @@
             from { transform: scale(0.9); }
             to { transform: scale(1); }
         }
+        
+        /* STYLE UNTUK CETAK */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-container, #print-container * {
+                visibility: visible;
+            }
+            #print-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
@@ -100,33 +122,6 @@
                 </div>
                 <div id="customAlertButtons" class="items-center px-4 py-3 gap-2 flex">
                     <!-- Buttons will be injected here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL KODE AKSES -->
-    <div id="kodeAksesModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
-        <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
-            <div class="mt-3 text-center">
-                <h3 class="text-lg leading-6 font-bold text-gray-900">Masukkan Kode Akses</h3>
-                <div class="mt-2 px-7 py-3">
-                    <p class="text-sm text-gray-500">
-                        Untuk melanjutkan, masukkan kode akses yang telah diberikan untuk:
-                    </p>
-                    <p id="modalLembagaNama" class="text-lg font-bold text-blue-600 my-2"></p>
-                    <form id="kodeAksesForm">
-                        <input type="password" id="kodeAksesInput" placeholder="******" class="w-full px-4 py-3 text-center bg-gray-100 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-lg tracking-widest">
-                        <p id="kodeAksesError" class="text-red-500 text-sm mt-2 hidden">Kode akses salah. Coba lagi.</p>
-                    </form>
-                </div>
-                <div class="items-center px-4 py-3 gap-2 flex">
-                    <button id="cancelKodeAkses" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">
-                        Batal
-                    </button>
-                    <button id="submitKodeAkses" type="button" class="w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 transition-all">
-                        Lanjutkan
-                    </button>
                 </div>
             </div>
         </div>
@@ -213,15 +208,55 @@
     <!-- KONTEN UTAMA -->
     <div class="w-full max-w-md mx-auto bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white">
 
-        <div id="inputSection">
-            <div class="flex justify-center items-center gap-4 mb-6">
+        <!-- BAGIAN LOGIN PENGGUNA BARU -->
+        <div id="loginSection" class="hidden">
+             <div class="flex justify-center items-center gap-4 mb-6">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" class="h-16" alt="Logo Tut Wuri Handayani" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png" alt="Logo Tabalong" class="h-20" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                 <img src="https://awsimages.detik.net.id/community/media/visual/2025/07/09/logo-hari-anak-nasional-2025-1752054507039.png?w=800" alt="Logo HAN" class="h-16" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
             </div>
             <div class="text-center mb-8">
-                <h1 class="text-3xl font-fredoka text-blue-600">Pengambilan Nomor Urut Peserta Karnaval</h1>
-                <p class="text-gray-600 mt-2 font-semibold">Hari Anak Nasional Tahun 2025<br>Kabupaten Tabalong</p>
+                <h1 class="text-3xl font-fredoka text-blue-600">Selamat Datang!</h1>
+                <p class="text-gray-600 mt-2 font-semibold">Silakan login untuk mengambil Nomor Urut Peserta Karnaval HAN 2025</p>
+            </div>
+
+            <div id="timeRestrictionMessage" class="text-center font-semibold p-4 rounded-lg my-4 hidden"></div>
+            <div id="viewDaftarBeforeStartContainer" class="hidden"></div>
+
+            <form id="userLoginForm" class="space-y-4">
+                <div>
+                    <label for="npsnLoginInput" class="block text-sm font-medium text-gray-700 mb-2">NPSN</label>
+                    <input type="text" id="npsnLoginInput" placeholder="Masukkan NPSN Anda" class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                </div>
+                 <div>
+                    <label for="kodeAksesLoginInput" class="block text-sm font-medium text-gray-700 mb-2">Kode Akses</label>
+                    <input type="password" id="kodeAksesLoginInput" placeholder="Masukkan Kode Akses" class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                </div>
+                <p id="loginError" class="text-red-500 text-sm hidden">NPSN atau Kode Akses salah. Coba lagi.</p>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">
+                    Login
+                </button>
+            </form>
+             <div class="text-center mt-8 border-t-2 border-gray-100 pt-4">
+                <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
+                <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
+                <p class="text-xs text-gray-400 mt-2">Author: Dhiya</p>
+                <button id="adminLoginBtn" class="text-xs text-gray-400 hover:text-blue-600 transition-all mt-2">[ Login Admin ]</button>
+            </div>
+        </div>
+
+
+        <!-- BAGIAN APLIKASI UTAMA (SEBELUM MENGAMBIL NOMOR) -->
+        <div id="mainAppSection" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                 <div class="flex items-center gap-2">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png" alt="Logo Tabalong" class="h-12" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
+                     <div>
+                        <h1 class="text-xl font-fredoka text-blue-600">Nomor Urut Karnaval</h1>
+                        <p class="text-gray-600 text-sm font-semibold">Hari Anak Nasional 2025</p>
+                     </div>
+                 </div>
+                 <button id="logoutBtn" class="text-sm bg-red-100 text-red-700 font-semibold py-2 px-3 rounded-lg hover:bg-red-200 transition-all">Logout</button>
             </div>
             
             <div id="adminModeBanner" class="hidden text-center font-bold p-3 rounded-lg my-4 bg-blue-100 text-blue-800 border border-blue-300">
@@ -232,20 +267,19 @@
             </div>
 
             <div id="sisaWaktuContainer" class="text-center p-3 rounded-lg my-4 hidden"></div>
-            
-            <div id="timeRestrictionMessage" class="text-center font-semibold p-4 rounded-lg my-4 hidden"></div>
-            <div id="viewDaftarBeforeStartContainer" class="hidden"></div>
-
 
             <form id="dataForm" class="space-y-4">
-                <div class="relative" id="searchContainer">
-                    <label for="searchLembaga" class="block text-sm font-medium text-gray-700 mb-2">Cari PAUD / TK Anda</label>
+                <!-- HANYA TAMPIL UNTUK ADMIN -->
+                <div class="relative hidden" id="searchContainer">
+                    <label for="searchLembaga" class="block text-sm font-medium text-gray-700 mb-2">Cari PAUD / TK (Admin)</label>
                     <input type="text" id="searchLembaga" placeholder="Ketik untuk mencari..." class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
                     <div id="dropdownMenu" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto p-1">
-                        </div>
+                    </div>
                 </div>
 
-                <div id="detailSekolah" class="hidden space-y-3 text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
+                <!-- TAMPIL UNTUK PENGGUNA BIASA & ADMIN -->
+                <div id="detailSekolah" class="space-y-3 text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <div id="welcomeMessage" class="text-center text-lg font-bold text-blue-800 mb-4 p-3 bg-blue-100 rounded-lg"></div>
                     <div class="grid grid-cols-3 gap-x-2">
                         <strong class="col-span-1">NPSN</strong><span id="detailNpsn" class="col-span-2 text-gray-700"></span>
                         <strong class="col-span-1">Status</strong><span id="detailStatus" class="col-span-2 text-gray-700"></span>
@@ -257,8 +291,14 @@
                         <div id="detailGuru" class="text-gray-700 space-y-1"></div>
                     </div>
                 </div>
+                
+                <!-- INFO JIKA LEMBAGA SUDAH TERDAFTAR (UNTUK ADMIN) -->
+                <div id="adminSudahTerdaftarInfo" class="hidden text-center bg-green-100 border-2 border-green-200 rounded-2xl p-6 my-4">
+                    <p class="text-gray-800 mb-4 text-lg font-semibold">Lembaga ini sudah terdaftar dengan nomor urut:</p>
+                    <div id="adminInfoNomorUrut" class="text-8xl font-fredoka text-green-600 my-2"></div>
+                </div>
 
-                 <div id="error-message" class="text-red-500 text-sm hidden">Mohon pilih lembaga dari daftar.</div>
+                 <div id="error-message" class="text-red-500 text-sm hidden">Mohon pilih lembaga dari daftar (Admin).</div>
                 <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">
                     Ambil Nomor
                 </button>
@@ -267,6 +307,60 @@
                     Lihat Daftar
                 </button>
             </form>
+             <div class="text-center mt-6 border-t-2 border-gray-100 pt-3">
+                <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
+                <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
+                <p class="text-xs text-gray-400 mt-2">Author: Dhiya</p>
+            </div>
+        </div>
+
+        <!-- BAGIAN STATUS SUDAH TERDAFTAR (HALAMAN UTAMA SETELAH MENDAPAT NOMOR) -->
+        <div id="registeredStatusSection" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                 <div class="flex items-center gap-2">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png" alt="Logo Tabalong" class="h-12" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
+                     <div>
+                        <h1 class="text-xl font-fredoka text-blue-600">Status Pendaftaran</h1>
+                        <p class="text-gray-600 text-sm font-semibold">Hari Anak Nasional 2025</p>
+                     </div>
+                 </div>
+                 <button id="logoutFromStatusBtn" class="text-sm bg-red-100 text-red-700 font-semibold py-2 px-3 rounded-lg hover:bg-red-200 transition-all">Logout</button>
+            </div>
+            
+            <div class="text-center bg-blue-50 border-2 border-blue-200 rounded-2xl p-6">
+                <p class="text-gray-600 mb-2 text-lg">Anda sudah terdaftar dengan nomor urut:</p>
+                <div id="statusNomorUrut" class="text-8xl font-fredoka text-blue-600 my-2"></div>
+                <div id="statusNamaLembaga" class="text-2xl font-bold text-gray-800 mt-4 mb-4 p-3 bg-blue-100 rounded-lg"></div>
+
+                <div class="mt-4 border-t border-blue-200 pt-4 text-left text-sm text-gray-700 space-y-2">
+                    <div class="grid grid-cols-3 gap-x-2">
+                        <strong class="col-span-1">NPSN</strong><span id="statusNpsn" class="col-span-2"></span>
+                        <strong class="col-span-1">Status</strong><span id="statusStatus" class="col-span-2"></span>
+                        <strong class="col-span-1">Kecamatan</strong><span id="statusKecamatan" class="col-span-2"></span>
+                        <strong class="col-span-1">Jumlah Peserta</strong><span id="statusJumlah" class="col-span-2"></span>
+                    </div>
+                    <div class="border-t border-blue-200 pt-2 mt-2">
+                        <strong class="block mb-1">Guru Perwakilan:</strong>
+                        <div id="statusGuru" class="space-y-1"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-4">
+                 <button type="button" id="viewDaftarFromStatusBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
+                    Lihat Daftar
+                </button>
+                 <button type="button" id="printBtn" class="w-full bg-green-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg transform transition-all shadow-md flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v3a2 2 0 002 2h6a2 2 0 002-2v-3h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v3h6v-3z" clip-rule="evenodd" /></svg>
+                    Cetak Bukti
+                </button>
+            </div>
+             <div class="text-center mt-6 border-t-2 border-gray-100 pt-3">
+                <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
+                <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
+                <p class="text-xs text-gray-400 mt-2">Author: Dhiya</p>
+            </div>
         </div>
 
         <div id="spinnerSection" class="hidden text-center">
@@ -301,9 +395,9 @@
                 </div>
             </div>
             <div class="mt-6">
-                <button id="resetBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" /></svg>
-                    Daftar Lagi
+                <button id="kembaliKeUtamaBtn" class="w-full bg-blue-100 text-blue-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-blue-200 transform transition-all border-2 border-blue-200 shadow-sm flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd"></path></svg>
+                    Kembali ke Halaman Utama
                 </button>
             </div>
             <div class="mt-8 text-left">
@@ -346,26 +440,18 @@
                 </button>
             </div>
         </div>
-
-        <div class="text-center mt-8 border-t-2 border-gray-100 pt-4">
-            <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
-            <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
-            <p class="text-xs text-gray-400 mt-2">Author: Dhiya</p>
-            <button id="adminLoginBtn" class="text-xs text-gray-400 hover:text-blue-600 transition-all mt-2">[ Login Admin ]</button>
-        </div>
     </div>
 
     <script>
 
-        const TANGGAL_MULAI = '2025-09-08T08:00:00';
+        const TANGGAL_MULAI = '2025-08-08T08:00:00';
         const TANGGAL_SELESAI = '2025-09-09T17:00:00'; 
-        const KATA_SANDI_UJI_COBA = 'percobaan';
-        const KATA_SANDI_ADMIN = 'jerapah';
         const SPIN_DURATION = 1500;
         const SPIN_INTERVAL = 50;
+        const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 menit
 
         // --- URL Google Apps Script Web App ---
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxCvqzoGyIXgK0YtvC9ID_xOvl9Z0EYqB062XD5U_IvXpfNWaISKlSYd0VvsY2k9TMhAw/exec';
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbytRDefZfuKADfJdDp7IklDxB-TKAn-LFU2_qE7yuYDCX3tgHD8uOT17aTliJrZK13hQw/exec';
 
         // --- Mengambil elemen dari DOM ---
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -374,12 +460,27 @@
         const customAlertMessage = document.getElementById('customAlertMessage');
         const customAlertButtons = document.getElementById('customAlertButtons');
         const customAlertIcon = document.getElementById('customAlertIcon');
-        const adminModeBanner = document.getElementById('adminModeBanner');
-        const trialModeBanner = document.getElementById('trialModeBanner');
-        const inputSection = document.getElementById('inputSection');
+        
+        // Sections
+        const loginSection = document.getElementById('loginSection');
+        const mainAppSection = document.getElementById('mainAppSection');
+        const registeredStatusSection = document.getElementById('registeredStatusSection');
         const spinnerSection = document.getElementById('spinnerSection');
         const resultSection = document.getElementById('resultSection');
         const viewDaftarSection = document.getElementById('viewDaftarSection');
+        
+        // Login elements
+        const userLoginForm = document.getElementById('userLoginForm');
+        const npsnLoginInput = document.getElementById('npsnLoginInput');
+        const kodeAksesLoginInput = document.getElementById('kodeAksesLoginInput');
+        const loginError = document.getElementById('loginError');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const adminLoginBtn = document.getElementById('adminLoginBtn');
+
+        // Main App elements
+        const adminModeBanner = document.getElementById('adminModeBanner');
+        const trialModeBanner = document.getElementById('trialModeBanner');
+        const welcomeMessage = document.getElementById('welcomeMessage');
         const dataForm = document.getElementById('dataForm');
         const errorMessage = document.getElementById('error-message');
         const displayNamaLembaga = document.getElementById('displayNamaLembaga');
@@ -388,7 +489,7 @@
         const nomorHabisMessage = document.getElementById('nomorHabisMessage');
         const nomorUrutDisplay = document.getElementById('nomorUrut');
         const resultNamaLembaga = document.getElementById('resultNamaLembaga');
-        const resetBtn = document.getElementById('resetBtn');
+        const kembaliKeUtamaBtn = document.getElementById('kembaliKeUtamaBtn');
         const viewDaftarBtn = document.getElementById('viewDaftarBtn');
         const kembaliBtn = document.getElementById('kembaliBtn');
         const daftarBodyResult = document.getElementById('daftarBodyResult');
@@ -409,13 +510,23 @@
         const timeRestrictionMessage = document.getElementById('timeRestrictionMessage');
         const viewDaftarBeforeStartContainer = document.getElementById('viewDaftarBeforeStartContainer');
         const sisaWaktuContainer = document.getElementById('sisaWaktuContainer');
-        const kodeAksesModal = document.getElementById('kodeAksesModal');
-        const kodeAksesForm = document.getElementById('kodeAksesForm');
-        const cancelKodeAkses = document.getElementById('cancelKodeAkses');
-        const submitKodeAkses = document.getElementById('submitKodeAkses');
-        const modalLembagaNama = document.getElementById('modalLembagaNama');
-        const kodeAksesInput = document.getElementById('kodeAksesInput');
-        const kodeAksesError = document.getElementById('kodeAksesError');
+        const adminSudahTerdaftarInfo = document.getElementById('adminSudahTerdaftarInfo');
+        const adminInfoNomorUrut = document.getElementById('adminInfoNomorUrut');
+        
+        // Registered Status Elements
+        const statusNomorUrut = document.getElementById('statusNomorUrut');
+        const statusNamaLembaga = document.getElementById('statusNamaLembaga');
+        const logoutFromStatusBtn = document.getElementById('logoutFromStatusBtn');
+        const viewDaftarFromStatusBtn = document.getElementById('viewDaftarFromStatusBtn');
+        const statusNpsn = document.getElementById('statusNpsn');
+        const statusStatus = document.getElementById('statusStatus');
+        const statusKecamatan = document.getElementById('statusKecamatan');
+        const statusJumlah = document.getElementById('statusJumlah');
+        const statusGuru = document.getElementById('statusGuru');
+        const printBtn = document.getElementById('printBtn');
+
+
+        // Modals
         const exportPasswordModal = document.getElementById('exportPasswordModal');
         const exportPasswordForm = document.getElementById('exportPasswordForm');
         const cancelExport = document.getElementById('cancelExport');
@@ -434,7 +545,6 @@
         const submitAdminLogin = document.getElementById('submitAdminLogin');
         const adminPasswordInput = document.getElementById('adminPasswordInput');
         const adminLoginError = document.getElementById('adminLoginError');
-        const adminLoginBtn = document.getElementById('adminLoginBtn');
         const viewDaftarActions = document.getElementById('viewDaftarActions');
         const exportBtnView = document.getElementById('exportBtnView');
         const exportBtns = document.querySelectorAll('.export-btn');
@@ -442,7 +552,9 @@
         // --- Variabel State Aplikasi ---
         let maxNumber = 0, daftarPeserta = [], masterLembagaData = [], lembagaTersedia = [];
         let selectedLembaga = null, countdownInterval = null, reliableCurrentTime = null;
+        let loggedInLembaga = null;
         let isTrialAccessGranted = false, isAdminLoggedIn = false;
+        let inactivityTimer; // Untuk logout otomatis
         
         // --- ICONS for Custom Alert ---
         const ICONS = {
@@ -508,11 +620,13 @@
                 daftarPeserta = pesertaData.data || [];
                 masterLembagaData = lembagaData.data || [];
                 maxNumber = masterLembagaData.length;
-                const lembagaTerdaftarNpsn = daftarPeserta.map(p => p.npsn);
-                lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.includes(l.npsn));
+                const lembagaTerdaftarNpsn = daftarPeserta.map(p => String(p.npsn)); // Force to string
+                lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.includes(String(l.npsn)));
+                
                 updateDaftarTampilan(reliableCurrentTime);
                 renderLembagaList(lembagaTersedia);
-                checkTimeRestriction(reliableCurrentTime);
+                checkTimeRestriction(reliableCurrentTime); 
+                
             } catch (error) {
                 console.error('Error saat memuat data:', error);
                 await showCustomNotice(`Gagal terhubung ke server. Pastikan skrip Google Anda telah di-deploy dan periksa koneksi internet Anda.<br><br><b>Detail Error:</b> ${error.message}`, 'Kesalahan Jaringan', 'error');
@@ -533,8 +647,16 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Server gagal menghapus data.');
+                
+                daftarPeserta = daftarPeserta.filter(p => String(p.npsn) !== String(npsn));
+                const lembagaDibatalkan = masterLembagaData.find(l => String(l.npsn) === String(npsn));
+                if (lembagaDibatalkan) {
+                    lembagaTersedia.push(lembagaDibatalkan);
+                }
+
                 await showCustomNotice(`Pendaftaran untuk "${namaLembaga}" berhasil dibatalkan.`, 'Berhasil', 'success');
-                await loadDataFromServer();
+                updateDaftarTampilan(reliableCurrentTime);
+
             } catch (error) {
                 console.error('Gagal membatalkan pendaftaran:', error);
                 await showCustomNotice(`Gagal membatalkan pendaftaran. <br><br><b>Detail Error:</b> ${error.message}`, 'Gagal', 'error');
@@ -544,17 +666,48 @@
         }
         
         async function handleAdminLogin() {
-            if (adminPasswordInput.value === KATA_SANDI_ADMIN) {
-                isAdminLoggedIn = true;
-                adminLoginModal.classList.add('hidden');
-                adminLoginBtn.textContent = `[ Logout Admin ]`;
-                adminModeBanner.classList.remove('hidden');
-                adminPasswordInput.value = ''; // Membersihkan input setelah login
-                checkTimeRestriction(reliableCurrentTime); // Re-check time to unlock UI
-                updateDaftarTampilan(reliableCurrentTime);
-                await showCustomNotice('Login Admin berhasil!', 'Selamat Datang', 'success');
-            } else {
+            const password = adminPasswordInput.value;
+            if (!password) {
                 adminLoginError.classList.remove('hidden');
+                adminLoginError.textContent = 'Kata sandi tidak boleh kosong.';
+                return;
+            }
+            
+            submitAdminLogin.disabled = true;
+            submitAdminLogin.textContent = 'Memverifikasi...';
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'adminLogin', password: password })
+                });
+                if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    isAdminLoggedIn = true;
+                    adminLoginModal.classList.add('hidden');
+                    adminPasswordInput.value = '';
+                    await showCustomNotice('Login Admin berhasil!', 'Selamat Datang', 'success');
+                    sessionStorage.setItem('isAdmin', 'true');
+                    updateDaftarTampilan(reliableCurrentTime);
+                    loginSection.classList.add('hidden');
+                    mainAppSection.classList.remove('hidden');
+                    adminModeBanner.classList.remove('hidden');
+                    searchContainer.classList.remove('hidden');
+                    detailSekolahDiv.classList.add('hidden');
+                    dataForm.querySelector('button[type="submit"]').textContent = 'Ambil Nomor (Admin)';
+                    startInactivityTimer();
+                } else {
+                    throw new Error(result.message || 'Kata sandi salah.');
+                }
+
+            } catch (error) {
+                adminLoginError.textContent = error.message;
+                adminLoginError.classList.remove('hidden');
+            } finally {
+                submitAdminLogin.disabled = false;
+                submitAdminLogin.textContent = 'Login';
             }
         }
 
@@ -586,7 +739,7 @@
                 link.setAttribute("href", encodedUri);
                 link.setAttribute("download", "daftar_peserta_lomba_han_2025.csv");
                 document.body.appendChild(link);
-                link.click();
+                 link.click();
                 document.body.removeChild(link);
             } catch(error) {
                 await showCustomNotice(`Gagal mengekspor data. <br><br><b>Detail Error:</b> ${error.message}`, 'Gagal', 'error');
@@ -595,88 +748,88 @@
             }
         }
 
-        adminLoginBtn.addEventListener('click', async () => {
-            if (isAdminLoggedIn) {
-                isAdminLoggedIn = false;
-                adminLoginBtn.textContent = `[ Login Admin ]`;
-                adminModeBanner.classList.add('hidden');
-                checkTimeRestriction(reliableCurrentTime); // Re-check time to lock UI
-                updateDaftarTampilan(reliableCurrentTime);
-                await showCustomNotice('Logout Admin berhasil.', 'Informasi', 'info');
-            } else {
-                adminPasswordInput.value = ''; // Membersihkan input sebelum menampilkan modal
-                adminLoginError.classList.add('hidden');
-                adminLoginModal.classList.remove('hidden');
-                adminPasswordInput.focus();
-            }
+        adminLoginBtn.addEventListener('click', () => {
+            adminPasswordInput.value = '';
+            adminLoginError.classList.add('hidden');
+            adminLoginModal.classList.remove('hidden');
+            adminPasswordInput.focus();
         });
 
-        spinBtn.addEventListener('click', function() {
-            const nomorSudahDipakai = daftarPeserta.map(p => p.nomor);
-            if (!isTrialAccessGranted && nomorSudahDipakai.length >= maxNumber) {
+        // --- FUNGSI DIPERBARUI: LOGIKA PENGAMBILAN NOMOR ---
+        spinBtn.addEventListener('click', async function() {
+            const currentLembaga = loggedInLembaga || selectedLembaga;
+            
+            if (!isTrialAccessGranted && !isAdminLoggedIn && daftarPeserta.length >= maxNumber) {
                 spinBtn.classList.add('hidden');
                 nomorHabisMessage.classList.remove('hidden');
                 spinnerDisplay.textContent = "---";
                 return;
             }
+
             spinBtn.disabled = true;
             spinBtn.textContent = 'Mengambil...';
             spinBtn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             spinBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+            
             let spinInterval = setInterval(() => {
-                const randomNumber = Math.floor(Math.random() * maxNumber) + 1;
+                const randomNumber = Math.floor(Math.random() * maxNumber) + 1 || 1;
                 spinnerDisplay.textContent = String(randomNumber).padStart(3, '0');
-            }, 50);
+            }, SPIN_INTERVAL);
 
-            setTimeout(async () => {
+            // Mode Uji Coba (simulasi)
+            if (isTrialAccessGranted) {
+                setTimeout(() => {
+                    clearInterval(spinInterval);
+                    let finalNumber;
+                    const usedNumbers = daftarPeserta.map(p => p.nomor);
+                    do {
+                        finalNumber = Math.floor(Math.random() * maxNumber) + 1;
+                    } while (usedNumbers.includes(finalNumber));
+                    const formattedFinalNumber = String(finalNumber).padStart(3, '0');
+                    spinnerDisplay.textContent = formattedFinalNumber;
+                    showResultFor({ ...currentLembaga, nomor: finalNumber }, true);
+                }, SPIN_DURATION);
+                return;
+            }
+            
+            // Proses pendaftaran asli
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        action: 'registerAndGetNumber', 
+                        data: currentLembaga 
+                    })
+                });
+
+                if (!response.ok) throw new Error(`Server merespon dengan status: ${response.status}`);
+                
+                const result = await response.json();
+                if (result.status !== 'success') throw new Error(result.message || 'Terjadi kesalahan di server.');
+                
                 clearInterval(spinInterval);
-                let finalNumber;
-                do {
-                    finalNumber = Math.floor(Math.random() * maxNumber) + 1;
-                } while (!isTrialAccessGranted && !isAdminLoggedIn && nomorSudahDipakai.includes(finalNumber));
                 
-                const dataUntukDisimpan = { nomor: finalNumber, ...selectedLembaga };
+                const finalNumber = result.assignedNumber;
                 const formattedFinalNumber = String(finalNumber).padStart(3, '0');
-                
                 spinnerDisplay.textContent = formattedFinalNumber;
-                nomorUrutDisplay.textContent = formattedFinalNumber;
 
-                if (isTrialAccessGranted) {
-                    resultNamaLembaga.innerHTML = `${selectedLembaga.nama} <span class="text-purple-600 font-bold">(UJI COBA)</span>`;
-                    setTimeout(() => {
-                        spinnerSection.classList.add('hidden');
-                        resultSection.classList.remove('hidden');
-                    }, 500);
-                    return;
-                }
+                const dataYangDisimpan = { ...currentLembaga, nomor: finalNumber };
                 
-                resultNamaLembaga.textContent = selectedLembaga.nama;
-                try {
-                    const response = await fetch(WEB_APP_URL, {
-                        method: 'POST',
-                        body: JSON.stringify({ action: 'savePendaftaran', data: dataUntukDisimpan })
-                    });
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const result = await response.json();
-                    if(result.status !== 'success') throw new Error(result.message || 'Server error.');
-                    
-                    daftarPeserta.push(dataUntukDisimpan);
-                    updateDaftarTampilan(reliableCurrentTime);
-                    
-                    setTimeout(() => {
-                        spinnerSection.classList.add('hidden');
-                        resultSection.classList.remove('hidden');
-                    }, 500);
-                } catch (err) {
-                    console.error('Error saat menyimpan:', err);
-                    await showCustomNotice(`Gagal menyimpan data ke server. Silakan coba lagi.<br><br><b>Detail Error:</b> ${err.message}`, 'Gagal', 'error');
-                    
-                    spinBtn.disabled = false;
-                    spinBtn.textContent = 'Ambil Nomor!';
-                    spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
-                    spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-                }
-            }, SPIN_DURATION);
+                daftarPeserta.push(dataYangDisimpan);
+                lembagaTersedia = lembagaTersedia.filter(l => String(l.npsn) !== String(dataYangDisimpan.npsn));
+                updateDaftarTampilan(reliableCurrentTime);
+                showResultFor(dataYangDisimpan);
+
+            } catch (err) {
+                clearInterval(spinInterval);
+                console.error('Error saat mendaftar:', err);
+                await showCustomNotice(`Gagal mendapatkan nomor urut. <br><br><b>Pesan:</b> ${err.message}`, 'Gagal', 'error');
+                
+                spinBtn.disabled = false;
+                spinBtn.textContent = 'Ambil Nomor!';
+                spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
+                spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+            }
         });
 
         function updateTimer(targetDate, element, onEnd, prefix, suffix, now) {
@@ -703,71 +856,75 @@
         }
 
         function checkTimeRestriction(currentTime) {
+            const targetContainer = loggedInLembaga ? sisaWaktuContainer : timeRestrictionMessage;
+            const formToDisable = userLoginForm.querySelector('button[type="submit"]');
+
             if (isTrialAccessGranted || isAdminLoggedIn) {
                 timeRestrictionMessage.classList.add('hidden');
                 sisaWaktuContainer.classList.add('hidden');
                 viewDaftarBeforeStartContainer.classList.add('hidden');
-                document.getElementById('dataForm').querySelectorAll('button, div[id="searchContainer"]').forEach(el => el.classList.remove('hidden'));
                 if(isTrialAccessGranted) trialModeBanner.classList.remove('hidden');
                 return true; 
             }
+            
             clearInterval(countdownInterval); 
             const now = currentTime;
             const startTime = new Date(TANGGAL_MULAI);
             const endTime = new Date(TANGGAL_SELESAI);
-            const submitButton = dataForm.querySelector('button[type="submit"]');
-            const formElements = [searchContainer, submitButton, viewDaftarBtn];
             const onTimerEnd = () => location.reload();
 
             if (now < startTime) {
-                sisaWaktuContainer.classList.add('hidden');
-                timeRestrictionMessage.classList.remove('hidden');
-                timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
-                formElements.forEach(el => el.classList.add('hidden'));
-                updateTimer(startTime, timeRestrictionMessage, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
+                targetContainer.classList.remove('hidden');
+                targetContainer.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
+                
+                updateTimer(startTime, targetContainer, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
                 countdownInterval = setInterval(() => {
                     now.setSeconds(now.getSeconds() + 1); 
-                    updateTimer(startTime, timeRestrictionMessage, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
+                    updateTimer(startTime, targetContainer, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
                 }, 1000);
-                viewDaftarBeforeStartContainer.classList.remove('hidden');
-                viewDaftarBeforeStartContainer.innerHTML = `
-                    <button type="button" id="viewDaftarBeforeStartBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2 mt-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
-                        Lihat Daftar Lembaga
-                    </button>
-                    <button type="button" id="trialAccessBtn" class="w-full bg-purple-50 text-purple-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-purple-100 transform transition-all border-2 border-purple-200 shadow-sm flex items-center justify-center gap-2 mt-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" /></svg>
-                        Uji Coba Aplikasi
-                    </button>
-                `;
-                document.getElementById('viewDaftarBeforeStartBtn').addEventListener('click', () => {
-                    inputSection.classList.add('hidden');
-                    viewDaftarSection.classList.remove('hidden');
-                });
-                document.getElementById('trialAccessBtn').addEventListener('click', () => {
-                    trialAccessModal.classList.remove('hidden');
-                    trialAccessInput.focus();
-                });
+                
+                if(!loggedInLembaga) {
+                    viewDaftarBeforeStartContainer.classList.remove('hidden');
+                    viewDaftarBeforeStartContainer.innerHTML = `
+                        <button type="button" id="viewDaftarBeforeStartBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2 mt-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
+                            Lihat Daftar Lembaga
+                        </button>
+                        <button type="button" id="trialAccessBtn" class="w-full bg-purple-50 text-purple-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-purple-100 transform transition-all border-2 border-purple-200 shadow-sm flex items-center justify-center gap-2 mt-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" /></svg>
+                            Uji Coba Aplikasi
+                        </button>
+                    `;
+                    document.getElementById('viewDaftarBeforeStartBtn').addEventListener('click', () => {
+                        loginSection.classList.add('hidden');
+                        viewDaftarSection.classList.remove('hidden');
+                    });
+                    document.getElementById('trialAccessBtn').addEventListener('click', () => {
+                        trialAccessModal.classList.remove('hidden');
+                        trialAccessInput.focus();
+                    });
+                }
                 return false;
             } else if (now > endTime) {
-                timeRestrictionMessage.innerHTML = `Waktu pengambilan nomor sudah berakhir.`;
-                timeRestrictionMessage.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-red-100 text-red-800';
-                timeRestrictionMessage.classList.remove('hidden');
-                sisaWaktuContainer.classList.add('hidden');
-                formElements.forEach(el => el.classList.add('hidden'));
-                viewDaftarBeforeStartContainer.classList.add('hidden');
+                targetContainer.innerHTML = `Waktu pengambilan nomor sudah berakhir.`;
+                targetContainer.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-red-100 text-red-800';
+                targetContainer.classList.remove('hidden');
                 return false;
             } else {
-                timeRestrictionMessage.classList.add('hidden');
-                sisaWaktuContainer.classList.remove('hidden');
-                sisaWaktuContainer.className = 'text-center p-3 rounded-lg my-4 bg-blue-100 text-blue-800';
-                formElements.forEach(el => el.classList.remove('hidden'));
-                viewDaftarBeforeStartContainer.classList.add('hidden');
-                updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
-                countdownInterval = setInterval(() => {
-                    now.setSeconds(now.getSeconds() + 1);
+                 if (loggedInLembaga) { 
+                    timeRestrictionMessage.classList.add('hidden');
+                    sisaWaktuContainer.classList.remove('hidden');
+                    sisaWaktuContainer.className = 'text-center p-3 rounded-lg my-4 bg-blue-100 text-blue-800';
                     updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
-                }, 1000);
+                    countdownInterval = setInterval(() => {
+                        now.setSeconds(now.getSeconds() + 1);
+                        updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
+                    }, 1000);
+                 } else { 
+                    timeRestrictionMessage.classList.add('hidden');
+                    sisaWaktuContainer.classList.add('hidden');
+                 }
+                formToDisable.disabled = false;
                 return true;
             }
         }
@@ -820,11 +977,10 @@
                 div.addEventListener('click', () => {
                     searchInput.value = item.nama;
                     selectedLembaga = item;
-                    detailNpsnSpan.textContent = `: ${item.npsn}`;
-                    detailStatusSpan.textContent = `: ${item.status}`;
-                    detailKecamatanSpan.textContent = `: ${item.kecamatan}`;
-                    detailJumlahSpan.textContent = `: ${item.jumlah} orang`;
-                    detailGuruDiv.innerHTML = `<p>1. ${item.guru1} (${item.jabatan1})</p><p>2. ${item.guru2} (${item.jabatan2})</p><p>3. ${item.guru3} (${item.jabatan3})</p>`;
+                    if (isAdminLoggedIn) {
+                        checkAdminLembagaSelection(item);
+                    }
+                    showLembagaDetails(item);
                     detailSekolahDiv.classList.remove('hidden');
                     dropdownMenu.classList.add('hidden');
                 });
@@ -834,15 +990,18 @@
         
         searchInput.addEventListener('input', () => {
             const query = searchInput.value.toLowerCase();
-            const filtered = lembagaTersedia.filter(l => l.nama.toLowerCase().includes(query));
+            const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
+            const filtered = sourceData.filter(l => l.nama.toLowerCase().includes(query));
             renderLembagaList(filtered);
             selectedLembaga = null;
             detailSekolahDiv.classList.add('hidden');
             dropdownMenu.classList.remove('hidden');
+            adminSudahTerdaftarInfo.classList.add('hidden');
         });
 
         searchInput.addEventListener('focus', () => {
-            renderLembagaList(lembagaTersedia);
+            const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
+            renderLembagaList(sourceData);
             dropdownMenu.classList.remove('hidden');
         });
         
@@ -854,6 +1013,12 @@
         
         dataForm.addEventListener('submit', async function(event) {
             event.preventDefault();
+            const currentLembaga = loggedInLembaga || selectedLembaga;
+            if (!currentLembaga) {
+                errorMessage.classList.remove('hidden');
+                return;
+            }
+
             if (!reliableCurrentTime) {
                 await showCustomNotice("Waktu belum tersinkronisasi. Mohon muat ulang halaman.", "Peringatan", "warning");
                 return;
@@ -865,93 +1030,80 @@
                 await showCustomNotice("Waktu pendaftaran sudah berakhir atau belum dimulai.", "Peringatan", "warning");
                 return;
             }
-            if (!selectedLembaga) {
-                errorMessage.classList.remove('hidden');
-                return;
-            }
             errorMessage.classList.add('hidden');
-
-            if (isAdminLoggedIn) {
-                displayNamaLembaga.textContent = selectedLembaga.nama;
-                inputSection.classList.add('hidden');
-                spinnerSection.classList.remove('hidden');
-            } else {
-                modalLembagaNama.textContent = selectedLembaga.nama;
-                kodeAksesModal.classList.remove('hidden');
-                kodeAksesInput.focus();
-            }
+            
+            displayNamaLembaga.textContent = currentLembaga.nama;
+            mainAppSection.classList.add('hidden');
+            spinnerSection.classList.remove('hidden');
         });
 
-        function handleKodeAksesSubmit() {
-            const kodeInput = kodeAksesInput.value;
-            if (kodeInput === String(selectedLembaga.kode_akses)) {
-                kodeAksesError.classList.add('hidden');
-                kodeAksesModal.classList.add('hidden');
-                kodeAksesInput.value = '';
-                displayNamaLembaga.textContent = selectedLembaga.nama;
-                inputSection.classList.add('hidden');
-                spinnerSection.classList.remove('hidden');
-            } else {
-                kodeAksesError.classList.remove('hidden');
-            }
-        }
-
-        kodeAksesForm.addEventListener('submit', (e) => { e.preventDefault(); handleKodeAksesSubmit(); });
-        submitKodeAkses.addEventListener('click', handleKodeAksesSubmit);
-        cancelKodeAkses.addEventListener('click', () => {
-            kodeAksesModal.classList.add('hidden');
-            kodeAksesError.classList.add('hidden');
-            kodeAksesInput.value = '';
-        });
-        
         cancelBtn.addEventListener('click', function() {
             spinnerSection.classList.add('hidden');
-            inputSection.classList.remove('hidden');
+            mainAppSection.classList.remove('hidden');
             spinBtn.disabled = false;
             spinBtn.textContent = 'Ambil Nomor!';
             spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-        });
-
-        resetBtn.addEventListener('click', async function() {
-            if(isTrialAccessGranted){
-                location.reload();
-                return;
-            }
-            resultSection.classList.add('hidden');
-            inputSection.classList.remove('hidden');
-            detailSekolahDiv.classList.add('hidden');
-            searchInput.value = '';
-            selectedLembaga = null;
-            await loadDataFromServer();
-            spinBtn.disabled = false;
-            spinBtn.textContent = 'Ambil Nomor!';
-            spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
-            spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-            if (!nomorHabisMessage.classList.contains('hidden')) {
-                nomorHabisMessage.classList.add('hidden');
-                spinBtn.classList.remove('hidden');
-            }
         });
 
         viewDaftarBtn.addEventListener('click', () => {
-            inputSection.classList.add('hidden');
+            mainAppSection.classList.add('hidden');
             viewDaftarSection.classList.remove('hidden');
         });
+        
         kembaliBtn.addEventListener('click', () => {
             viewDaftarSection.classList.add('hidden');
-            inputSection.classList.remove('hidden');
+            
+            if (isAdminLoggedIn) {
+                mainAppSection.classList.remove('hidden');
+                return;
+            }
+
+            if (loggedInLembaga) {
+                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
+                if (existingRegistration) {
+                    showRegisteredStatusPage(existingRegistration);
+                } else {
+                    mainAppSection.classList.remove('hidden');
+                }
+            } else {
+                loginSection.classList.remove('hidden');
+            }
         });
 
-        function handleExport() {
+        async function handleExport() {
             const password = exportPasswordInput.value;
-            if (password === KATA_SANDI_ADMIN) {
-                exportPasswordError.classList.add('hidden');
-                exportPasswordModal.classList.add('hidden');
-                exportPasswordInput.value = '';
-                exportToExcel();
-            } else {
+            if (!password) {
+                exportPasswordError.textContent = "Kata sandi tidak boleh kosong.";
                 exportPasswordError.classList.remove('hidden');
+                return;
+            }
+
+            submitExport.disabled = true;
+            submitExport.textContent = 'Memeriksa...';
+            exportPasswordError.classList.add('hidden');
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'verifyPassword', password: password })
+                });
+                if (!response.ok) throw new Error('Gagal terhubung ke server.');
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    exportPasswordModal.classList.add('hidden');
+                    exportPasswordInput.value = '';
+                    exportToExcel(); 
+                } else {
+                    throw new Error(result.message || 'Kata sandi salah.');
+                }
+            } catch (error) {
+                exportPasswordError.textContent = error.message;
+                exportPasswordError.classList.remove('hidden');
+            } finally {
+                submitExport.disabled = false;
+                submitExport.textContent = 'Export';
             }
         }
         exportPasswordForm.addEventListener('submit', (e) => { e.preventDefault(); handleExport(); });
@@ -975,14 +1127,49 @@
             adminPasswordInput.value = '';
         });
 
-        function handleTrialAccessSubmit() {
-            if (trialAccessInput.value === KATA_SANDI_UJI_COBA) {
-                isTrialAccessGranted = true;
-                trialAccessModal.classList.add('hidden');
-                trialAccessInput.value = ''; // Membersihkan input
-                checkTimeRestriction(reliableCurrentTime);
-            } else {
+        async function handleTrialAccessSubmit() {
+            const password = trialAccessInput.value;
+            if (!password) {
+                trialAccessError.textContent = 'Kata sandi tidak boleh kosong.';
                 trialAccessError.classList.remove('hidden');
+                return;
+            }
+
+            submitTrialAccess.disabled = true;
+            submitTrialAccess.textContent = 'Memverifikasi...';
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'trialLogin', password: password })
+                });
+                if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    isTrialAccessGranted = true;
+                    trialAccessModal.classList.add('hidden');
+                    trialAccessInput.value = '';
+                    sessionStorage.setItem('isTrial', 'true'); 
+                    updateDaftarTampilan(reliableCurrentTime);
+                    loginSection.classList.add('hidden');
+                    mainAppSection.classList.remove('hidden');
+                    trialModeBanner.classList.remove('hidden');
+                    adminModeBanner.classList.add('hidden');
+                    searchContainer.classList.remove('hidden');
+                    detailSekolahDiv.classList.add('hidden');
+                    dataForm.querySelector('button[type="submit"]').textContent = 'Ambil Nomor (Uji Coba)';
+                    checkTimeRestriction(reliableCurrentTime);
+                    startInactivityTimer();
+                } else {
+                    throw new Error(result.message || 'Kata sandi salah.');
+                }
+            } catch (error) {
+                trialAccessError.textContent = error.message;
+                trialAccessError.classList.remove('hidden');
+            } finally {
+                submitTrialAccess.disabled = false;
+                submitTrialAccess.textContent = 'Masuk';
             }
         }
         trialAccessForm.addEventListener('submit', (e) => { e.preventDefault(); handleTrialAccessSubmit(); });
@@ -993,13 +1180,351 @@
             trialAccessInput.value = '';
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadDataFromServer();
+        function handleUserLogin(event){
+            event.preventDefault();
+            const npsn = npsnLoginInput.value.trim();
+            const kodeAkses = kodeAksesLoginInput.value.trim();
+
+            if(!npsn || !kodeAkses){
+                loginError.textContent = "NPSN dan Kode Akses tidak boleh kosong.";
+                loginError.classList.remove('hidden');
+                return;
+            }
+
+            const foundLembaga = masterLembagaData.find(l => String(l.npsn) === npsn && String(l.kode_akses) === kodeAkses);
+
+            if(foundLembaga){
+                loginError.classList.add('hidden');
+                loggedInLembaga = foundLembaga;
+                
+                sessionStorage.setItem('loggedInLembaga', JSON.stringify(loggedInLembaga));
+
+                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
+                loginSection.classList.add('hidden');
+
+                if(existingRegistration){
+                    showRegisteredStatusPage(existingRegistration);
+                } else {
+                    showMainAppFor(loggedInLembaga);
+                }
+                startInactivityTimer();
+            } else {
+                loginError.textContent = "NPSN atau Kode Akses salah. Coba lagi.";
+                loginError.classList.remove('hidden');
+            }
+        }
+
+        function checkAdminLembagaSelection(lembaga) {
+            const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(lembaga.npsn));
+            const submitBtn = dataForm.querySelector('button[type="submit"]');
+
+            if (existingRegistration) {
+                adminInfoNomorUrut.textContent = String(existingRegistration.nomor).padStart(3, '0');
+                adminSudahTerdaftarInfo.classList.remove('hidden');
+                submitBtn.classList.add('hidden'); 
+            } else {
+                adminSudahTerdaftarInfo.classList.add('hidden');
+                submitBtn.classList.remove('hidden'); 
+            }
+        }
+
+
+        function showLembagaDetails(lembaga) {
+             welcomeMessage.innerHTML = `Selamat Datang :<br><span class="text-2xl font-fredoka">${lembaga.nama}</span>`;
+             detailNpsnSpan.textContent = `: ${lembaga.npsn}`;
+             detailStatusSpan.textContent = `: ${lembaga.status}`;
+             detailKecamatanSpan.textContent = `: ${lembaga.kecamatan}`;
+             detailJumlahSpan.textContent = `: ${lembaga.jumlah} orang`;
+             detailGuruDiv.innerHTML = `<p>1. ${lembaga.guru1} (${lembaga.jabatan1})</p><p>2. ${lembaga.guru2} (${lembaga.jabatan2})</p><p>3. ${lembaga.guru3} (${lembaga.jabatan3})</p>`;
+             detailSekolahDiv.classList.remove('hidden');
+        }
+
+        function showMainAppFor(lembaga) {
+            searchContainer.classList.add('hidden'); 
+            showLembagaDetails(lembaga);
+            mainAppSection.classList.remove('hidden');
+            
+            const submitBtn = dataForm.querySelector('button[type="submit"]');
+            const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(lembaga.npsn));
+
+            if (existingRegistration && !isAdminLoggedIn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Anda Sudah Terdaftar';
+                submitBtn.classList.remove('bg-gradient-to-r', 'from-red-500', 'to-yellow-500');
+                submitBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+
+            } else {
+                dataForm.querySelector('button[type="submit"]').textContent = 'Ambil Nomor';
+                const now = reliableCurrentTime;
+                const startTime = new Date(TANGGAL_MULAI);
+                const endTime = new Date(TANGGAL_SELESAI);
+
+                if (!isTrialAccessGranted && !isAdminLoggedIn) {
+                    if (now < startTime) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Pendaftaran Belum Dibuka';
+                        submitBtn.classList.remove('bg-gradient-to-r', 'from-red-500', 'to-yellow-500');
+                        submitBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+                    } else if (now > endTime) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Pendaftaran Sudah Ditutup';
+                        submitBtn.classList.remove('bg-gradient-to-r', 'from-red-500', 'to-yellow-500');
+                        submitBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+                    } else {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Ambil Nomor';
+                        submitBtn.classList.add('bg-gradient-to-r', 'from-red-500', 'to-yellow-500');
+                        submitBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    }
+                }
+            }
+            
+            checkTimeRestriction(reliableCurrentTime);
+        }
+
+        function showResultFor(registrationData, isTrial = false) {
+            if (isTrial) {
+                 resultNamaLembaga.innerHTML = `${registrationData.nama} <span class="text-purple-600 font-bold">(UJI COBA)</span>`;
+            } else {
+                resultNamaLembaga.textContent = registrationData.nama;
+            }
+            nomorUrutDisplay.textContent = String(registrationData.nomor).padStart(3, '0');
+            
+            mainAppSection.classList.add('hidden');
+            spinnerSection.classList.add('hidden');
+            resultSection.classList.remove('hidden');
+            updateDaftarTampilan(reliableCurrentTime);
+        }
+
+        function showRegisteredStatusPage(registrationData) {
+            loginSection.classList.add('hidden');
+            mainAppSection.classList.add('hidden');
+            spinnerSection.classList.add('hidden');
+            resultSection.classList.add('hidden');
+            viewDaftarSection.classList.add('hidden');
+
+            const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(registrationData.npsn));
+            if (!fullLembagaData) {
+                console.error("Data master tidak ditemukan untuk NPSN:", registrationData.npsn);
+                statusNamaLembaga.textContent = registrationData.nama;
+                statusNpsn.textContent = `: ${registrationData.npsn}`;
+                statusKecamatan.textContent = `: ${registrationData.kecamatan}`;
+                statusStatus.textContent = ": -";
+                statusJumlah.textContent = ": -";
+                statusGuru.innerHTML = "Tidak ada data.";
+            } else {
+                statusNamaLembaga.textContent = fullLembagaData.nama;
+                statusNpsn.textContent = `: ${fullLembagaData.npsn}`;
+                statusStatus.textContent = `: ${fullLembagaData.status}`;
+                statusKecamatan.textContent = `: ${fullLembagaData.kecamatan}`;
+                statusJumlah.textContent = `: ${fullLembagaData.jumlah} orang`;
+                statusGuru.innerHTML = `<p>1. ${fullLembagaData.guru1} (${fullLembagaData.jabatan1})</p>
+                                        <p>2. ${fullLembagaData.guru2} (${fullLembagaData.jabatan2})</p>
+                                        <p>3. ${fullLembagaData.guru3} (${fullLembagaData.jabatan3})</p>`;
+            }
+
+            statusNomorUrut.textContent = String(registrationData.nomor).padStart(3, '0');
+            
+            registeredStatusSection.classList.remove('hidden');
+        }
+
+
+        function handleLogout(isAutoLogout = false) {
+            clearTimeout(inactivityTimer);
+            window.removeEventListener('mousemove', resetInactivityTimer);
+            window.removeEventListener('mousedown', resetInactivityTimer);
+            window.removeEventListener('keypress', resetInactivityTimer);
+            window.removeEventListener('touchstart', resetInactivityTimer);
+
+            sessionStorage.clear();
+            loggedInLembaga = null;
+            isAdminLoggedIn = false;
+            isTrialAccessGranted = false;
+            selectedLembaga = null;
+            
+            if(reliableCurrentTime) {
+                updateDaftarTampilan(reliableCurrentTime);
+            }
+
+            mainAppSection.classList.add('hidden');
+            resultSection.classList.add('hidden');
+            viewDaftarSection.classList.add('hidden');
+            spinnerSection.classList.add('hidden');
+            adminModeBanner.classList.add('hidden');
+            trialModeBanner.classList.add('hidden');
+            registeredStatusSection.classList.add('hidden');
+            adminSudahTerdaftarInfo.classList.add('hidden');
+            dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
+
+            userLoginForm.reset();
+            loginError.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+            checkTimeRestriction(reliableCurrentTime);
+            if (isAutoLogout) {
+                showCustomNotice('Anda telah logout secara otomatis karena tidak ada aktivitas selama 5 menit.', 'Sesi Berakhir', 'info');
+            }
+        }
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            inactivityTimer = setTimeout(() => handleLogout(true), INACTIVITY_TIMEOUT);
+        }
+
+        function startInactivityTimer() {
+            resetInactivityTimer();
+            window.addEventListener('mousemove', resetInactivityTimer);
+            window.addEventListener('mousedown', resetInactivityTimer);
+            window.addEventListener('keypress', resetInactivityTimer);
+            window.addEventListener('touchstart', resetInactivityTimer);
+        }
+        
+        function handlePrint() {
+            const currentLembaga = loggedInLembaga || selectedLembaga;
+            if (!currentLembaga) return;
+
+            const registrationData = daftarPeserta.find(p => String(p.npsn) === String(currentLembaga.npsn));
+            const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(currentLembaga.npsn));
+
+            if (!registrationData || !fullLembagaData) {
+                showCustomNotice('Data pendaftaran tidak lengkap untuk dicetak.', 'Error', 'error');
+                return;
+            }
+            
+            const printContent = `
+                <div style="font-family: 'Inter', sans-serif; width: 210mm; height: 297mm; padding: 20mm; display: flex; flex-direction: column; background-color: white;">
+                    <header style="text-align: center; border-bottom: 2px solid #333; padding-bottom: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" style="height: 80px;" alt="Logo Tut Wuri Handayani">
+                        <div>
+                            <h1 style="font-size: 24px; font-weight: 700; color: #1e3a8a; margin: 0;">Bukti Pendaftaran</h1>
+                            <p style="font-size: 18px; font-weight: 600; color: #374151; margin: 4px 0 0;">Karnaval Hari Anak Nasional 2025</p>
+                        </div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Lambang_Kabupaten_Tabalong.png/1200px-Lambang_Kabupaten_Tabalong.png" style="height: 90px;" alt="Logo Tabalong">
+                    </header>
+                    
+                    <main style="flex-grow: 1;">
+                        <div style="text-align: center; margin-bottom: 32px;">
+                            <p style="font-size: 16px; color: #4b5563; margin:0;">Nomor Urut Peserta:</p>
+                            <p style="font-family: 'Fredoka One', cursive; font-size: 120px; color: #2563eb; margin: 8px 0; line-height: 1;">
+                                ${String(registrationData.nomor).padStart(3, '0')}
+                            </p>
+                        </div>
+
+                        <div style="background-color: #eff6ff; border-radius: 12px; padding: 24px; border: 1px solid #bfdbfe;">
+                            <h2 style="font-size: 28px; font-weight: 700; color: #1e3a8a; text-align: center; margin-top: 0; margin-bottom: 24px;">
+                                ${fullLembagaData.nama}
+                            </h2>
+                            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                                <tbody style="color: #374151;">
+                                    <tr><td style="padding: 8px; font-weight: 600; width: 30%;">NPSN</td><td style="padding: 8px;">: ${fullLembagaData.npsn}</td></tr>
+                                    <tr style="background-color: #f9fafb;"><td style="padding: 8px; font-weight: 600;">Status</td><td style="padding: 8px;">: ${fullLembagaData.status}</td></tr>
+                                    <tr><td style="padding: 8px; font-weight: 600;">Kecamatan</td><td style="padding: 8px;">: ${fullLembagaData.kecamatan}</td></tr>
+                                    <tr style="background-color: #f9fafb;"><td style="padding: 8px; font-weight: 600;">Jumlah Peserta</td><td style="padding: 8px;">: ${fullLembagaData.jumlah} orang</td></tr>
+                                    <tr>
+                                        <td style="padding: 8px; font-weight: 600; vertical-align: top;">Guru Perwakilan</td>
+                                        <td style="padding: 8px; line-height: 1.6;">
+                                            : 1. ${fullLembagaData.guru1} (${fullLembagaData.jabatan1})<br>
+                                            &nbsp;&nbsp;2. ${fullLembagaData.guru2} (${fullLembagaData.jabatan2})<br>
+                                            &nbsp;&nbsp;3. ${fullLembagaData.guru3} (${fullLembagaData.jabatan3})
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </main>
+
+                    <footer style="text-align: center; margin-top: auto; padding-top: 24px;">
+                         <p style="font-size: 14px; font-weight: 600; color: #374151;">Dinas Pendidikan & Kebudayaan Kabupaten Tabalong</p>
+                         <p style="font-size: 12px; color: #6b7280; margin-top: 4px;">Dicetak pada: ${new Date().toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' })}</p>
+                    </footer>
+                </div>
+            `;
+            
+            const printContainer = document.createElement('div');
+            printContainer.id = 'print-container';
+            printContainer.innerHTML = printContent;
+            document.body.appendChild(printContainer);
+            
+            setTimeout(() => {
+                window.print();
+                document.body.removeChild(printContainer);
+            }, 100);
+        }
+
+        userLoginForm.addEventListener('submit', handleUserLogin);
+        logoutBtn.addEventListener('click', () => handleLogout(false));
+        logoutFromStatusBtn.addEventListener('click', () => handleLogout(false));
+        
+        viewDaftarFromStatusBtn.addEventListener('click', () => {
+            registeredStatusSection.classList.add('hidden');
+            viewDaftarSection.classList.remove('hidden');
+        });
+
+        kembaliKeUtamaBtn.addEventListener('click', () => {
+            resultSection.classList.add('hidden');
+            if (isAdminLoggedIn || isTrialAccessGranted) {
+                mainAppSection.classList.remove('hidden');
+                searchInput.value = '';
+                selectedLembaga = null;
+                detailSekolahDiv.classList.add('hidden');
+                adminSudahTerdaftarInfo.classList.add('hidden');
+                dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
+            } else {
+                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String((loggedInLembaga || selectedLembaga)?.npsn));
+                if (existingRegistration) {
+                    showRegisteredStatusPage(existingRegistration);
+                } else {
+                    showMainAppFor(loggedInLembaga); 
+                }
+            }
+        });
+
+        printBtn.addEventListener('click', handlePrint);
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadDataFromServer();
+            
+            const savedLembaga = sessionStorage.getItem('loggedInLembaga');
+            const savedAdmin = sessionStorage.getItem('isAdmin');
+            const savedTrial = sessionStorage.getItem('isTrial');
+
+            if (savedLembaga) {
+                loggedInLembaga = JSON.parse(savedLembaga);
+                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
+                loginSection.classList.add('hidden');
+                if (existingRegistration) {
+                    showRegisteredStatusPage(existingRegistration);
+                } else {
+                    showMainAppFor(loggedInLembaga);
+                }
+                startInactivityTimer();
+            } else if (savedAdmin) {
+                isAdminLoggedIn = true;
+                updateDaftarTampilan(reliableCurrentTime);
+                loginSection.classList.add('hidden');
+                mainAppSection.classList.remove('hidden');
+                adminModeBanner.classList.remove('hidden');
+                searchContainer.classList.remove('hidden');
+                detailSekolahDiv.classList.add('hidden');
+                dataForm.querySelector('button[type="submit"]').textContent = 'Ambil Nomor (Admin)';
+                startInactivityTimer();
+            } else if (savedTrial) {
+                isTrialAccessGranted = true;
+                updateDaftarTampilan(reliableCurrentTime);
+                loginSection.classList.add('hidden');
+                mainAppSection.classList.remove('hidden');
+                trialModeBanner.classList.remove('hidden');
+                adminModeBanner.classList.add('hidden');
+                searchContainer.classList.remove('hidden');
+                detailSekolahDiv.classList.add('hidden');
+                dataForm.querySelector('button[type="submit"]').textContent = 'Ambil Nomor (Uji Coba)';
+                checkTimeRestriction(reliableCurrentTime);
+                startInactivityTimer();
+            } else {
+                loginSection.classList.remove('hidden');
+            }
         });
 
     </script>
 
 </body>
 </html>
-
-
