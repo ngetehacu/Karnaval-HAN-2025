@@ -225,7 +225,7 @@
         <div id="loginSection" class="hidden">
              <div class="flex justify-center items-center gap-4 mb-6">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" class="h-16" alt="Logo Tut Wuri Handayani" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
-                <img src="https://disdik.tabalongkab.go.id/wp-content/uploads/2022/12/logo-tabalong-1.png" alt="Logo Tabalong" class="h-20" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" alt="Logo Tabalong" class="h-20" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                 <img src="https://awsimages.detik.net.id/community/media/visual/2025/07/09/logo-hari-anak-nasional-2025-1752054507039.png?w=800" alt="Logo HAN" class="h-16" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
             </div>
             <div class="text-center mb-8">
@@ -265,7 +265,7 @@
         <div id="mainAppSection" class="hidden">
             <div class="flex justify-between items-center mb-6">
                  <div class="flex items-center gap-2">
-                     <img src="https://disdik.tabalongkab.go.id/wp-content/uploads/2022/12/logo-tabalong-1.png" alt="Logo Tabalong" class="h-12" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" alt="Logo Tabalong" class="h-12" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                      <div>
                         <h1 class="text-xl font-fredoka text-blue-600">Nomor Urut Karnaval</h1>
                         <p class="text-gray-600 text-sm font-semibold">Hari Anak Nasional 2025</p>
@@ -333,7 +333,7 @@
         <div id="registeredStatusSection" class="hidden">
             <div class="flex justify-between items-center mb-6">
                  <div class="flex items-center gap-2">
-                     <img src="https://disdik.tabalongkab.go.id/wp-content/uploads/2022/12/logo-tabalong-1.png" alt="Logo Tabalong" class="h-12" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" alt="Logo Tabalong" class="h-12" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                      <div>
                         <h1 class="text-xl font-fredoka text-blue-600">Status Pendaftaran</h1>
                         <p class="text-gray-600 text-sm font-semibold">Hari Anak Nasional 2025</p>
@@ -465,7 +465,9 @@
     </div>
 
     <script>
-
+        // ===============================================================
+        // KONFIGURASI APLIKASI
+        // ===============================================================
         const TANGGAL_MULAI = '2025-09-08T08:00:00';
         const TANGGAL_SELESAI = '2025-09-09T17:00:00'; 
         const SPIN_DURATION = 1500;
@@ -473,9 +475,12 @@
         const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 menit
 
         // --- URL Google Apps Script Web App ---
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbytRDefZfuKADfJdDp7IklDxB-TKAn-LFU2_qE7yuYDCX3tgHD8uOT17aTliJrZK13hQw/exec';
+        // DIUBAH: Menggunakan URL baru yang Anda berikan
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwyz5_z6_nHOu-2gbXBxSToR2G2LKYxLp082EJRDybhRR_PWaJHQ8TkFgnZa231popN1w/exec';
 
-        // --- Mengambil elemen dari DOM ---
+        // ===============================================================
+        // MENGAMBIL ELEMEN DARI DOM
+        // ===============================================================
         const loadingOverlay = document.getElementById('loadingOverlay');
         const customAlertModal = document.getElementById('customAlertModal');
         const customAlertTitle = document.getElementById('customAlertTitle');
@@ -565,7 +570,9 @@
         const exportBtnView = document.getElementById('exportBtnView');
         const exportBtns = document.querySelectorAll('.export-btn');
         
-        // --- Variabel State Aplikasi ---
+        // ===============================================================
+        // VARIABEL STATE APLIKASI
+        // ===============================================================
         let maxNumber = 0, daftarPeserta = [], masterLembagaData = [], lembagaTersedia = [];
         let selectedLembaga = null, countdownInterval = null, reliableCurrentTime = null;
         let loggedInLembaga = null;
@@ -579,6 +586,10 @@
             error: `<svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>`,
             info: `<svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>`
         };
+
+        // ===============================================================
+        // FUNGSI UTAMA & INTERAKSI DENGAN SERVER
+        // ===============================================================
 
         function showCustomNotice(message, title = 'Informasi', type = 'info') {
             return new Promise(resolve => {
@@ -622,9 +633,11 @@
                 const timeData = await timeResponse.json();
                 reliableCurrentTime = new Date(timeData.datetime);
             } catch (error) {
+                console.warn('Gagal mengambil waktu dari worldtimeapi, menggunakan waktu lokal.', error);
                 reliableCurrentTime = new Date();
             }
             try {
+                // Fetch daftar peserta dan daftar lembaga (yang sudah aman/tanpa kode akses)
                 const [pesertaRes, lembagaRes] = await Promise.all([
                     fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`),
                     fetch(`${WEB_APP_URL}?action=getLembagaList&t=${new Date().getTime()}`)
@@ -633,11 +646,13 @@
                 if (!lembagaRes.ok) throw new Error(`Gagal mengambil daftar lembaga (Status: ${lembagaRes.status})`);
                 const pesertaData = await pesertaRes.json();
                 const lembagaData = await lembagaRes.json();
+                
                 daftarPeserta = pesertaData.data || [];
                 masterLembagaData = lembagaData.data || [];
                 maxNumber = masterLembagaData.length;
-                const lembagaTerdaftarNpsn = daftarPeserta.map(p => String(p.npsn));
-                lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.includes(String(l.npsn)));
+
+                const lembagaTerdaftarNpsn = new Set(daftarPeserta.map(p => String(p.npsn)));
+                lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.has(String(l.npsn)));
                 
                 updateDaftarTampilan(reliableCurrentTime);
                 renderLembagaList(lembagaTersedia);
@@ -648,6 +663,86 @@
                 await showCustomNotice(`Gagal terhubung ke server. Pastikan skrip Google Anda telah di-deploy dan periksa koneksi internet Anda.<br><br><b>Detail Error:</b> ${error.message}`, 'Kesalahan Jaringan', 'error');
             } finally {
                 loadingOverlay.style.display = 'none';
+            }
+        }
+
+        /**
+         * DIUBAH TOTAL: Fungsi login kini aman, mengirim data ke server untuk validasi.
+         */
+        async function handleUserLogin(event) {
+            event.preventDefault();
+            const npsn = npsnLoginInput.value.trim();
+            const kodeAkses = kodeAksesLoginInput.value.trim();
+
+            if (!npsn || !kodeAkses) {
+                loginError.textContent = "NPSN dan Kode Akses tidak boleh kosong.";
+                loginError.classList.remove('hidden');
+                return;
+            }
+
+            const loginButton = userLoginForm.querySelector('button[type="submit"]');
+            loginButton.disabled = true;
+            loginButton.innerHTML = `
+                <div class="flex items-center justify-center gap-2">
+                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Memverifikasi...</span>
+                </div>`;
+            loginError.classList.add('hidden');
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        action: 'verifyUserLogin',
+                        npsn: npsn,
+                        kodeAkses: kodeAkses
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Server Error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    // Login Berhasil
+                    loggedInLembaga = result.data; // Data lembaga yang valid dari server
+                    
+                    const now = reliableCurrentTime;
+                    const startTime = new Date(TANGGAL_MULAI);
+                    isTrialModeActive = now < startTime;
+
+                    sessionStorage.setItem('loggedInLembaga', JSON.stringify(loggedInLembaga));
+                    if (isTrialModeActive) {
+                        sessionStorage.setItem('isTrial', 'true');
+                    }
+
+                    const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
+                    loginSection.classList.add('hidden');
+
+                    if (existingRegistration && !isTrialModeActive) {
+                        showRegisteredStatusPage(existingRegistration);
+                    } else {
+                        showMainAppFor(loggedInLembaga);
+                    }
+                    startInactivityTimer();
+
+                } else {
+                    // Login Gagal dari server
+                    throw new Error(result.message || 'NPSN atau Kode Akses salah.');
+                }
+
+            } catch (error) {
+                loginError.textContent = error.message;
+                loginError.classList.remove('hidden');
+            } finally {
+                // Kembalikan tombol ke keadaan semula
+                loginButton.disabled = false;
+                loginButton.innerHTML = 'Login';
             }
         }
         
@@ -664,14 +759,9 @@
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Server gagal menghapus data.');
                 
-                daftarPeserta = daftarPeserta.filter(p => String(p.npsn) !== String(npsn));
-                const lembagaDibatalkan = masterLembagaData.find(l => String(l.npsn) === String(npsn));
-                if (lembagaDibatalkan) {
-                    lembagaTersedia.push(lembagaDibatalkan);
-                }
-
+                // Refresh data dari server untuk memastikan konsistensi
+                await loadDataFromServer();
                 await showCustomNotice(`Pendaftaran untuk "${namaLembaga}" berhasil dibatalkan.`, 'Berhasil', 'success');
-                updateDaftarTampilan(reliableCurrentTime);
 
             } catch (error) {
                 console.error('Gagal membatalkan pendaftaran:', error);
@@ -732,30 +822,37 @@
         async function exportToExcel() {
             loadingOverlay.style.display = 'flex';
             try {
-                 const res = await fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`);
-                if (!res.ok) throw new Error(`Gagal mengambil data untuk export (Status: ${res.status})`);
-                const serverData = await res.json();
-                const dataToExport = serverData.data || [];
+                 const res = await fetch(`${WEB_APP_URL}?action=getLembagaList&t=${new Date().getTime()}`);
+                 if (!res.ok) throw new Error(`Gagal mengambil data lembaga (Status: ${res.status})`);
+                 const lembagaResult = await res.json();
+                 const masterData = lembagaResult.data || [];
+
+                 const pesertaRes = await fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`);
+                 if (!pesertaRes.ok) throw new Error(`Gagal mengambil data peserta (Status: ${pesertaRes.status})`);
+                 const pesertaResult = await pesertaRes.json();
+                 const dataToExport = pesertaResult.data || [];
+                
                 if (dataToExport.length === 0) { 
                     await showCustomNotice("Tidak ada data untuk di-export.", "Informasi", "info");
                     return; 
                 };
-                const masterDataMap = new Map(masterLembagaData.map(item => [item.npsn, item]));
-                const headers = ['No. Urut', 'Nama Lembaga', 'NPSN', 'Status', 'Kecamatan', 'Jumlah Peserta', 'Guru 1', 'Jabatan 1', 'Guru 2', 'Jabatan 2', 'Guru 3', 'Jabatan 3', 'Kode Akses'];
+                
+                const masterDataMap = new Map(masterData.map(item => [item.npsn, item]));
+                const headers = ['No. Urut', 'Nama Lembaga', 'NPSN', 'Status', 'Kecamatan', 'Jumlah Peserta', 'Guru 1', 'Jabatan 1', 'Guru 2', 'Jabatan 2', 'Guru 3', 'Jabatan 3'];
                 const rows = dataToExport.sort((a,b) => a.nomor - b.nomor).map(p => {
                     const master = masterDataMap.get(p.npsn) || {};
                     return [
                         `'${String(p.nomor).padStart(3, '0')}`,
                         `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`,
                         master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`,
-                        `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`, `"${master.kode_akses || ''}"`
+                        `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`
                     ];
                 });
                 let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
                 var encodedUri = encodeURI(csvContent);
                 var link = document.createElement("a");
                 link.setAttribute("href", encodedUri);
-                link.setAttribute("download", "daftar_peserta_lomba_han_2025.csv");
+                link.setAttribute("download", `daftar_peserta_han_${new Date().toISOString().slice(0,10)}.csv`);
                 document.body.appendChild(link);
                  link.click();
                 document.body.removeChild(link);
@@ -765,15 +862,8 @@
                 loadingOverlay.style.display = 'none';
             }
         }
-
-        adminLoginBtn.addEventListener('click', () => {
-            adminPasswordInput.value = '';
-            adminLoginError.classList.add('hidden');
-            adminLoginModal.classList.remove('hidden');
-            adminPasswordInput.focus();
-        });
-
-        spinBtn.addEventListener('click', async function() {
+        
+        async function handlePendaftaran() {
             const currentLembaga = loggedInLembaga || selectedLembaga;
             
             const isStillInTrialPeriod = reliableCurrentTime < new Date(TANGGAL_MULAI);
@@ -799,12 +889,12 @@
                 setTimeout(() => {
                     clearInterval(spinInterval);
                     let finalNumber;
-                    const usedNumbers = daftarPeserta.map(p => p.nomor);
+                    const usedNumbers = new Set(daftarPeserta.map(p => p.nomor));
                     do {
                         finalNumber = Math.floor(Math.random() * maxNumber) + 1;
-                    } while (usedNumbers.includes(finalNumber) && usedNumbers.length < maxNumber);
+                    } while (usedNumbers.has(finalNumber) && usedNumbers.size < maxNumber);
                     
-                    if(usedNumbers.length >= maxNumber){
+                    if(usedNumbers.size >= maxNumber){
                         finalNumber = 999;
                     }
 
@@ -835,11 +925,10 @@
                 const formattedFinalNumber = String(finalNumber).padStart(3, '0');
                 spinnerDisplay.textContent = formattedFinalNumber;
 
-                const dataYangDisimpan = { ...currentLembaga, nomor: finalNumber };
+                // Refresh data dari server setelah berhasil mendaftar
+                await loadDataFromServer();
                 
-                daftarPeserta.push(dataYangDisimpan);
-                lembagaTersedia = lembagaTersedia.filter(l => String(l.npsn) !== String(dataYangDisimpan.npsn));
-                updateDaftarTampilan(reliableCurrentTime);
+                const dataYangDisimpan = { ...currentLembaga, nomor: finalNumber };
                 showResultFor(dataYangDisimpan, false);
 
             } catch (err) {
@@ -852,7 +941,11 @@
                 spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
                 spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
             }
-        });
+        }
+        
+        // ===============================================================
+        // FUNGSI PENGATUR TAMPILAN (UI/UX)
+        // ===============================================================
 
         function updateTimer(targetDate, element, onEnd, prefix, suffix, now) {
             const distance = targetDate - now;
@@ -990,7 +1083,7 @@
             dropdownMenu.innerHTML = '';
             if (items.length === 0) {
                 const div = document.createElement('div');
-                div.textContent = 'Semua lembaga sudah terdaftar';
+                div.textContent = 'Semua lembaga sudah terdaftar atau tidak ada hasil';
                 div.className = 'p-3 text-center text-gray-500';
                 dropdownMenu.appendChild(div);
                 return;
@@ -1013,219 +1106,6 @@
             });
         }
         
-        searchInput.addEventListener('input', () => {
-            const query = searchInput.value.toLowerCase();
-            const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
-            const filtered = sourceData.filter(l => l.nama.toLowerCase().includes(query));
-            renderLembagaList(filtered);
-            selectedLembaga = null;
-            detailSekolahDiv.classList.add('hidden');
-            dropdownMenu.classList.remove('hidden');
-            adminSudahTerdaftarInfo.classList.add('hidden');
-        });
-
-        searchInput.addEventListener('focus', () => {
-            const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
-            renderLembagaList(sourceData);
-            dropdownMenu.classList.remove('hidden');
-        });
-        
-        document.addEventListener('click', (e) => {
-            if (!searchContainer.contains(e.target)) {
-                dropdownMenu.classList.add('hidden');
-            }
-        });
-        
-        dataForm.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const currentLembaga = loggedInLembaga || selectedLembaga;
-            if (!currentLembaga) {
-                errorMessage.classList.remove('hidden');
-                return;
-            }
-
-            if (!reliableCurrentTime) {
-                await showCustomNotice("Waktu belum tersinkronisasi. Mohon muat ulang halaman.", "Peringatan", "warning");
-                return;
-            }
-
-            const now = reliableCurrentTime;
-            const startTime = new Date(TANGGAL_MULAI);
-            const endTime = new Date(TANGGAL_SELESAI);
-            
-            const isStillInTrialPeriod = now < startTime;
-
-            if (!isStillInTrialPeriod && !isAdminLoggedIn && (now < startTime || now > endTime)) {
-                await showCustomNotice("Waktu pendaftaran sudah berakhir atau belum dimulai.", "Peringatan", "warning");
-                return;
-            }
-            errorMessage.classList.add('hidden');
-            
-            displayNamaLembaga.textContent = currentLembaga.nama;
-            mainAppSection.classList.add('hidden');
-            spinnerSection.classList.remove('hidden');
-        });
-
-        cancelBtn.addEventListener('click', function() {
-            spinnerSection.classList.add('hidden');
-            mainAppSection.classList.remove('hidden');
-            spinBtn.disabled = false;
-            spinBtn.textContent = 'Ambil Nomor!';
-            spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
-            spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-        });
-
-        viewDaftarBtn.addEventListener('click', () => {
-            mainAppSection.classList.add('hidden');
-            viewDaftarSection.classList.remove('hidden');
-        });
-        
-        kembaliBtn.addEventListener('click', () => {
-            viewDaftarSection.classList.add('hidden');
-            
-            if (isAdminLoggedIn || isTrialModeActive) {
-                mainAppSection.classList.remove('hidden');
-                return;
-            }
-
-            if (loggedInLembaga) {
-                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
-                if (existingRegistration) {
-                    showRegisteredStatusPage(existingRegistration);
-                } else {
-                    mainAppSection.classList.remove('hidden');
-                }
-            } else {
-                loginSection.classList.remove('hidden');
-            }
-        });
-
-        async function handleExport() {
-            const password = exportPasswordInput.value;
-            if (!password) {
-                exportPasswordError.textContent = "Kata sandi tidak boleh kosong.";
-                exportPasswordError.classList.remove('hidden');
-                return;
-            }
-
-            submitExport.disabled = true;
-            submitExport.textContent = 'Memeriksa...';
-            exportPasswordError.classList.add('hidden');
-
-            try {
-                const response = await fetch(WEB_APP_URL, {
-                    method: 'POST',
-                    body: JSON.stringify({ action: 'verifyPassword', password: password })
-                });
-                if (!response.ok) throw new Error('Gagal terhubung ke server.');
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    exportPasswordModal.classList.add('hidden');
-                    exportPasswordInput.value = '';
-                    exportToExcel(); 
-                } else {
-                    throw new Error(result.message || 'Kata sandi salah.');
-                }
-            } catch (error) {
-                exportPasswordError.textContent = error.message;
-                exportPasswordError.classList.remove('hidden');
-            } finally {
-                submitExport.disabled = false;
-                submitExport.textContent = 'Export';
-            }
-        }
-        exportPasswordForm.addEventListener('submit', (e) => { e.preventDefault(); handleExport(); });
-        submitExport.addEventListener('click', handleExport);
-        cancelExport.addEventListener('click', () => {
-            exportPasswordModal.classList.add('hidden');
-            exportPasswordError.classList.add('hidden');
-            exportPasswordInput.value = '';
-        });
-
-        exportBtns.forEach(btn => btn.addEventListener('click', () => {
-             exportPasswordModal.classList.remove('hidden');
-             exportPasswordInput.focus();
-        }));
-
-        adminLoginForm.addEventListener('submit', (e) => { e.preventDefault(); handleAdminLogin(); });
-        submitAdminLogin.addEventListener('click', handleAdminLogin);
-        cancelAdminLogin.addEventListener('click', () => {
-            adminLoginModal.classList.add('hidden');
-            adminLoginError.classList.add('hidden');
-            adminPasswordInput.value = '';
-        });
-
-        function handleUserLogin(event){
-            event.preventDefault();
-            const npsn = npsnLoginInput.value.trim();
-            const kodeAkses = kodeAksesLoginInput.value.trim();
-
-            if(!npsn || !kodeAkses){
-                loginError.textContent = "NPSN dan Kode Akses tidak boleh kosong.";
-                loginError.classList.remove('hidden');
-                return;
-            }
-
-            const foundLembaga = masterLembagaData.find(l => String(l.npsn) === npsn && String(l.kode_akses) === kodeAkses);
-
-            if(foundLembaga){
-                loginError.classList.add('hidden');
-                
-                const loginButton = userLoginForm.querySelector('button[type="submit"]');
-                npsnLoginInput.disabled = true;
-                kodeAksesLoginInput.disabled = true;
-                loginButton.disabled = true;
-                
-                loginButton.classList.remove('bg-blue-600', 'hover:scale-105');
-                loginButton.classList.add('bg-green-500', 'cursor-not-allowed');
-                loginButton.innerHTML = `
-                    <div class="flex items-center justify-center gap-2">
-                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                        </svg>
-                        <span>Login Berhasil, mengalihkan...</span>
-                    </div>
-                `;
-
-                setTimeout(() => {
-                    loggedInLembaga = foundLembaga;
-                
-                    const now = reliableCurrentTime;
-                    const startTime = new Date(TANGGAL_MULAI);
-                    isTrialModeActive = now < startTime;
-
-                    sessionStorage.setItem('loggedInLembaga', JSON.stringify(loggedInLembaga));
-                    if (isTrialModeActive) {
-                        sessionStorage.setItem('isTrial', 'true');
-                    }
-
-                    const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
-                    loginSection.classList.add('hidden');
-
-                    if(existingRegistration && !isTrialModeActive){
-                        showRegisteredStatusPage(existingRegistration);
-                    } else {
-                        showMainAppFor(loggedInLembaga);
-                    }
-                    startInactivityTimer();
-
-                    npsnLoginInput.disabled = false;
-                    kodeAksesLoginInput.disabled = false;
-                    loginButton.disabled = false;
-                    loginButton.classList.add('bg-blue-600', 'hover:scale-105');
-                    loginButton.classList.remove('bg-green-500', 'cursor-not-allowed');
-                    loginButton.innerHTML = 'Login';
-
-                }, 3000);
-
-            } else {
-                loginError.textContent = "NPSN atau Kode Akses salah. Coba lagi.";
-                loginError.classList.remove('hidden');
-            }
-        }
-
         function checkAdminLembagaSelection(lembaga) {
             const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(lembaga.npsn));
             const submitBtn = dataForm.querySelector('button[type="submit"]');
@@ -1280,7 +1160,6 @@
             checkTimeRestriction(reliableCurrentTime);
         }
         
-        // --- FUNGSI ANIMASI BARU ---
         function triggerConfetti() {
             const container = document.getElementById('confetti-container');
             if (!container) return;
@@ -1325,10 +1204,6 @@
             resultSection.classList.remove('hidden');
             
             triggerConfetti();
-
-            if (!isTrial) {
-                updateDaftarTampilan(reliableCurrentTime);
-            }
         }
 
         function showRegisteredStatusPage(registrationData) {
@@ -1363,7 +1238,6 @@
             registeredStatusSection.classList.remove('hidden');
             triggerSparkles(registeredStatusSection);
         }
-
 
         function handleLogout(isAutoLogout = false) {
             clearTimeout(inactivityTimer);
@@ -1424,7 +1298,7 @@
                             <h1 style="font-size: 24px; font-weight: 700; color: #1e3a8a; margin: 0;">Bukti Pendaftaran</h1>
                             <p style="font-size: 18px; font-weight: 600; color: #374151; margin: 4px 0 0;">Karnaval Hari Anak Nasional 2025</p>
                         </div>
-                        <img src="https://disdik.tabalongkab.go.id/wp-content/uploads/2022/12/logo-tabalong-1.png" style="height: 90px;" alt="Logo Tabalong" crossorigin="anonymous">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" style="height: 90px;" alt="Logo Tabalong" crossorigin="anonymous">
                     </header>
                     
                     <main style="flex-grow: 1;">
@@ -1467,7 +1341,7 @@
         }
         
         async function handleDownload() {
-            const currentLembaga = loggedInLembaga || selectedLembaga;
+            const currentLembaga = loggedInLembaga;
             if (!currentLembaga) return;
 
             const registrationData = daftarPeserta.find(p => String(p.npsn) === String(currentLembaga.npsn));
@@ -1510,7 +1384,7 @@
         }
 
         function handlePrint() {
-            const currentLembaga = loggedInLembaga || selectedLembaga;
+            const currentLembaga = loggedInLembaga;
             if (!currentLembaga) return;
 
             const registrationData = daftarPeserta.find(p => String(p.npsn) === String(currentLembaga.npsn));
@@ -1534,9 +1408,165 @@
             }, 100);
         }
 
+        async function handleExport() {
+            const password = exportPasswordInput.value;
+            if (!password) {
+                exportPasswordError.textContent = "Kata sandi tidak boleh kosong.";
+                exportPasswordError.classList.remove('hidden');
+                return;
+            }
+
+            submitExport.disabled = true;
+            submitExport.textContent = 'Memeriksa...';
+            exportPasswordError.classList.add('hidden');
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'verifyPassword', password: password })
+                });
+                if (!response.ok) throw new Error('Gagal terhubung ke server.');
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    exportPasswordModal.classList.add('hidden');
+                    exportPasswordInput.value = '';
+                    exportToExcel(); 
+                } else {
+                    throw new Error(result.message || 'Kata sandi salah.');
+                }
+            } catch (error) {
+                exportPasswordError.textContent = error.message;
+                exportPasswordError.classList.remove('hidden');
+            } finally {
+                submitExport.disabled = false;
+                submitExport.textContent = 'Export';
+            }
+        }
+        
+        // ===============================================================
+        // EVENT LISTENERS
+        // ===============================================================
+
         userLoginForm.addEventListener('submit', handleUserLogin);
         logoutBtn.addEventListener('click', () => handleLogout(false));
         logoutFromStatusBtn.addEventListener('click', () => handleLogout(false));
+        spinBtn.addEventListener('click', handlePendaftaran);
+        
+        dataForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const currentLembaga = loggedInLembaga || selectedLembaga;
+            if (isAdminLoggedIn && !currentLembaga) {
+                errorMessage.classList.remove('hidden');
+                return;
+            }
+            
+            if (!reliableCurrentTime) {
+                await showCustomNotice("Waktu belum tersinkronisasi. Mohon muat ulang halaman.", "Peringatan", "warning");
+                return;
+            }
+
+            const now = reliableCurrentTime;
+            const startTime = new Date(TANGGAL_MULAI);
+            const endTime = new Date(TANGGAL_SELESAI);
+            
+            if (!isAdminLoggedIn && (now < startTime || now > endTime)) {
+                checkTimeRestriction(now);
+                return;
+            }
+            errorMessage.classList.add('hidden');
+            
+            displayNamaLembaga.textContent = currentLembaga.nama;
+            mainAppSection.classList.add('hidden');
+            spinnerSection.classList.remove('hidden');
+        });
+
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase();
+            // Admin mencari di semua data, pengguna biasa mencari di yg tersedia
+            const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
+            const filtered = sourceData.filter(l => l.nama.toLowerCase().includes(query));
+            renderLembagaList(filtered);
+            selectedLembaga = null;
+            detailSekolahDiv.classList.add('hidden');
+            dropdownMenu.classList.remove('hidden');
+            adminSudahTerdaftarInfo.classList.add('hidden');
+            dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
+        });
+
+        searchInput.addEventListener('focus', () => {
+            const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
+            renderLembagaList(sourceData);
+            dropdownMenu.classList.remove('hidden');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!searchContainer.contains(e.target)) {
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        cancelBtn.addEventListener('click', function() {
+            spinnerSection.classList.add('hidden');
+            mainAppSection.classList.remove('hidden');
+            spinBtn.disabled = false;
+            spinBtn.textContent = 'Ambil Nomor!';
+            spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
+            spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+        });
+        
+        kembaliBtn.addEventListener('click', () => {
+            viewDaftarSection.classList.add('hidden');
+            
+            if (isAdminLoggedIn || isTrialModeActive) {
+                mainAppSection.classList.remove('hidden');
+                return;
+            }
+
+            if (loggedInLembaga) {
+                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
+                if (existingRegistration) {
+                    showRegisteredStatusPage(existingRegistration);
+                } else {
+                    mainAppSection.classList.remove('hidden');
+                }
+            } else {
+                loginSection.classList.remove('hidden');
+            }
+        });
+
+        exportPasswordForm.addEventListener('submit', (e) => { e.preventDefault(); handleExport(); });
+        submitExport.addEventListener('click', handleExport);
+        cancelExport.addEventListener('click', () => {
+            exportPasswordModal.classList.add('hidden');
+            exportPasswordError.classList.add('hidden');
+            exportPasswordInput.value = '';
+        });
+
+        exportBtns.forEach(btn => btn.addEventListener('click', () => {
+             exportPasswordModal.classList.remove('hidden');
+             exportPasswordInput.focus();
+        }));
+
+        adminLoginForm.addEventListener('submit', (e) => { e.preventDefault(); handleAdminLogin(); });
+        submitAdminLogin.addEventListener('click', handleAdminLogin);
+        cancelAdminLogin.addEventListener('click', () => {
+            adminLoginModal.classList.add('hidden');
+            adminLoginError.classList.add('hidden');
+            adminPasswordInput.value = '';
+        });
+        
+        adminLoginBtn.addEventListener('click', () => {
+            adminPasswordInput.value = '';
+            adminLoginError.classList.add('hidden');
+            adminLoginModal.classList.remove('hidden');
+            adminPasswordInput.focus();
+        });
+
+        viewDaftarBtn.addEventListener('click', () => {
+            mainAppSection.classList.add('hidden');
+            viewDaftarSection.classList.remove('hidden');
+        });
         
         viewDaftarFromStatusBtn.addEventListener('click', () => {
             registeredStatusSection.classList.add('hidden');
@@ -1545,14 +1575,13 @@
 
         kembaliKeUtamaBtn.addEventListener('click', () => {
             resultSection.classList.add('hidden');
+            spinBtn.disabled = false;
+            spinBtn.textContent = 'Ambil Nomor!';
+            spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
+            spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+
             if (isAdminLoggedIn || isTrialModeActive) {
                 mainAppSection.classList.remove('hidden');
-                
-                spinBtn.disabled = false;
-                spinBtn.textContent = 'Ambil Nomor!';
-                spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
-                spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-
                 if(isAdminLoggedIn) {
                     searchInput.value = '';
                     selectedLembaga = null;
@@ -1561,7 +1590,7 @@
                     dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
                 }
             } else {
-                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String((loggedInLembaga || selectedLembaga)?.npsn));
+                const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga?.npsn));
                 if (existingRegistration) {
                     showRegisteredStatusPage(existingRegistration);
                 } else {
@@ -1573,6 +1602,9 @@
         printBtn.addEventListener('click', handlePrint);
         downloadBtn.addEventListener('click', handleDownload);
 
+        // ===============================================================
+        // INISIALISASI APLIKASI
+        // ===============================================================
         document.addEventListener('DOMContentLoaded', async () => {
             await loadDataFromServer();
             
