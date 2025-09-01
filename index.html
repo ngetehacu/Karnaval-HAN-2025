@@ -6,7 +6,7 @@
     <title>Lomba Hari Anak Nasional 2025 - Kab. Tabalong</title>
     <link rel="icon" href="https://disdik.tabalongkab.go.id/wp-content/uploads/2022/12/logo-tabalong-1.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -154,25 +154,21 @@
         <p class="text-lg font-semibold text-gray-700">Memuat data dari server...</p>
     </div>
 
-    <!-- MODAL NOTIFIKASI BARU -->
     <div id="customAlertModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full z-[10000] flex items-center justify-center p-4" style="animation: alert-fade-in 0.3s ease;">
         <div class="relative mx-auto p-6 border w-full max-w-sm shadow-xl rounded-2xl bg-white" style="animation: alert-zoom-in 0.3s ease;">
             <div class="mt-3 text-center">
                 <div id="customAlertIcon" class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
-                    <!-- Icon will be injected here -->
-                </div>
+                    </div>
                 <h3 id="customAlertTitle" class="text-lg leading-6 font-bold text-gray-900"></h3>
                 <div class="mt-2 px-2 py-3">
                     <p id="customAlertMessage" class="text-sm text-gray-500"></p>
                 </div>
                 <div id="customAlertButtons" class="items-center px-4 py-3 gap-2 flex">
-                    <!-- Buttons will be injected here -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
-    <!-- MODAL PASSWORD EXPORT -->
     <div id="exportPasswordModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
         <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
             <div class="mt-3 text-center">
@@ -198,7 +194,6 @@
         </div>
     </div>
     
-    <!-- MODAL ADMIN -->
     <div id="adminLoginModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
         <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
             <div class="mt-3 text-center">
@@ -224,7 +219,6 @@
         </div>
     </div>
 
-    <!-- MODAL INFORMASI & BANTUAN -->
     <div id="infoModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
         <div class="relative mx-auto p-5 border w-full max-w-lg shadow-lg rounded-2xl bg-white">
             <div class="mt-3">
@@ -244,7 +238,7 @@
                         <h4 class="font-bold text-gray-800 mb-1">Jadwal Penting</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li><strong>Pendaftaran Dibuka:</strong> 02 September 2025, Pukul 08:00 WITA</li>
-                            <li><strong>Pendaftaran Ditutup:</strong> 07 September 2025, Pukul 23:59 WITA</li>
+                            <li><strong>Pendaftaran Ditutup:</strong> 04 September 2025, Pukul 17:00 WITA</li>
                             <li><strong>Pelaksanaan Karnaval:</strong> Kamis, 11 September 2025</li>
                         </ul>
                     </div>
@@ -258,7 +252,7 @@
                      <div>
                         <h4 class="font-bold text-gray-800 mb-1">Pertanyaan Umum (FAQ)</h4>
                         <div class="space-y-2">
-                            <p><strong>T: Bagaimana jika saya lupa Kode Akses?</strong><br>J: Silakan hubungi kontak panitia di atas untuk meminta reset atau pengingat kode akses.</p>
+                            <p><strong>T: Bagaimana jika saya lupa Kode Akses?</strong><br>J: Silakan gunakan fitur <strong>"Lupa Kode Akses?"</strong> di halaman login. Anda akan diminta memasukkan NPSN dan email yang terdaftar untuk menerima kode verifikasi.</p>
                             <p><strong>T: Apakah nomor urut bisa dipilih?</strong><br>J: Tidak. Nomor urut diacak oleh sistem secara adil untuk semua peserta.</p>
                              <p><strong>T: Apa yang harus dibawa saat acara?</strong><br>J: Harap membawa bukti pendaftaran yang sudah di-download atau dicetak dari aplikasi ini.</p>
                         </div>
@@ -272,8 +266,46 @@
             </div>
         </div>
     </div>
-    
-    <!-- MODAL EDIT DATA LEMBAGA (ADMIN) -->
+
+    <div id="resetKodeModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
+        <div class="relative mx-auto p-5 border w-full max-w-sm shadow-lg rounded-2xl bg-white">
+            <div id="resetStep1">
+                <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2">Reset Kode Akses</h3>
+                <p class="text-sm text-gray-500 mb-4">Masukkan NPSN dan email yang terdaftar untuk menerima kode verifikasi.</p>
+                <form id="sendCodeForm" class="space-y-3">
+                    <div>
+                        <label for="resetNpsnInput" class="block text-sm font-medium text-gray-700">NPSN</label>
+                        <input type="text" id="resetNpsnInput" placeholder="NPSN Lembaga Anda" required class="mt-1 w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="resetEmailInput" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input type="email" id="resetEmailInput" placeholder="email@lembaga.com" required class="mt-1 w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <p id="resetStep1Error" class="text-red-500 text-sm hidden"></p>
+                    <div class="items-center pt-3 gap-2 flex">
+                        <button id="cancelResetBtn" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">Batal</button>
+                        <button id="sendCodeBtn" type="submit" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all">Kirim Kode</button>
+                    </div>
+                </form>
+            </div>
+            <div id="resetStep2" class="hidden">
+                <h3 class="text-lg leading-6 font-bold text-gray-900 mb-2">Masukkan Kode Verifikasi</h3>
+                <p class="text-sm text-gray-500 mb-4">Kode 6 digit telah dikirim ke email Anda dan akan valid selama 10 menit.</p>
+                <form id="verifyCodeForm" class="space-y-3">
+                    <input type="hidden" id="npsnForFinalize">
+                    <div>
+                        <label for="verificationCodeInput" class="block text-sm font-medium text-gray-700">Kode Verifikasi</label>
+                        <input type="text" id="verificationCodeInput" placeholder="xxxxxx" required class="mt-1 w-full px-4 py-3 text-center tracking-[1em] font-mono text-xl bg-gray-50 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <p id="resetStep2Error" class="text-red-500 text-sm hidden"></p>
+                     <div class="items-center pt-3 gap-2 flex">
+                        <button id="backToStep1Btn" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">Kembali</button>
+                        <button id="finalizeResetBtn" type="submit" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all">Reset Sekarang</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div id="editLembagaModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
         <div class="relative mx-auto p-5 border w-full max-w-lg shadow-lg rounded-2xl bg-white">
             <form id="editLembagaForm">
@@ -294,7 +326,6 @@
                             <input type="number" id="editJumlah" class="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                         </div>
                     </div>
-                    <!-- Guru 1 -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label for="editGuru1" class="block font-medium text-gray-700">Nama Guru 1</label>
@@ -305,7 +336,6 @@
                             <input type="text" id="editJabatan1" class="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                         </div>
                     </div>
-                    <!-- Guru 2 -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label for="editGuru2" class="block font-medium text-gray-700">Nama Guru 2</label>
@@ -316,7 +346,6 @@
                             <input type="text" id="editJabatan2" class="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
                         </div>
                     </div>
-                    <!-- Guru 3 -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label for="editGuru3" class="block font-medium text-gray-700">Nama Guru 3</label>
@@ -337,17 +366,13 @@
     </div>
 
 
-    <!-- KONTEN UTAMA -->
     <div class="w-full max-w-md mx-auto bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white">
 
-        <!-- BAGIAN LOGIN PENGGUNA BARU -->
         <div id="loginSection" class="hidden">
-             <!-- PENGUMUMAN UNTUK PENGGUNA -->
-            <div id="pengumumanContainer" class="hidden mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-r-lg">
+             <div id="pengumumanContainer" class="hidden mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-r-lg">
                 <h4 id="pengumumanJudul" class="font-bold"></h4>
                 <p id="pengumumanIsi" class="text-sm"></p>
             </div>
-
              <div class="flex justify-center items-center gap-4 mb-6">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" class="h-16" alt="Logo Tut Wuri Handayani" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" alt="Logo Tabalong" class="h-20" onerror="this.src='https://placehold.co/100x100/EEE/31343C?text=Logo'">
@@ -377,6 +402,9 @@
                 </button>
             </form>
 
+            <div class="text-center mt-3">
+                <button id="forgotPasswordBtn" type="button" class="text-sm text-blue-600 hover:underline hover:text-blue-800 transition-all">Lupa Kode Akses?</button>
+            </div>
             <button type="button" id="showInfoBtn" class="w-full mt-4 bg-blue-50 text-blue-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-blue-100 transform transition-all border-2 border-blue-200 shadow-sm flex items-center justify-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
                 Informasi & Bantuan
@@ -390,14 +418,12 @@
             </div>
         </div>
         
-        <!-- BAGIAN DASHBOARD ADMIN -->
         <div id="adminDashboardSection" class="hidden">
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-2xl font-bold text-gray-800">Dashboard Admin</h1>
                 <button id="logoutFromDashboardBtn" class="text-sm bg-red-100 text-red-700 font-semibold py-2 px-3 rounded-lg hover:bg-red-200 transition-all">Logout</button>
             </div>
 
-            <!-- Statistik -->
             <div class="grid grid-cols-2 gap-4 mb-6">
                 <div class="bg-blue-100 p-4 rounded-lg text-center">
                     <p class="text-sm text-blue-800 font-semibold">Total Pendaftar</p>
@@ -409,7 +435,6 @@
                 </div>
             </div>
 
-            <!-- Grafik Kecamatan -->
             <div class="bg-white p-4 rounded-lg border mb-6">
                 <h3 class="font-bold mb-3 text-center">Pendaftar per Kecamatan</h3>
                 <div class="flex items-center justify-center gap-4">
@@ -418,13 +443,11 @@
                 </div>
             </div>
 
-            <!-- Aktivitas Terkini -->
             <div class="mb-6">
                 <h3 class="font-bold mb-2">Aktivitas Terkini</h3>
                 <div id="aktivitasTerkiniContainer" class="space-y-2 text-sm max-h-32 overflow-y-auto"></div>
             </div>
             
-            <!-- Buat Pengumuman -->
             <div class="bg-gray-50 p-4 rounded-lg border mb-6">
                 <h3 class="font-bold mb-2">Buat Pengumuman Baru</h3>
                 <form id="pengumumanForm" class="space-y-2">
@@ -438,7 +461,6 @@
         </div>
 
 
-        <!-- BAGIAN APLIKASI UTAMA (SEBELUM MENGAMBIL NOMOR) -->
         <div id="mainAppSection" class="hidden">
             <div class="flex justify-between items-center mb-6">
                  <div class="flex items-center gap-2">
@@ -461,7 +483,6 @@
             <div id="sisaWaktuContainer" class="text-center p-3 rounded-lg my-4 hidden"></div>
 
             <form id="dataForm" class="space-y-4">
-                <!-- HANYA TAMPIL UNTUK ADMIN -->
                 <div class="relative hidden" id="searchContainer">
                     <label for="searchLembaga" class="block text-sm font-medium text-gray-700 mb-2">Cari PAUD / TK (Admin)</label>
                     <input type="text" id="searchLembaga" placeholder="Ketik untuk mencari..." class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
@@ -469,7 +490,6 @@
                     </div>
                 </div>
 
-                <!-- TAMPIL UNTUK PENGGUNA BIASA & ADMIN -->
                 <div id="detailSekolah" class="space-y-3 text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
                     <div id="welcomeMessage" class="text-center text-lg font-bold text-blue-800 mb-4 p-3 bg-blue-100 rounded-lg"></div>
                     <div class="grid grid-cols-3 gap-x-2">
@@ -484,7 +504,6 @@
                     </div>
                 </div>
                 
-                <!-- INFO JIKA LEMBAGA SUDAH TERDAFTAR (UNTUK ADMIN) -->
                 <div id="adminSudahTerdaftarInfo" class="hidden text-center bg-green-100 border-2 border-green-200 rounded-2xl p-6 my-4">
                     <p class="text-gray-800 mb-4 text-lg font-semibold">Lembaga ini sudah terdaftar dengan nomor urut:</p>
                     <div id="adminInfoNomorUrut" class="text-8xl font-fredoka text-green-600 my-2"></div>
@@ -506,7 +525,6 @@
             </div>
         </div>
 
-        <!-- BAGIAN STATUS SUDAH TERDAFTAR (HALAMAN UTAMA SETELAH MENDAPAT NOMOR) -->
         <div id="registeredStatusSection" class="hidden">
             <div class="flex justify-between items-center mb-6">
                  <div class="flex items-center gap-2">
@@ -627,11 +645,9 @@
                 </button>
              </div>
 
-            <!-- Fitur Filter & Pencarian Admin -->
             <div id="viewDaftarAdminControls" class="hidden mb-4 p-4 bg-gray-50 rounded-lg border space-y-3">
                 <div id="viewToggleContainer" class="flex items-center gap-2 border-b pb-3 mb-3">
-                    <!-- Tombol Toggle Admin akan ditambahkan di sini oleh JS -->
-                </div>
+                    </div>
                 <div class="sm:flex sm:items-center sm:gap-4">
                     <input type="text" id="searchInputView" placeholder="Cari nama lembaga..." class="w-full sm:w-1/2 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-2 sm:mb-0">
                     <select id="filterKecamatan" class="w-full sm:w-auto px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-2 sm:mb-0">
@@ -666,7 +682,7 @@
         // KONFIGURASI APLIKASI
         // ===============================================================
         const TANGGAL_MULAI = '2025-09-02T08:08:00';
-        const TANGGAL_SELESAI = '2025-09-07T23:17:00'; 
+        const TANGGAL_SELESAI = '2025-09-04T23:17:00'; 
         const SPIN_DURATION = 1500;
         const SPIN_INTERVAL = 50;
         const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 menit
@@ -700,6 +716,7 @@
         const kodeAksesLoginInput = document.getElementById('kodeAksesLoginInput');
         const loginError = document.getElementById('loginError');
         const adminLoginBtn = document.getElementById('adminLoginBtn');
+        const forgotPasswordBtn = document.getElementById('forgotPasswordBtn'); // Tombol lupa password
 
         // Logout Buttons
         const logoutBtn = document.getElementById('logoutBtn');
@@ -774,6 +791,16 @@
         const closeInfoModalBtn = document.getElementById('closeInfoModalBtn');
         const okInfoModalBtn = document.getElementById('okInfoModalBtn');
         const showInfoBtn = document.getElementById('showInfoBtn');
+        const resetKodeModal = document.getElementById('resetKodeModal');
+        const resetStep1 = document.getElementById('resetStep1');
+        const resetStep2 = document.getElementById('resetStep2');
+        const sendCodeForm = document.getElementById('sendCodeForm');
+        const verifyCodeForm = document.getElementById('verifyCodeForm');
+        const cancelResetBtn = document.getElementById('cancelResetBtn');
+        const backToStep1Btn = document.getElementById('backToStep1Btn');
+        const resetStep1Error = document.getElementById('resetStep1Error');
+        const resetStep2Error = document.getElementById('resetStep2Error');
+        const npsnForFinalize = document.getElementById('npsnForFinalize');
 
         // Admin Dashboard Elements
         const goToDaftarPesertaBtn = document.getElementById('goToDaftarPesertaBtn');
@@ -861,10 +888,21 @@
             });
         }
         
+        // **** PENAMBAHAN FUNGSI BARU: displayPengumuman ****
+        function displayPengumuman(pengumuman) {
+            if (pengumuman && pengumuman.judul && pengumuman.isi) {
+                pengumumanJudul.textContent = pengumuman.judul;
+                pengumumanIsi.textContent = pengumuman.isi;
+                pengumumanContainer.classList.remove('hidden');
+            } else {
+                pengumumanContainer.classList.add('hidden');
+            }
+        }
+        // **** AKHIR FUNGSI BARU ****
+
         async function loadDataFromServer(isAdmin = false) {
             loadingOverlay.style.display = 'flex';
             
-            // --- PERBAIKAN: Pisahkan pengambilan waktu agar tidak memblokir ---
             try {
                 const timeResponse = await fetch('https://worldtimeapi.org/api/timezone/Asia/Makassar');
                 if (!timeResponse.ok) throw new Error('Gagal mengambil waktu dari server API.');
@@ -872,32 +910,34 @@
                 reliableCurrentTime = new Date(timeData.datetime);
             } catch (error) {
                 console.warn('Gagal mengambil waktu dari worldtimeapi, menggunakan waktu lokal.', error);
-                reliableCurrentTime = new Date(); // Fallback ke waktu lokal jika gagal
+                reliableCurrentTime = new Date();
             }
-            // --- AKHIR PERBAIKAN ---
 
             try {
-                const pesertaRes = await fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`);
-                if (!pesertaRes.ok) throw new Error(`Gagal mengambil daftar peserta (Status: ${pesertaRes.status})`);
-                const pesertaData = await pesertaRes.json();
-                daftarPeserta = pesertaData.data || [];
+                // **** PERUBAHAN DI SINI: Fetch Pengumuman ****
+                const [pesertaRes, lembagaRes, pengumumanRes] = await Promise.all([
+                    fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`),
+                    isAdmin 
+                        ? fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getFullLembagaList', password: ADMIN_PASSWORD_FRONTEND }) })
+                        : fetch(`${WEB_APP_URL}?action=getLembagaList&t=${new Date().getTime()}`),
+                    fetch(`${WEB_APP_URL}?action=getPengumuman&t=${new Date().getTime()}`) // Fetch pengumuman
+                ]);
 
-                if (isAdmin) {
-                    const lembagaRes = await fetch(WEB_APP_URL, {
-                        method: 'POST',
-                        body: JSON.stringify({ action: 'getFullLembagaList', password: ADMIN_PASSWORD_FRONTEND })
-                    });
-                     if (!lembagaRes.ok) throw new Error(`Gagal mengambil daftar lembaga lengkap (Status: ${lembagaRes.status})`);
-                     const lembagaData = await lembagaRes.json();
-                     if (lembagaData.status !== 'success') throw new Error(lembagaData.message);
-                     masterLembagaData = lembagaData.data || [];
-                } else {
-                    const lembagaRes = await fetch(`${WEB_APP_URL}?action=getLembagaList&t=${new Date().getTime()}`);
-                    if (!lembagaRes.ok) throw new Error(`Gagal mengambil daftar lembaga (Status: ${lembagaRes.status})`);
-                    const lembagaData = await lembagaRes.json();
-                    masterLembagaData = lembagaData.data || [];
-                }
+                if (!pesertaRes.ok) throw new Error(`Gagal mengambil daftar peserta (Status: ${pesertaRes.status})`);
+                if (!lembagaRes.ok) throw new Error(`Gagal mengambil daftar lembaga (Status: ${lembagaRes.status})`);
+                if (!pengumumanRes.ok) throw new Error(`Gagal mengambil pengumuman (Status: ${pengumumanRes.status})`);
+
+                const pesertaData = await pesertaRes.json();
+                const lembagaData = await lembagaRes.json();
+                const pengumumanData = await pengumumanRes.json();
+
+                if (lembagaData.status && lembagaData.status !== 'success') throw new Error(lembagaData.message);
                 
+                daftarPeserta = pesertaData.data || [];
+                masterLembagaData = lembagaData.data || [];
+                displayPengumuman(pengumumanData.data); // Panggil fungsi untuk menampilkan pengumuman
+                // **** AKHIR PERUBAHAN ****
+
                 maxNumber = masterLembagaData.length;
                 const lembagaTerdaftarNpsn = new Set(daftarPeserta.map(p => String(p.npsn)));
                 lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.has(String(l.npsn)));
@@ -915,9 +955,6 @@
         }
 
 
-        /**
-         * DIUBAH TOTAL: Fungsi login kini aman, mengirim data ke server untuk validasi.
-         */
         async function handleUserLogin(event) {
             event.preventDefault();
             const npsn = npsnLoginInput.value.trim();
@@ -931,65 +968,41 @@
 
             const loginButton = userLoginForm.querySelector('button[type="submit"]');
             loginButton.disabled = true;
-            loginButton.innerHTML = `
-                <div class="flex items-center justify-center gap-2">
-                    <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Memverifikasi...</span>
-                </div>`;
+            loginButton.innerHTML = `<div class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span>Memverifikasi...</span></div>`;
             loginError.classList.add('hidden');
 
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
-                    body: JSON.stringify({
-                        action: 'verifyUserLogin',
-                        npsn: npsn,
-                        kodeAkses: kodeAkses
-                    })
+                    body: JSON.stringify({ action: 'verifyUserLogin', npsn: npsn, kodeAkses: kodeAkses })
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Server Error! Status: ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`Server Error! Status: ${response.status}`);
                 const result = await response.json();
 
                 if (result.status === 'success') {
-                    // Login Berhasil
-                    loggedInLembaga = result.data; // Data lembaga yang valid dari server
-                    
+                    loggedInLembaga = result.data;
                     const now = reliableCurrentTime;
                     const startTime = new Date(TANGGAL_MULAI);
                     isTrialModeActive = now < startTime;
-
                     sessionStorage.setItem('loggedInLembaga', JSON.stringify(loggedInLembaga));
-                    if (isTrialModeActive) {
-                        sessionStorage.setItem('isTrial', 'true');
-                    }
-
+                    if (isTrialModeActive) sessionStorage.setItem('isTrial', 'true');
+                    
                     const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
                     loginSection.classList.add('hidden');
-
                     if (existingRegistration && !isTrialModeActive) {
                         showRegisteredStatusPage(existingRegistration);
                     } else {
                         showMainAppFor(loggedInLembaga);
                     }
                     startInactivityTimer();
-
                 } else {
-                    // Login Gagal dari server
                     throw new Error(result.message || 'NPSN atau Kode Akses salah.');
                 }
-
             } catch (error) {
                 loginError.textContent = error.message;
                 loginError.classList.remove('hidden');
             } finally {
-                // Kembalikan tombol ke keadaan semula
                 loginButton.disabled = false;
                 loginButton.innerHTML = 'Login';
             }
@@ -1008,11 +1021,9 @@
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Server gagal menghapus data.');
                 
-                // Refresh data dari server untuk memastikan konsistensi
-                await loadDataFromServer(true); // Muat data sebagai admin
+                await loadDataFromServer(true);
                 applyFiltersAndRenderViewDaftar();
                 await showCustomNotice(`Pendaftaran untuk "${namaLembaga}" berhasil dibatalkan.`, 'Berhasil', 'success');
-
             } catch (error) {
                 console.error('Gagal membatalkan pendaftaran:', error);
                 await showCustomNotice(`Gagal membatalkan pendaftaran. <br><br><b>Detail Error:</b> ${error.message}`, 'Gagal', 'error');
@@ -1048,13 +1059,12 @@
                     sessionStorage.setItem('isAdmin', 'true');
                     
                     loginSection.classList.add('hidden');
-                    await loadDataFromServer(true); // PENTING: Muat data LENGKAP sebagai admin
+                    await loadDataFromServer(true);
                     showAdminDashboard();
                     startInactivityTimer();
                 } else {
                     throw new Error(result.message || 'Kata sandi salah.');
                 }
-
             } catch (error) {
                 adminLoginError.textContent = error.message;
                 adminLoginError.classList.remove('hidden');
@@ -1068,17 +1078,11 @@
             event.preventDefault();
             const npsn = document.getElementById('editNpsn').value;
             const updatedData = {
-                npsn: npsn,
-                nama: document.getElementById('editNama').value,
-                // kode_akses tidak lagi di-submit dari form ini
-                status: document.getElementById('editStatus').value,
-                jumlah: document.getElementById('editJumlah').value,
-                guru1: document.getElementById('editGuru1').value,
-                jabatan1: document.getElementById('editJabatan1').value,
-                guru2: document.getElementById('editGuru2').value,
-                jabatan2: document.getElementById('editJabatan2').value,
-                guru3: document.getElementById('editGuru3').value,
-                jabatan3: document.getElementById('editJabatan3').value,
+                npsn: npsn, nama: document.getElementById('editNama').value,
+                status: document.getElementById('editStatus').value, jumlah: document.getElementById('editJumlah').value,
+                guru1: document.getElementById('editGuru1').value, jabatan1: document.getElementById('editJabatan1').value,
+                guru2: document.getElementById('editGuru2').value, jabatan2: document.getElementById('editJabatan2').value,
+                guru3: document.getElementById('editGuru3').value, jabatan3: document.getElementById('editJabatan3').value,
             };
 
             loadingOverlay.style.display = 'flex';
@@ -1092,16 +1096,109 @@
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Server gagal memperbarui data.');
                 
-                await loadDataFromServer(true); // Muat ulang data lengkap sebagai admin
-                applyFiltersAndRenderViewDaftar(); // Render ulang tabel
+                await loadDataFromServer(true);
+                applyFiltersAndRenderViewDaftar();
                 await showCustomNotice('Data lembaga berhasil diperbarui.', 'Berhasil', 'success');
-
             } catch (error) {
                 await showCustomNotice(`Gagal memperbarui data. <br><br><b>Detail Error:</b> ${error.message}`, 'Gagal', 'error');
             } finally {
                 loadingOverlay.style.display = 'none';
             }
         }
+
+        // **** PENAMBAHAN FUNGSI BARU: handleAdminResetKodeAkses ****
+        async function handleAdminResetKodeAkses(npsn, namaLembaga) {
+            const confirmed = await showCustomNotice(`Anda akan membuat Kode Akses baru untuk <b>${namaLembaga}</b>. Kode yang lama tidak akan berlaku lagi. Lanjutkan?`, 'Konfirmasi Reset Kode', 'confirm');
+            if (!confirmed) return;
+
+            loadingOverlay.style.display = 'flex';
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'resetKodeAkses', npsn: npsn })
+                });
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const result = await response.json();
+                if (result.status !== 'success') throw new Error(result.message || 'Gagal mereset kode di server.');
+                
+                await loadDataFromServer(true); // Muat ulang data untuk menampilkan kode baru
+                applyFiltersAndRenderViewDaftar();
+                await showCustomNotice(`Kode Akses untuk ${namaLembaga} berhasil direset.<br><br>Kode Baru: <b class="font-mono text-lg">${result.newCode}</b>`, 'Reset Berhasil', 'success');
+            } catch (error) {
+                await showCustomNotice(`Gagal mereset Kode Akses. <br><br><b>Detail Error:</b> ${error.message}`, 'Gagal', 'error');
+            } finally {
+                loadingOverlay.style.display = 'none';
+            }
+        }
+        // **** AKHIR FUNGSI BARU ****
+
+        // **** PENAMBAHAN FUNGSI BARU: handleSendVerificationCode ****
+        async function handleSendVerificationCode(event) {
+            event.preventDefault();
+            const npsn = document.getElementById('resetNpsnInput').value.trim();
+            const email = document.getElementById('resetEmailInput').value.trim();
+            const sendBtn = document.getElementById('sendCodeBtn');
+
+            resetStep1Error.classList.add('hidden');
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Mengirim...';
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'sendResetVerificationCode', npsn, email })
+                });
+                if (!response.ok) throw new Error('Kesalahan jaringan saat mengirim kode.');
+                const result = await response.json();
+                if (result.status !== 'success') throw new Error(result.message);
+
+                npsnForFinalize.value = npsn;
+                resetStep1.classList.add('hidden');
+                resetStep2.classList.remove('hidden');
+                document.getElementById('verificationCodeInput').focus();
+
+            } catch (error) {
+                resetStep1Error.textContent = error.message;
+                resetStep1Error.classList.remove('hidden');
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Kirim Kode';
+            }
+        }
+        // **** AKHIR FUNGSI BARU ****
+
+        // **** PENAMBAHAN FUNGSI BARU: handleFinalizeReset ****
+        async function handleFinalizeReset(event) {
+            event.preventDefault();
+            const npsn = npsnForFinalize.value;
+            const verificationCode = document.getElementById('verificationCodeInput').value.trim();
+            const finalizeBtn = document.getElementById('finalizeResetBtn');
+
+            resetStep2Error.classList.add('hidden');
+            finalizeBtn.disabled = true;
+            finalizeBtn.textContent = 'Memverifikasi...';
+
+            try {
+                const response = await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'finalizeKodeReset', npsn, verificationCode })
+                });
+                if (!response.ok) throw new Error('Kesalahan jaringan saat finalisasi.');
+                const result = await response.json();
+                if (result.status !== 'success') throw new Error(result.message);
+
+                resetKodeModal.classList.add('hidden');
+                await showCustomNotice(`Reset berhasil! Kode Akses baru Anda adalah:<br><br><b class="font-mono text-lg">${result.newKodeAkses}</b><br><br>Silakan login menggunakan kode baru ini.`, 'Berhasil', 'success');
+
+            } catch (error) {
+                resetStep2Error.textContent = error.message;
+                resetStep2Error.classList.remove('hidden');
+            } finally {
+                finalizeBtn.disabled = false;
+                finalizeBtn.textContent = 'Reset Sekarang';
+            }
+        }
+        // **** AKHIR FUNGSI BARU ****
 
 
         async function exportToExcel() {
@@ -1127,8 +1224,7 @@
                 const rows = dataToExport.sort((a,b) => a.nomor - b.nomor).map(p => {
                     const master = masterDataMap.get(p.npsn) || {};
                     return [
-                        `'${String(p.nomor).padStart(3, '0')}`,
-                        `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`,
+                        `'${String(p.nomor).padStart(3, '0')}`, `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`,
                         master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`,
                         `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`
                     ];
@@ -1150,21 +1246,16 @@
         
         async function handlePendaftaran() {
             const currentLembaga = loggedInLembaga || selectedLembaga;
-            
             const isStillInTrialPeriod = reliableCurrentTime < new Date(TANGGAL_MULAI);
-
             if (!isStillInTrialPeriod && !isAdminLoggedIn && daftarPeserta.length >= maxNumber) {
                 spinBtn.classList.add('hidden');
                 nomorHabisMessage.classList.remove('hidden');
                 spinnerDisplay.textContent = "---";
                 return;
             }
-
-            spinBtn.disabled = true;
-            spinBtn.textContent = 'Mengambil...';
+            spinBtn.disabled = true; spinBtn.textContent = 'Mengambil...';
             spinBtn.classList.remove('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             spinBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
-            
             let spinInterval = setInterval(() => {
                 const randomNumber = Math.floor(Math.random() * maxNumber) + 1 || 1;
                 spinnerDisplay.textContent = String(randomNumber).padStart(3, '0');
@@ -1175,16 +1266,9 @@
                     clearInterval(spinInterval);
                     let finalNumber;
                     const usedNumbers = new Set(daftarPeserta.map(p => p.nomor));
-                    do {
-                        finalNumber = Math.floor(Math.random() * maxNumber) + 1;
-                    } while (usedNumbers.has(finalNumber) && usedNumbers.size < maxNumber);
-                    
-                    if(usedNumbers.size >= maxNumber){
-                        finalNumber = 999;
-                    }
-
-                    const formattedFinalNumber = String(finalNumber).padStart(3, '0');
-                    spinnerDisplay.textContent = formattedFinalNumber;
+                    do { finalNumber = Math.floor(Math.random() * maxNumber) + 1; } while (usedNumbers.has(finalNumber) && usedNumbers.size < maxNumber);
+                    if(usedNumbers.size >= maxNumber) finalNumber = 999;
+                    spinnerDisplay.textContent = String(finalNumber).padStart(3, '0');
                     showResultFor({ ...currentLembaga, nomor: finalNumber }, true); 
                 }, SPIN_DURATION);
                 return;
@@ -1193,35 +1277,23 @@
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
-                    body: JSON.stringify({ 
-                        action: 'registerAndGetNumber', 
-                        data: currentLembaga 
-                    })
+                    body: JSON.stringify({ action: 'registerAndGetNumber', data: currentLembaga })
                 });
-
                 if (!response.ok) throw new Error(`Server merespon dengan status: ${response.status}`);
-                
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Terjadi kesalahan di server.');
                 
                 clearInterval(spinInterval);
-                
                 const finalNumber = result.assignedNumber;
-                const formattedFinalNumber = String(finalNumber).padStart(3, '0');
-                spinnerDisplay.textContent = formattedFinalNumber;
-
+                spinnerDisplay.textContent = String(finalNumber).padStart(3, '0');
                 await loadDataFromServer(isAdminLoggedIn);
-                
                 const dataYangDisimpan = { ...currentLembaga, nomor: finalNumber };
                 showResultFor(dataYangDisimpan, false);
-
             } catch (err) {
                 clearInterval(spinInterval);
                 console.error('Error saat mendaftar:', err);
                 await showCustomNotice(`Gagal mendapatkan nomor urut. <br><br><b>Pesan:</b> ${err.message}`, 'Gagal', 'error');
-                
-                spinBtn.disabled = false;
-                spinBtn.textContent = 'Ambil Nomor!';
+                spinBtn.disabled = false; spinBtn.textContent = 'Ambil Nomor!';
                 spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
                 spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
             }
@@ -1236,11 +1308,8 @@
                 showCustomNotice('Data lembaga tidak ditemukan.', 'Error', 'error');
                 return;
             }
-            
-            // Populate form
             document.getElementById('editNpsn').value = lembaga.npsn;
             document.getElementById('editNama').value = lembaga.nama || '';
-            // document.getElementById('editKodeAkses').value = lembaga.kode_akses || '';
             document.getElementById('editStatus').value = lembaga.status || '';
             document.getElementById('editJumlah').value = lembaga.jumlah || '';
             document.getElementById('editGuru1').value = lembaga.guru1 || '';
@@ -1249,22 +1318,14 @@
             document.getElementById('editJabatan2').value = lembaga.jabatan2 || '';
             document.getElementById('editGuru3').value = lembaga.guru3 || '';
             document.getElementById('editJabatan3').value = lembaga.jabatan3 || '';
-
-            // Show modal
             editLembagaModal.classList.remove('hidden');
         }
 
 
         function showAdminDashboard() {
-            // Sembunyikan semua section utama lainnya
-            loginSection.classList.add('hidden');
-            mainAppSection.classList.add('hidden');
-            registeredStatusSection.classList.add('hidden');
-            spinnerSection.classList.add('hidden');
-            resultSection.classList.add('hidden');
-            viewDaftarSection.classList.add('hidden');
-            
-            // Tampilkan section dashboard admin
+            loginSection.classList.add('hidden'); mainAppSection.classList.add('hidden');
+            registeredStatusSection.classList.add('hidden'); spinnerSection.classList.add('hidden');
+            resultSection.classList.add('hidden'); viewDaftarSection.classList.add('hidden');
             adminDashboardSection.classList.remove('hidden');
 
             const totalPendaftar = daftarPeserta.length;
@@ -1276,41 +1337,24 @@
                 acc[curr.kecamatan] = (acc[curr.kecamatan] || 0) + 1;
                 return acc;
             }, {});
-
             const kecamatanEntries = Object.entries(pendaftarPerKecamatan).sort((a,b) => b[1] - a[1]);
             const colors = ['#3b82f6', '#10b981', '#ef4444', '#f97316', '#8b5cf6', '#ec4899', '#6366f1', '#f59e0b', '#14b8a6', '#d946ef', '#0ea5e9', '#84cc16'];
-            let gradientString = '';
-            let currentPercentage = 0;
+            let gradientString = '', currentPercentage = 0;
             pieChartLegend.innerHTML = '';
-
             kecamatanEntries.forEach(([kecamatan, count], index) => {
                 const percentage = totalPendaftar > 0 ? (count / totalPendaftar) * 100 : 0;
                 const color = colors[index % colors.length];
-                
                 gradientString += `${color} ${currentPercentage}% ${currentPercentage + percentage}%`;
-                if(index < kecamatanEntries.length - 1) {
-                    gradientString += ', ';
-                }
+                if(index < kecamatanEntries.length - 1) gradientString += ', ';
                 currentPercentage += percentage;
-
-                pieChartLegend.innerHTML += `
-                    <div class="flex items-center gap-2">
-                        <div class="w-3 h-3 rounded-full" style="background-color: ${color};"></div>
-                        <span>${kecamatan} (${count})</span>
-                    </div>
-                `;
+                pieChartLegend.innerHTML += `<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full" style="background-color: ${color};"></div><span>${kecamatan} (${count})</span></div>`;
             });
             pieChart.style.setProperty('--gradient-colors', gradientString || '#e5e7eb 0% 100%');
-
 
             aktivitasTerkiniContainer.innerHTML = '';
             if (daftarPeserta.length > 0) {
                  [...daftarPeserta].reverse().slice(0, 5).forEach(p => {
-                    aktivitasTerkiniContainer.innerHTML += `
-                        <div class="bg-gray-100 p-2 rounded-md">
-                            <span class="font-semibold">${p.nama}</span> baru saja mendaftar dengan nomor urut <span class="font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</span>.
-                        </div>
-                    `;
+                    aktivitasTerkiniContainer.innerHTML += `<div class="bg-gray-100 p-2 rounded-md"><span class="font-semibold">${p.nama}</span> baru saja mendaftar dengan nomor urut <span class="font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</span>.</div>`;
                 });
             } else {
                 aktivitasTerkiniContainer.innerHTML = '<p class="text-gray-500 text-center">Belum ada aktivitas.</p>';
@@ -1319,37 +1363,22 @@
 
         function updateTimer(targetDate, element, onEnd, prefix, suffix, now) {
             const distance = targetDate - now;
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                onEnd();
-                return;
-            }
+            if (distance < 0) { clearInterval(countdownInterval); onEnd(); return; }
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            element.innerHTML = `
-                <p class="mb-2 font-semibold">${prefix}</p>
-                <div>
-                    ${days > 0 ? `<div class="timer-box"><span>${String(days).padStart(2, '0')}</span><span>Hari</span></div>` : ''}
-                    <div class="timer-box"><span>${String(hours).padStart(2, '0')}</span><span>Jam</span></div>
-                    <div class="timer-box"><span>${String(minutes).padStart(2, '0')}</span><span>Menit</span></div>
-                    <div class="timer-box"><span>${String(seconds).padStart(2, '0')}</span><span>Detik</span></div>
-                </div>
-                ${suffix ? `<p class="mt-2 text-sm text-gray-500">${suffix}</p>` : ''}
-            `;
+            element.innerHTML = `<p class="mb-2 font-semibold">${prefix}</p><div>${days > 0 ? `<div class="timer-box"><span>${String(days).padStart(2, '0')}</span><span>Hari</span></div>` : ''}<div class="timer-box"><span>${String(hours).padStart(2, '0')}</span><span>Jam</span></div><div class="timer-box"><span>${String(minutes).padStart(2, '0')}</span><span>Menit</span></div><div class="timer-box"><span>${String(seconds).padStart(2, '0')}</span><span>Detik</span></div></div>${suffix ? `<p class="mt-2 text-sm text-gray-500">${suffix}</p>` : ''}`;
         }
 
         function checkTimeRestriction(currentTime) {
             const targetContainer = loggedInLembaga ? sisaWaktuContainer : timeRestrictionMessage;
-            
             if (isAdminLoggedIn) {
                 timeRestrictionMessage.classList.add('hidden');
                 sisaWaktuContainer.classList.add('hidden');
                 trialButtonsContainer.classList.add('hidden');
                 return true; 
             }
-            
             clearInterval(countdownInterval); 
             const now = currentTime;
             const startTime = new Date(TANGGAL_MULAI);
@@ -1359,35 +1388,14 @@
             if (now < startTime) {
                 targetContainer.classList.remove('hidden');
                 targetContainer.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
-                
                 updateTimer(startTime, targetContainer, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
-                countdownInterval = setInterval(() => {
-                    now.setSeconds(now.getSeconds() + 1); 
-                    updateTimer(startTime, targetContainer, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime());
-                }, 1000);
-                
+                countdownInterval = setInterval(() => { now.setSeconds(now.getSeconds() + 1); updateTimer(startTime, targetContainer, onTimerEnd, "Pendaftaran akan dibuka dalam:", null, now.getTime()); }, 1000);
                 if(!loggedInLembaga) {
                     userLoginForm.classList.add('hidden');
                     trialButtonsContainer.classList.remove('hidden');
-                    trialButtonsContainer.innerHTML = `
-                        <button type="button" id="viewDaftarBeforeStartBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
-                            Lihat Daftar Lembaga
-                        </button>
-                        <button type="button" id="startTrialLoginBtn" class="w-full bg-purple-50 text-purple-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-purple-100 transform transition-all border-2 border-purple-200 shadow-sm flex items-center justify-center gap-2 mt-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" /></svg>
-                            Uji Coba Aplikasi
-                        </button>
-                    `;
-                    document.getElementById('viewDaftarBeforeStartBtn').addEventListener('click', () => {
-                        loginSection.classList.add('hidden');
-                        viewDaftarSection.classList.remove('hidden');
-                    });
-                    document.getElementById('startTrialLoginBtn').addEventListener('click', () => {
-                        trialButtonsContainer.classList.add('hidden');
-                        userLoginForm.classList.remove('hidden');
-                        npsnLoginInput.focus();
-                    });
+                    trialButtonsContainer.innerHTML = `<button type="button" id="viewDaftarBeforeStartBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>Lihat Daftar Lembaga</button><button type="button" id="startTrialLoginBtn" class="w-full bg-purple-50 text-purple-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-purple-100 transform transition-all border-2 border-purple-200 shadow-sm flex items-center justify-center gap-2 mt-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" /></svg>Uji Coba Aplikasi</button>`;
+                    document.getElementById('viewDaftarBeforeStartBtn').addEventListener('click', () => { loginSection.classList.add('hidden'); viewDaftarSection.classList.remove('hidden'); });
+                    document.getElementById('startTrialLoginBtn').addEventListener('click', () => { trialButtonsContainer.classList.add('hidden'); userLoginForm.classList.remove('hidden'); npsnLoginInput.focus(); });
                 }
                 return false;
             } else if (now > endTime) {
@@ -1396,23 +1404,19 @@
                 targetContainer.classList.remove('hidden');
                 trialButtonsContainer.classList.add('hidden');
                 userLoginForm.classList.add('hidden');
+                forgotPasswordBtn.classList.add('hidden'); // Sembunyikan tombol lupa password
                 return false;
             } else {
                  if (loggedInLembaga) { 
-                    timeRestrictionMessage.classList.add('hidden');
-                    sisaWaktuContainer.classList.remove('hidden');
+                    timeRestrictionMessage.classList.add('hidden'); sisaWaktuContainer.classList.remove('hidden');
                     sisaWaktuContainer.className = 'text-center p-3 rounded-lg my-4 bg-blue-100 text-blue-800';
                     updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
-                    countdownInterval = setInterval(() => {
-                        now.setSeconds(now.getSeconds() + 1);
-                        updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime());
-                    }, 1000);
+                    countdownInterval = setInterval(() => { now.setSeconds(now.getSeconds() + 1); updateTimer(endTime, sisaWaktuContainer, onTimerEnd, "Sisa waktu pendaftaran:", null, now.getTime()); }, 1000);
                  } else { 
-                    timeRestrictionMessage.classList.add('hidden');
-                    sisaWaktuContainer.classList.add('hidden');
+                    timeRestrictionMessage.classList.add('hidden'); sisaWaktuContainer.classList.add('hidden');
                  }
-                trialButtonsContainer.classList.add('hidden');
-                userLoginForm.classList.remove('hidden');
+                trialButtonsContainer.classList.add('hidden'); userLoginForm.classList.remove('hidden');
+                forgotPasswordBtn.classList.remove('hidden'); // Tampilkan tombol lupa password
                 return true;
             }
         }
@@ -1420,15 +1424,15 @@
         function applyFiltersAndRenderViewDaftar() {
             const searchTerm = searchInputView.value.toLowerCase();
             const selectedKecamatan = filterKecamatan.value;
-            
             let sourceData, tableHeaders, rowRenderer;
 
+            // **** PERUBAHAN DI SINI: Template Baris Tabel Admin Diupdate ****
             if (isAdminLoggedIn && adminViewMode === 'master') {
                 sourceData = masterLembagaData;
                 tableHeaders = `<tr>
                     <th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th>
                     <th class="p-3 font-semibold text-gray-600 text-left">NPSN</th>
-                    <th class="p-3 font-semibold text-gray-600 text-center">Kode Aktivasi</th>
+                    <th class="p-3 font-semibold text-gray-600 text-center">Kode Akses</th>
                     <th class="p-3 font-semibold text-gray-600 text-center">Aksi</th>
                 </tr>`;
                 rowRenderer = (l) => `<tr class="hover:bg-yellow-50">
@@ -1436,14 +1440,14 @@
                     <td class="p-3 text-left">${l.npsn}</td>
                     <td class="p-3 text-center font-mono">${l.kode_akses || 'N/A'}</td>
                     <td class="p-3 text-center">
-                        <div class="flex justify-center gap-2">
+                        <div class="flex justify-center gap-1">
                             <button class="text-blue-500 hover:text-blue-700 text-xs font-bold py-1 px-2 rounded-md bg-blue-100 hover:bg-blue-200 transition-all" data-npsn-edit="${l.npsn}">Edit</button>
-                            <button class="text-green-500 hover:text-green-700 text-xs font-bold py-1 px-2 rounded-md bg-green-100 hover:bg-green-200 transition-all" data-npsn-reset="${l.npsn}" data-nama="${l.nama}">Reset</button>
+                            <button class="text-green-500 hover:text-green-700 text-xs font-bold py-1 px-2 rounded-md bg-green-100 hover:bg-green-200 transition-all" data-npsn-reset="${l.npsn}" data-nama="${l.nama}">Reset Kode</button>
                         </div>
                     </td>
                 </tr>`;
-
-            } else { // Mode pendaftar (untuk admin dan user)
+            // **** AKHIR PERUBAHAN ****
+            } else {
                 sourceData = daftarPeserta;
                 let headerAksi = isAdminLoggedIn ? '<th class="p-3 font-semibold text-gray-600 text-center">Aksi</th>' : '';
                 tableHeaders = `<tr>
@@ -1459,11 +1463,8 @@
                     </td>` : '';
                     return `<tr class="hover:bg-yellow-50">
                         <td class="p-3 text-center font-bold text-blue-600">${String(l.nomor).padStart(3, '0')}</td>
-                        <td class="p-3 text-left break-words">${l.nama}</td>
-                        <td class="p-3 text-left">${l.npsn}</td>
-                        <td class="p-3 text-left">${l.kecamatan}</td>
-                        ${cellAksi}
-                    </tr>`;
+                        <td class="p-3 text-left break-words">${l.nama}</td><td class="p-3 text-left">${l.npsn}</td>
+                        <td class="p-3 text-left">${l.kecamatan}</td>${cellAksi}</tr>`;
                 };
             }
 
@@ -1473,41 +1474,30 @@
                 const matchesKecamatan = !selectedKecamatan || item.kecamatan === selectedKecamatan;
                 return matchesSearch && matchesKecamatan;
             });
-
             viewDaftarThead.innerHTML = tableHeaders;
             daftarBodyView.innerHTML = filteredData.length === 0 
                 ? `<tr><td colspan="5" class="p-4 text-center text-gray-500">Tidak ada data yang cocok.</td></tr>` 
                 : filteredData.map(rowRenderer).join('');
             
-            // Re-attach event listeners
-            document.querySelectorAll('#daftarBodyView button[data-npsn-delete]').forEach(button => 
-                button.addEventListener('click', (e) => handleDeleteRegistration(e.target.dataset.npsnDelete, e.target.dataset.nama))
-            );
-             document.querySelectorAll('#daftarBodyView button[data-npsn-edit]').forEach(button => 
-                 button.addEventListener('click', (e) => handleEditLembaga(e.target.dataset.npsnEdit))
-             );
-            document.querySelectorAll('#daftarBodyView button[data-npsn-reset]').forEach(button => 
-                button.addEventListener('click', (e) => handleResetKodeAktivasi(e.target.dataset.npsnReset, e.target.dataset.nama))
-            );
+            // **** PERUBAHAN DI SINI: Event Listener untuk Tombol Baru ****
+            document.querySelectorAll('#daftarBodyView button[data-npsn-delete]').forEach(button => button.addEventListener('click', (e) => handleDeleteRegistration(e.target.dataset.npsnDelete, e.target.dataset.nama)));
+            document.querySelectorAll('#daftarBodyView button[data-npsn-edit]').forEach(button => button.addEventListener('click', (e) => handleEditLembaga(e.target.dataset.npsnEdit)));
+            document.querySelectorAll('#daftarBodyView button[data-npsn-reset]').forEach(button => button.addEventListener('click', (e) => handleAdminResetKodeAkses(e.target.dataset.npsnReset, e.target.dataset.nama)));
+            // **** AKHIR PERUBAHAN ****
         }
         
         function updateDaftarTampilan(now) {
             const startTime = new Date(TANGGAL_MULAI);
             const isBeforeStart = now < startTime;
             daftarPeserta.sort((a, b) => a.nomor - b.nomor);
-            
             let rowsHtmlResult = daftarPeserta.length === 0 ? '<tr><td colspan="3" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>' : daftarPeserta.map(p => `<tr class="hover:bg-yellow-50 even:bg-blue-50/50"><td class="p-3 text-center font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</td><td class="p-3 text-left">${p.nama}</td><td class="p-3 text-left">${p.kecamatan}</td></tr>`).join('');
             daftarBodyResult.innerHTML = rowsHtmlResult;
             
             if (isAdminLoggedIn) {
                 viewDaftarAdminControls.classList.remove('hidden');
-                viewToggleContainer.innerHTML = `
-                    <button id="viewPendaftarBtn" class="px-3 py-1 text-sm font-semibold rounded-md transition-all">Lihat Pendaftar</button>
-                    <button id="viewMasterLembagaBtn" class="px-3 py-1 text-sm font-semibold rounded-md transition-all">Semua Lembaga</button>
-                `;
+                viewToggleContainer.innerHTML = `<button id="viewPendaftarBtn" class="px-3 py-1 text-sm font-semibold rounded-md transition-all">Lihat Pendaftar</button><button id="viewMasterLembagaBtn" class="px-3 py-1 text-sm font-semibold rounded-md transition-all">Semua Lembaga</button>`;
                 const viewPendaftarBtn = document.getElementById('viewPendaftarBtn');
                 const viewMasterLembagaBtn = document.getElementById('viewMasterLembagaBtn');
-
                 if(adminViewMode === 'pendaftar') {
                     viewPendaftarBtn.className = 'px-3 py-1 text-sm font-semibold rounded-md transition-all bg-blue-600 text-white';
                     viewMasterLembagaBtn.className = 'px-3 py-1 text-sm font-semibold rounded-md transition-all bg-gray-200 text-gray-700 hover:bg-gray-300';
@@ -1519,46 +1509,34 @@
                     viewDaftarTitle.textContent = 'Master Data Lembaga';
                     viewDaftarSubtitle.textContent = `Total ${masterLembagaData.length} lembaga terdaftar di sistem.`;
                 }
-
                 viewPendaftarBtn.addEventListener('click', () => { adminViewMode = 'pendaftar'; updateDaftarTampilan(now); });
                 viewMasterLembagaBtn.addEventListener('click', () => { adminViewMode = 'master'; updateDaftarTampilan(now); });
-                
                 const sourceDataForFilter = adminViewMode === 'master' ? masterLembagaData : daftarPeserta;
                 const kecamatanSet = new Set(sourceDataForFilter.map(p => p.kecamatan));
                 const currentFilterValue = filterKecamatan.value;
                 filterKecamatan.innerHTML = '<option value="">Semua Kecamatan</option>';
                 kecamatanSet.forEach(kecamatan => {
                     const option = document.createElement('option');
-                    option.value = kecamatan;
-                    option.textContent = kecamatan;
-                    filterKecamatan.appendChild(option);
+                    option.value = kecamatan; option.textContent = kecamatan; filterKecamatan.appendChild(option);
                 });
                 filterKecamatan.value = currentFilterValue;
                 applyFiltersAndRenderViewDaftar();
-
-            } else { // Untuk user biasa
+            } else {
                 viewDaftarAdminControls.classList.add('hidden');
                 if (isBeforeStart && !isTrialModeActive) {
                     viewDaftarTitle.textContent = 'Daftar Lembaga';
                     viewDaftarSubtitle.textContent = 'Hanya lembaga yang terdaftar di sistem yang bisa mengambil nomor urut.';
-                    exportBtnView.classList.add('hidden');
-                    viewDaftarActions.classList.remove('grid-cols-2');
-                    viewDaftarActions.classList.add('grid-cols-1');
-                    
+                    exportBtnView.classList.add('hidden'); viewDaftarActions.classList.remove('grid-cols-2'); viewDaftarActions.classList.add('grid-cols-1');
                     const sortedLembaga = [...masterLembagaData].sort((a, b) => a.nama.localeCompare(b.nama));
                     viewDaftarThead.innerHTML = `<tr><th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th><th class="p-3 font-semibold text-gray-600 text-left">NPSN</th><th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th></tr>`;
                     daftarBodyView.innerHTML = sortedLembaga.length === 0 ? '<tr><td colspan="3" class="p-4 text-center text-gray-500">Belum ada data lembaga.</td></tr>' : sortedLembaga.map(l => `<tr class="hover:bg-yellow-50"><td class="p-3 text-left break-words">${l.nama}</td><td class="p-3 text-left">${l.npsn}</td><td class="p-3 text-left">${l.kecamatan}</td></tr>`).join('');
-                
                 } else {
                     viewDaftarTitle.textContent = 'Daftar Peserta';
                     viewDaftarSubtitle.textContent = 'Rekapitulasi lembaga yang sudah mengambil Nomor Peserta Karnaval';
-                    exportBtnView.classList.remove('hidden');
-                    viewDaftarActions.classList.add('grid-cols-2');
-                    viewDaftarActions.classList.remove('grid-cols-1');
+                    exportBtnView.classList.remove('hidden'); viewDaftarActions.classList.add('grid-cols-2'); viewDaftarActions.classList.remove('grid-cols-1');
                     applyFiltersAndRenderViewDaftar();
                 }
             }
-            
             exportBtns.forEach(btn => btn.disabled = (daftarPeserta.length === 0));
         }
 
@@ -1576,13 +1554,9 @@
                 div.textContent = item.nama;
                 div.className = 'p-3 hover:bg-blue-100 cursor-pointer transition-colors duration-150 rounded-lg';
                 div.addEventListener('click', () => {
-                    searchInput.value = item.nama;
-                    selectedLembaga = item;
-                    if (isAdminLoggedIn) {
-                        checkAdminLembagaSelection(item);
-                    }
-                    showLembagaDetails(item);
-                    detailSekolahDiv.classList.remove('hidden');
+                    searchInput.value = item.nama; selectedLembaga = item;
+                    if (isAdminLoggedIn) checkAdminLembagaSelection(item);
+                    showLembagaDetails(item); detailSekolahDiv.classList.remove('hidden');
                     dropdownMenu.classList.add('hidden');
                 });
                 dropdownMenu.appendChild(div);
@@ -1592,61 +1566,44 @@
         function checkAdminLembagaSelection(lembaga) {
             const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(lembaga.npsn));
             const submitBtn = dataForm.querySelector('button[type="submit"]');
-
             if (existingRegistration) {
                 adminInfoNomorUrut.textContent = String(existingRegistration.nomor).padStart(3, '0');
-                adminSudahTerdaftarInfo.classList.remove('hidden');
-                submitBtn.classList.add('hidden'); 
+                adminSudahTerdaftarInfo.classList.remove('hidden'); submitBtn.classList.add('hidden'); 
             } else {
-                adminSudahTerdaftarInfo.classList.add('hidden');
-                submitBtn.classList.remove('hidden'); 
+                adminSudahTerdaftarInfo.classList.add('hidden'); submitBtn.classList.remove('hidden'); 
             }
         }
 
-
         function showLembagaDetails(lembaga) {
              welcomeMessage.innerHTML = `Selamat Datang :<br><span class="text-2xl font-fredoka">${lembaga.nama}</span>`;
-             detailNpsnSpan.textContent = `: ${lembaga.npsn}`;
-             detailStatusSpan.textContent = `: ${lembaga.status}`;
-             detailKecamatanSpan.textContent = `: ${lembaga.kecamatan}`;
-             detailJumlahSpan.textContent = `: ${lembaga.jumlah} orang`;
+             detailNpsnSpan.textContent = `: ${lembaga.npsn}`; detailStatusSpan.textContent = `: ${lembaga.status}`;
+             detailKecamatanSpan.textContent = `: ${lembaga.kecamatan}`; detailJumlahSpan.textContent = `: ${lembaga.jumlah} orang`;
              detailGuruDiv.innerHTML = `<p>1. ${lembaga.guru1} (${lembaga.jabatan1})</p><p>2. ${lembaga.guru2} (${lembaga.jabatan2})</p><p>3. ${lembaga.guru3} (${lembaga.jabatan3})</p>`;
              detailSekolahDiv.classList.remove('hidden');
         }
 
         function showMainAppFor(lembaga) {
-            searchContainer.classList.add('hidden'); 
-            showLembagaDetails(lembaga);
+            searchContainer.classList.add('hidden'); showLembagaDetails(lembaga);
             mainAppSection.classList.remove('hidden');
-            
-            if (isTrialModeActive) {
-                trialModeBanner.classList.remove('hidden');
-            } else {
-                trialModeBanner.classList.add('hidden');
-            }
-
+            if (isTrialModeActive) trialModeBanner.classList.remove('hidden');
+            else trialModeBanner.classList.add('hidden');
             const submitBtn = dataForm.querySelector('button[type="submit"]');
             const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(lembaga.npsn));
-            
             if (existingRegistration && !isAdminLoggedIn && !isTrialModeActive) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Anda Sudah Terdaftar';
+                submitBtn.disabled = true; submitBtn.textContent = 'Anda Sudah Terdaftar';
                 submitBtn.classList.remove('bg-gradient-to-r', 'from-red-500', 'to-yellow-500');
                 submitBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
             } else {
-                submitBtn.disabled = false;
-                submitBtn.textContent = isTrialModeActive ? 'Ambil Nomor (Uji Coba)' : 'Ambil Nomor';
+                submitBtn.disabled = false; submitBtn.textContent = isTrialModeActive ? 'Ambil Nomor (Uji Coba)' : 'Ambil Nomor';
                 submitBtn.classList.add('bg-gradient-to-r', 'from-red-500', 'to-yellow-500');
                 submitBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
             }
-            
             checkTimeRestriction(reliableCurrentTime);
         }
         
         function triggerConfetti() {
             const container = document.getElementById('confetti-container');
-            if (!container) return;
-            container.innerHTML = '';
+            if (!container) return; container.innerHTML = '';
             const colors = ['#fde68a', '#fca5a5', '#818cf8', '#6ee7b7', '#a78bfa'];
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
@@ -1662,8 +1619,7 @@
         function triggerSparkles(container) {
             if (!container) return;
             const sparkleContainer = container.querySelector('.sparkle-container');
-            if (!sparkleContainer) return;
-            sparkleContainer.innerHTML = '';
+            if (!sparkleContainer) return; sparkleContainer.innerHTML = '';
             for (let i = 0; i < 15; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
@@ -1675,27 +1631,18 @@
         }
 
         function showResultFor(registrationData, isTrial = false) {
-            if (isTrial) {
-                 resultNamaLembaga.innerHTML = `${registrationData.nama} <span class="text-purple-600 font-bold">(UJI COBA)</span>`;
-            } else {
-                resultNamaLembaga.textContent = registrationData.nama;
-            }
+            if (isTrial) resultNamaLembaga.innerHTML = `${registrationData.nama} <span class="text-purple-600 font-bold">(UJI COBA)</span>`;
+            else resultNamaLembaga.textContent = registrationData.nama;
             nomorUrutDisplay.textContent = String(registrationData.nomor).padStart(3, '0');
-            
-            mainAppSection.classList.add('hidden');
-            spinnerSection.classList.add('hidden');
+            mainAppSection.classList.add('hidden'); spinnerSection.classList.add('hidden');
             resultSection.classList.remove('hidden');
-            
             triggerConfetti();
         }
 
         function showRegisteredStatusPage(registrationData) {
-            loginSection.classList.add('hidden');
-            mainAppSection.classList.add('hidden');
-            spinnerSection.classList.add('hidden');
-            resultSection.classList.add('hidden');
-            viewDaftarSection.classList.add('hidden');
-            adminDashboardSection.classList.add('hidden');
+            loginSection.classList.add('hidden'); mainAppSection.classList.add('hidden');
+            spinnerSection.classList.add('hidden'); resultSection.classList.add('hidden');
+            viewDaftarSection.classList.add('hidden'); adminDashboardSection.classList.add('hidden');
 
             const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(registrationData.npsn));
             if (!fullLembagaData) {
@@ -1703,8 +1650,7 @@
                 statusNamaLembaga.textContent = registrationData.nama;
                 statusNpsn.textContent = `: ${registrationData.npsn}`;
                 statusKecamatan.textContent = `: ${registrationData.kecamatan}`;
-                statusStatus.textContent = ": -";
-                statusJumlah.textContent = ": -";
+                statusStatus.textContent = ": -"; statusJumlah.textContent = ": -";
                 statusGuru.innerHTML = "Tidak ada data.";
             } else {
                 statusNamaLembaga.textContent = fullLembagaData.nama;
@@ -1712,52 +1658,30 @@
                 statusStatus.textContent = `: ${fullLembagaData.status}`;
                 statusKecamatan.textContent = `: ${fullLembagaData.kecamatan}`;
                 statusJumlah.textContent = `: ${fullLembagaData.jumlah} orang`;
-                statusGuru.innerHTML = `<p>1. ${fullLembagaData.guru1} (${fullLembagaData.jabatan1})</p>
-                                        <p>2. ${fullLembagaData.guru2} (${fullLembagaData.jabatan2})</p>
-                                        <p>3. ${fullLembagaData.guru3} (${fullLembagaData.jabatan3})</p>`;
+                statusGuru.innerHTML = `<p>1. ${fullLembagaData.guru1} (${fullLembagaData.jabatan1})</p><p>2. ${fullLembagaData.guru2} (${fullLembagaData.jabatan2})</p><p>3. ${fullLembagaData.guru3} (${fullLembagaData.jabatan3})</p>`;
             }
-
             statusNomorUrut.textContent = String(registrationData.nomor).padStart(3, '0');
-            
             registeredStatusSection.classList.remove('hidden');
             triggerSparkles(registeredStatusSection);
         }
 
         function handleLogout(isAutoLogout = false) {
             clearTimeout(inactivityTimer);
-            window.removeEventListener('mousemove', resetInactivityTimer);
-            window.removeEventListener('mousedown', resetInactivityTimer);
-            window.removeEventListener('keypress', resetInactivityTimer);
-            window.removeEventListener('touchstart', resetInactivityTimer);
-
+            window.removeEventListener('mousemove', resetInactivityTimer); window.removeEventListener('mousedown', resetInactivityTimer);
+            window.removeEventListener('keypress', resetInactivityTimer); window.removeEventListener('touchstart', resetInactivityTimer);
             sessionStorage.clear();
-            loggedInLembaga = null;
-            isAdminLoggedIn = false;
-            isTrialModeActive = false;
-            selectedLembaga = null;
-            
-            if(reliableCurrentTime) {
-                updateDaftarTampilan(reliableCurrentTime);
-            }
-
-            mainAppSection.classList.add('hidden');
-            resultSection.classList.add('hidden');
-            viewDaftarSection.classList.add('hidden');
-            spinnerSection.classList.add('hidden');
-            adminDashboardSection.classList.add('hidden');
-            adminModeBanner.classList.add('hidden');
-            trialModeBanner.classList.add('hidden');
-            registeredStatusSection.classList.add('hidden');
+            loggedInLembaga = null; isAdminLoggedIn = false; isTrialModeActive = false; selectedLembaga = null;
+            if(reliableCurrentTime) updateDaftarTampilan(reliableCurrentTime);
+            mainAppSection.classList.add('hidden'); resultSection.classList.add('hidden');
+            viewDaftarSection.classList.add('hidden'); spinnerSection.classList.add('hidden');
+            adminDashboardSection.classList.add('hidden'); adminModeBanner.classList.add('hidden');
+            trialModeBanner.classList.add('hidden'); registeredStatusSection.classList.add('hidden');
             adminSudahTerdaftarInfo.classList.add('hidden');
             dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
-
-            userLoginForm.reset();
-            loginError.classList.add('hidden');
+            userLoginForm.reset(); loginError.classList.add('hidden');
             loginSection.classList.remove('hidden');
             checkTimeRestriction(reliableCurrentTime);
-            if (isAutoLogout) {
-                showCustomNotice('Anda telah logout secara otomatis karena tidak ada aktivitas selama 5 menit.', 'Sesi Berakhir', 'info');
-            }
+            if (isAutoLogout) showCustomNotice('Anda telah logout secara otomatis karena tidak ada aktivitas selama 5 menit.', 'Sesi Berakhir', 'info');
         }
 
         function resetInactivityTimer() {
@@ -1767,151 +1691,52 @@
 
         function startInactivityTimer() {
             resetInactivityTimer();
-            window.addEventListener('mousemove', resetInactivityTimer);
-            window.addEventListener('mousedown', resetInactivityTimer);
-            window.addEventListener('keypress', resetInactivityTimer);
-            window.addEventListener('touchstart', resetInactivityTimer);
+            window.addEventListener('mousemove', resetInactivityTimer); window.addEventListener('mousedown', resetInactivityTimer);
+            window.addEventListener('keypress', resetInactivityTimer); window.addEventListener('touchstart', resetInactivityTimer);
         }
         
         function getPrintableContent(registrationData, fullLembagaData) {
             const documentDate = new Date().toLocaleString('id-ID', { dateStyle: 'long', timeStyle: 'short' });
-            return `
-                <div style="font-family: 'Inter', sans-serif; width: 210mm; height: 297mm; padding: 20mm; display: flex; flex-direction: column; background-color: white; box-sizing: border-box;">
-                    <header style="text-align: center; border-bottom: 2px solid #333; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" style="height: 80px;" alt="Logo Tut Wuri Handayani" crossorigin="anonymous">
-                        <div>
-                            <h1 style="font-size: 24px; font-weight: 700; color: #1e3a8a; margin: 0;">Bukti Pendaftaran</h1>
-                            <p style="font-size: 18px; font-weight: 600; color: #374151; margin: 4px 0 0;">Karnaval Hari Anak Nasional 2025</p>
-                        </div>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" style="height: 90px;" alt="Logo Tabalong" crossorigin="anonymous">
-                    </header>
-                    
-                    <main style="flex-grow: 1;">
-                        <div style="text-align: center; margin-bottom: 24px;">
-                            <p style="font-size: 16px; color: #4b5563; margin:0;">Nomor Urut Peserta:</p>
-                            <p style="font-family: 'Fredoka One', cursive; font-size: 120px; color: #2563eb; margin: 8px 0; line-height: 1;">
-                                ${String(registrationData.nomor).padStart(3, '0')}
-                            </p>
-                        </div>
-
-                        <div style="background-color: #eff6ff; border-radius: 12px; padding: 24px; border: 1px solid #bfdbfe;">
-                            <h2 style="font-size: 28px; font-weight: 700; color: #1e3a8a; text-align: center; margin-top: 0; margin-bottom: 20px;">
-                                ${fullLembagaData.nama}
-                            </h2>
-                            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
-                                <tbody style="color: #374151;">
-                                    <tr><td style="padding: 8px; font-weight: 600; width: 30%;">NPSN</td><td style="padding: 8px;">: ${fullLembagaData.npsn}</td></tr>
-                                    <tr style="background-color: #f9fafb;"><td style="padding: 8px; font-weight: 600;">Status</td><td style="padding: 8px;">: ${fullLembagaData.status}</td></tr>
-                                    <tr><td style="padding: 8px; font-weight: 600;">Kecamatan</td><td style="padding: 8px;">: ${fullLembagaData.kecamatan}</td></tr>
-                                    <tr style="background-color: #f9fafb;"><td style="padding: 8px; font-weight: 600;">Jumlah Peserta</td><td style="padding: 8px;">: ${fullLembagaData.jumlah} orang</td></tr>
-                                    <tr>
-                                        <td style="padding: 8px; font-weight: 600; vertical-align: top;">Guru Perwakilan</td>
-                                        <td style="padding: 8px; line-height: 1.6;">
-                                            : 1. ${fullLembagaData.guru1} (${fullLembagaData.jabatan1})<br>
-                                            &nbsp;&nbsp;2. ${fullLembagaData.guru2} (${fullLembagaData.jabatan2})<br>
-                                            &nbsp;&nbsp;3. ${fullLembagaData.guru3} (${fullLembagaData.jabatan3})
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </main>
-
-                    <footer style="text-align: center; margin-top: auto; padding-top: 16px; border-top: 1px solid #eee;">
-                         <p style="font-size: 14px; font-weight: 600; color: #374151;">Dinas Pendidikan & Kebudayaan Kabupaten Tabalong</p>
-                         <p style="font-size: 12px; color: #6b7280; margin-top: 4px;">Dokumen ini dibuat secara otomatis oleh sistem pada: ${documentDate}</p>
-                    </footer>
-                </div>
-            `;
+            return `<div style="font-family: 'Inter', sans-serif; width: 210mm; height: 297mm; padding: 20mm; display: flex; flex-direction: column; background-color: white; box-sizing: border-box;"><header style="text-align: center; border-bottom: 2px solid #333; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq9BqgIl6ON8ljjfpIV1tbRhV2cA_K_iYzcg&s" style="height: 80px;" alt="Logo Tut Wuri Handayani" crossorigin="anonymous"><div><h1 style="font-size: 24px; font-weight: 700; color: #1e3a8a; margin: 0;">Bukti Pendaftaran</h1><p style="font-size: 18px; font-weight: 600; color: #374151; margin: 4px 0 0;">Karnaval Hari Anak Nasional 2025</p></div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Lambang_Kabupaten_Tabalong.jpeg/500px-Lambang_Kabupaten_Tabalong.jpeg" style="height: 90px;" alt="Logo Tabalong" crossorigin="anonymous"></header><main style="flex-grow: 1;"><div style="text-align: center; margin-bottom: 24px;"><p style="font-size: 16px; color: #4b5563; margin:0;">Nomor Urut Peserta:</p><p style="font-family: 'Fredoka One', cursive; font-size: 120px; color: #2563eb; margin: 8px 0; line-height: 1;">${String(registrationData.nomor).padStart(3, '0')}</p></div><div style="background-color: #eff6ff; border-radius: 12px; padding: 24px; border: 1px solid #bfdbfe;"><h2 style="font-size: 28px; font-weight: 700; color: #1e3a8a; text-align: center; margin-top: 0; margin-bottom: 20px;">${fullLembagaData.nama}</h2><table style="width: 100%; border-collapse: collapse; font-size: 14px;"><tbody style="color: #374151;"><tr><td style="padding: 8px; font-weight: 600; width: 30%;">NPSN</td><td style="padding: 8px;">: ${fullLembagaData.npsn}</td></tr><tr style="background-color: #f9fafb;"><td style="padding: 8px; font-weight: 600;">Status</td><td style="padding: 8px;">: ${fullLembagaData.status}</td></tr><tr><td style="padding: 8px; font-weight: 600;">Kecamatan</td><td style="padding: 8px;">: ${fullLembagaData.kecamatan}</td></tr><tr style="background-color: #f9fafb;"><td style="padding: 8px; font-weight: 600;">Jumlah Peserta</td><td style="padding: 8px;">: ${fullLembagaData.jumlah} orang</td></tr><tr><td style="padding: 8px; font-weight: 600; vertical-align: top;">Guru Perwakilan</td><td style="padding: 8px; line-height: 1.6;">: 1. ${fullLembagaData.guru1} (${fullLembagaData.jabatan1})<br>&nbsp;&nbsp;2. ${fullLembagaData.guru2} (${fullLembagaData.jabatan2})<br>&nbsp;&nbsp;3. ${fullLembagaData.guru3} (${fullLembagaData.jabatan3})</td></tr></tbody></table></div></main><footer style="text-align: center; margin-top: auto; padding-top: 16px; border-top: 1px solid #eee;"><p style="font-size: 14px; font-weight: 600; color: #374151;">Dinas Pendidikan & Kebudayaan Kabupaten Tabalong</p><p style="font-size: 12px; color: #6b7280; margin-top: 4px;">Dokumen ini dibuat secara otomatis oleh sistem pada: ${documentDate}</p></footer></div>`;
         }
         
         async function handleDownload() {
-            const currentLembaga = loggedInLembaga;
-            if (!currentLembaga) return;
-
+            const currentLembaga = loggedInLembaga; if (!currentLembaga) return;
             const registrationData = daftarPeserta.find(p => String(p.npsn) === String(currentLembaga.npsn));
             const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(currentLembaga.npsn));
-
-            if (!registrationData || !fullLembagaData) {
-                showCustomNotice('Data pendaftaran tidak lengkap untuk diunduh.', 'Error', 'error');
-                return;
-            }
-            
-            loadingOverlay.style.display = 'flex';
-            loadingOverlay.querySelector('p').textContent = 'Membuat file PDF...';
-
+            if (!registrationData || !fullLembagaData) { showCustomNotice('Data pendaftaran tidak lengkap untuk diunduh.', 'Error', 'error'); return; }
+            loadingOverlay.style.display = 'flex'; loadingOverlay.querySelector('p').textContent = 'Membuat file PDF...';
             const printContent = getPrintableContent(registrationData, fullLembagaData);
-            
-            // Perbaikan untuk PDF Layout
             const printContainer = document.createElement('div');
-            printContainer.style.position = 'fixed';
-            printContainer.style.top = '0';
-            printContainer.style.left = '0';
-            printContainer.style.zIndex = '-1';
-            printContainer.style.opacity = '0';
-            printContainer.style.width = '210mm';
-            printContainer.innerHTML = printContent;
-            document.body.appendChild(printContainer);
-            
+            printContainer.style.position = 'fixed'; printContainer.style.top = '0'; printContainer.style.left = '0';
+            printContainer.style.zIndex = '-1'; printContainer.style.opacity = '0'; printContainer.style.width = '210mm';
+            printContainer.innerHTML = printContent; document.body.appendChild(printContainer);
             const elementToPrint = printContainer.firstElementChild;
-
-            const opt = {
-              margin:       0,
-              filename:     `Bukti_Pendaftaran_HAN_2025_${fullLembagaData.nama.replace(/[^a-z0-9]/gi, '_')}.pdf`,
-              image:        { type: 'jpeg', quality: 0.98 },
-              html2canvas:  { scale: 2, useCORS: true },
-              jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-
-            try {
-                await html2pdf().from(elementToPrint).set(opt).save();
-            } catch (error) {
-                console.error("Gagal membuat PDF:", error);
-                await showCustomNotice('Terjadi kesalahan saat membuat file PDF.', 'Error', 'error');
-            } finally {
-                document.body.removeChild(printContainer);
-                loadingOverlay.style.display = 'none';
-                loadingOverlay.querySelector('p').textContent = 'Memuat data dari server...';
-            }
+            const opt = { margin: 0, filename: `Bukti_Pendaftaran_HAN_2025_${fullLembagaData.nama.replace(/[^a-z0-9]/gi, '_')}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas:  { scale: 2, useCORS: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
+            try { await html2pdf().from(elementToPrint).set(opt).save(); } catch (error) { console.error("Gagal membuat PDF:", error); await showCustomNotice('Terjadi kesalahan saat membuat file PDF.', 'Error', 'error');
+            } finally { document.body.removeChild(printContainer); loadingOverlay.style.display = 'none'; loadingOverlay.querySelector('p').textContent = 'Memuat data dari server...'; }
         }
 
         function handlePrint() {
-            const currentLembaga = loggedInLembaga;
-            if (!currentLembaga) return;
-
+            const currentLembaga = loggedInLembaga; if (!currentLembaga) return;
             const registrationData = daftarPeserta.find(p => String(p.npsn) === String(currentLembaga.npsn));
             const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(currentLembaga.npsn));
-
-            if (!registrationData || !fullLembagaData) {
-                showCustomNotice('Data pendaftaran tidak lengkap untuk dicetak.', 'Error', 'error');
-                return;
-            }
-            
+            if (!registrationData || !fullLembagaData) { showCustomNotice('Data pendaftaran tidak lengkap untuk dicetak.', 'Error', 'error'); return; }
             const printContent = getPrintableContent(registrationData, fullLembagaData);
-            
             const printContainer = document.createElement('div');
-            printContainer.id = 'print-container';
-            printContainer.innerHTML = printContent;
+            printContainer.id = 'print-container'; printContainer.innerHTML = printContent;
             document.body.appendChild(printContainer);
-            
-            setTimeout(() => {
-                window.print();
-                document.body.removeChild(printContainer);
-            }, 100);
+            setTimeout(() => { window.print(); document.body.removeChild(printContainer); }, 100);
         }
 
         async function handleExport() {
             const password = exportPasswordInput.value;
             if (!password) {
                 exportPasswordError.textContent = "Kata sandi tidak boleh kosong.";
-                exportPasswordError.classList.remove('hidden');
-                return;
+                exportPasswordError.classList.remove('hidden'); return;
             }
-
-            submitExport.disabled = true;
-            submitExport.textContent = 'Memeriksa...';
+            submitExport.disabled = true; submitExport.textContent = 'Memeriksa...';
             exportPasswordError.classList.add('hidden');
-
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
@@ -1919,20 +1744,15 @@
                 });
                 if (!response.ok) throw new Error('Gagal terhubung ke server.');
                 const result = await response.json();
-
                 if (result.status === 'success') {
                     exportPasswordModal.classList.add('hidden');
-                    exportPasswordInput.value = '';
-                    exportToExcel(); 
-                } else {
-                    throw new Error(result.message || 'Kata sandi salah.');
-                }
+                    exportPasswordInput.value = ''; exportToExcel(); 
+                } else { throw new Error(result.message || 'Kata sandi salah.'); }
             } catch (error) {
                 exportPasswordError.textContent = error.message;
                 exportPasswordError.classList.remove('hidden');
             } finally {
-                submitExport.disabled = false;
-                submitExport.textContent = 'Export';
+                submitExport.disabled = false; submitExport.textContent = 'Export';
             }
         }
         
@@ -1944,38 +1764,22 @@
         logoutBtn.addEventListener('click', () => handleLogout(false));
         logoutFromStatusBtn.addEventListener('click', () => handleLogout(false));
         logoutFromDashboardBtn.addEventListener('click', () => handleLogout(false));
-        
         spinBtn.addEventListener('click', handlePendaftaran);
         
         dataForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             const currentLembaga = loggedInLembaga || selectedLembaga;
-            if (isAdminLoggedIn && !currentLembaga) {
-                errorMessage.classList.remove('hidden');
-                return;
-            }
-            
-            if (!reliableCurrentTime) {
-                await showCustomNotice("Waktu belum tersinkronisasi. Mohon muat ulang halaman.", "Peringatan", "warning");
-                return;
-            }
-
-            const now = reliableCurrentTime;
-            const startTime = new Date(TANGGAL_MULAI);
-            const endTime = new Date(TANGGAL_SELESAI);
-            
+            if (isAdminLoggedIn && !currentLembaga) { errorMessage.classList.remove('hidden'); return; }
+            if (!reliableCurrentTime) { await showCustomNotice("Waktu belum tersinkronisasi. Mohon muat ulang halaman.", "Peringatan", "warning"); return; }
+            const now = reliableCurrentTime, startTime = new Date(TANGGAL_MULAI), endTime = new Date(TANGGAL_SELESAI);
             const isStillInTrialPeriod = now < startTime;
-
             if (!isStillInTrialPeriod && !isAdminLoggedIn && (now < startTime || now > endTime)) {
                 await showCustomNotice("Waktu pendaftaran belum dibuka atau sudah berakhir.", "Peringatan", "warning");
-                checkTimeRestriction(now);
-                return;
+                checkTimeRestriction(now); return;
             }
             errorMessage.classList.add('hidden');
-            
             displayNamaLembaga.textContent = currentLembaga.nama;
-            mainAppSection.classList.add('hidden');
-            spinnerSection.classList.remove('hidden');
+            mainAppSection.classList.add('hidden'); spinnerSection.classList.remove('hidden');
         });
 
         searchInput.addEventListener('input', () => {
@@ -1983,8 +1787,7 @@
             const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
             const filtered = sourceData.filter(l => l.nama.toLowerCase().includes(query));
             renderLembagaList(filtered);
-            selectedLembaga = null;
-            detailSekolahDiv.classList.add('hidden');
+            selectedLembaga = null; detailSekolahDiv.classList.add('hidden');
             dropdownMenu.classList.remove('hidden');
             adminSudahTerdaftarInfo.classList.add('hidden');
             dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
@@ -1992,135 +1795,91 @@
 
         searchInput.addEventListener('focus', () => {
             const sourceData = isAdminLoggedIn ? masterLembagaData : lembagaTersedia;
-            renderLembagaList(sourceData);
-            dropdownMenu.classList.remove('hidden');
+            renderLembagaList(sourceData); dropdownMenu.classList.remove('hidden');
         });
         
-        document.addEventListener('click', (e) => {
-            if (!searchContainer.contains(e.target)) {
-                dropdownMenu.classList.add('hidden');
-            }
-        });
+        document.addEventListener('click', (e) => { if (!searchContainer.contains(e.target)) dropdownMenu.classList.add('hidden'); });
 
         cancelBtn.addEventListener('click', function() {
-            spinnerSection.classList.add('hidden');
-            mainAppSection.classList.remove('hidden');
-            spinBtn.disabled = false;
-            spinBtn.textContent = 'Ambil Nomor!';
+            spinnerSection.classList.add('hidden'); mainAppSection.classList.remove('hidden');
+            spinBtn.disabled = false; spinBtn.textContent = 'Ambil Nomor!';
             spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
         });
         
         kembaliBtn.addEventListener('click', () => {
             viewDaftarSection.classList.add('hidden');
-            
-            if (isAdminLoggedIn || isTrialModeActive) {
-                mainAppSection.classList.remove('hidden');
-                return;
-            }
-
+            if (isAdminLoggedIn || isTrialModeActive) { mainAppSection.classList.remove('hidden'); return; }
             if (loggedInLembaga) {
                 const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
-                if (existingRegistration) {
-                    showRegisteredStatusPage(existingRegistration);
-                } else {
-                    mainAppSection.classList.remove('hidden');
-                }
-            } else {
-                loginSection.classList.remove('hidden');
-            }
+                if (existingRegistration) showRegisteredStatusPage(existingRegistration);
+                else mainAppSection.classList.remove('hidden');
+            } else { loginSection.classList.remove('hidden'); }
         });
 
         exportPasswordForm.addEventListener('submit', (e) => { e.preventDefault(); handleExport(); });
         submitExport.addEventListener('click', handleExport);
         cancelExport.addEventListener('click', () => {
             exportPasswordModal.classList.add('hidden');
-            exportPasswordError.classList.add('hidden');
-            exportPasswordInput.value = '';
+            exportPasswordError.classList.add('hidden'); exportPasswordInput.value = '';
         });
 
         exportBtns.forEach(btn => btn.addEventListener('click', () => {
-             exportPasswordModal.classList.remove('hidden');
-             exportPasswordInput.focus();
+             exportPasswordModal.classList.remove('hidden'); exportPasswordInput.focus();
         }));
 
         adminLoginForm.addEventListener('submit', (e) => { e.preventDefault(); handleAdminLogin(); });
         submitAdminLogin.addEventListener('click', handleAdminLogin);
         cancelAdminLogin.addEventListener('click', () => {
             adminLoginModal.classList.add('hidden');
-            adminLoginError.classList.add('hidden');
-            adminPasswordInput.value = '';
+            adminLoginError.classList.add('hidden'); adminPasswordInput.value = '';
         });
         
         adminLoginBtn.addEventListener('click', () => {
-            adminPasswordInput.value = '';
-            adminLoginError.classList.add('hidden');
-            adminLoginModal.classList.remove('hidden');
-            adminPasswordInput.focus();
+            adminPasswordInput.value = ''; adminLoginError.classList.add('hidden');
+            adminLoginModal.classList.remove('hidden'); adminPasswordInput.focus();
         });
 
         goToDaftarPesertaBtn.addEventListener('click', () => {
-            adminViewMode = 'pendaftar'; // Set default view
-            adminDashboardSection.classList.add('hidden');
-            viewDaftarSection.classList.remove('hidden');
-            backToDashboardBtn.classList.remove('hidden');
-            kembaliBtn.classList.add('hidden'); // Sembunyikan tombol kembali yg umum
-            viewDaftarActions.classList.remove('grid-cols-2');
-            viewDaftarActions.classList.add('grid-cols-1');
+            adminViewMode = 'pendaftar';
+            adminDashboardSection.classList.add('hidden'); viewDaftarSection.classList.remove('hidden');
+            backToDashboardBtn.classList.remove('hidden'); kembaliBtn.classList.add('hidden');
+            viewDaftarActions.classList.remove('grid-cols-2'); viewDaftarActions.classList.add('grid-cols-1');
             updateDaftarTampilan(reliableCurrentTime);
         });
 
         backToDashboardBtn.addEventListener('click', () => {
-            viewDaftarSection.classList.add('hidden');
-            adminDashboardSection.classList.remove('hidden');
-            backToDashboardBtn.classList.add('hidden');
-            kembaliBtn.classList.remove('hidden'); // Tampilkan kembali tombol umum
-            viewDaftarActions.classList.add('grid-cols-2');
-            viewDaftarActions.classList.remove('grid-cols-1');
+            viewDaftarSection.classList.add('hidden'); adminDashboardSection.classList.remove('hidden');
+            backToDashboardBtn.classList.add('hidden'); kembaliBtn.classList.remove('hidden');
+            viewDaftarActions.classList.add('grid-cols-2'); viewDaftarActions.classList.remove('grid-cols-1');
         });
 
-        viewDaftarBtn.addEventListener('click', () => {
-            mainAppSection.classList.add('hidden');
-            viewDaftarSection.classList.remove('hidden');
-        });
-        
-        viewDaftarFromStatusBtn.addEventListener('click', () => {
-            registeredStatusSection.classList.add('hidden');
-            viewDaftarSection.classList.remove('hidden');
-        });
+        viewDaftarBtn.addEventListener('click', () => { mainAppSection.classList.add('hidden'); viewDaftarSection.classList.remove('hidden'); });
+        viewDaftarFromStatusBtn.addEventListener('click', () => { registeredStatusSection.classList.add('hidden'); viewDaftarSection.classList.remove('hidden'); });
 
         kembaliKeUtamaBtn.addEventListener('click', () => {
-            resultSection.classList.add('hidden');
-            spinBtn.disabled = false;
+            resultSection.classList.add('hidden'); spinBtn.disabled = false;
             spinBtn.textContent = 'Ambil Nomor!';
             spinBtn.classList.add('bg-gradient-to-r', 'from-green-500', 'to-teal-500');
             spinBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
-
             if (isAdminLoggedIn || isTrialModeActive) {
                 mainAppSection.classList.remove('hidden');
                 if(isAdminLoggedIn) {
-                    searchInput.value = '';
-                    selectedLembaga = null;
-                    detailSekolahDiv.classList.add('hidden');
+                    searchInput.value = ''; selectedLembaga = null; detailSekolahDiv.classList.add('hidden');
                     adminSudahTerdaftarInfo.classList.add('hidden');
                     dataForm.querySelector('button[type="submit"]').classList.remove('hidden');
                 }
             } else {
                 const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga?.npsn));
-                if (existingRegistration) {
-                    showRegisteredStatusPage(existingRegistration);
-                } else {
-                    showMainAppFor(loggedInLembaga); 
-                }
+                if (existingRegistration) showRegisteredStatusPage(existingRegistration);
+                else showMainAppFor(loggedInLembaga); 
             }
         });
 
         printBtn.addEventListener('click', handlePrint);
         downloadBtn.addEventListener('click', handleDownload);
-
         const showInfoModal = () => infoModal.classList.remove('hidden');
         const hideInfoModal = () => infoModal.classList.add('hidden');
-
         showInfoBtn.addEventListener('click', showInfoModal);
         closeInfoModalBtn.addEventListener('click', hideInfoModal);
         okInfoModalBtn.addEventListener('click', hideInfoModal);
@@ -2128,13 +1887,31 @@
         searchInputView.addEventListener('input', applyFiltersAndRenderViewDaftar);
         filterKecamatan.addEventListener('change', applyFiltersAndRenderViewDaftar);
         resetFilterBtn.addEventListener('click', () => {
-            searchInputView.value = '';
-            filterKecamatan.value = '';
+            searchInputView.value = ''; filterKecamatan.value = '';
             applyFiltersAndRenderViewDaftar();
         });
-
         editLembagaForm.addEventListener('submit', handleUpdateLembaga);
         cancelEditBtn.addEventListener('click', () => editLembagaModal.classList.add('hidden'));
+
+        // **** PENAMBAHAN EVENT LISTENERS BARU ****
+        forgotPasswordBtn.addEventListener('click', () => {
+            resetKodeModal.classList.remove('hidden');
+            resetStep2.classList.add('hidden');
+            resetStep1.classList.remove('hidden');
+            sendCodeForm.reset();
+            verifyCodeForm.reset();
+            resetStep1Error.classList.add('hidden');
+            resetStep2Error.classList.add('hidden');
+        });
+        cancelResetBtn.addEventListener('click', () => resetKodeModal.classList.add('hidden'));
+        backToStep1Btn.addEventListener('click', () => {
+            resetStep2.classList.add('hidden');
+            resetStep1.classList.remove('hidden');
+            resetStep2Error.classList.add('hidden');
+        });
+        sendCodeForm.addEventListener('submit', handleSendVerificationCode);
+        verifyCodeForm.addEventListener('submit', handleFinalizeReset);
+        // **** AKHIR EVENT LISTENERS BARU ****
 
         // ===============================================================
         // INISIALISASI APLIKASI
@@ -2142,27 +1919,18 @@
         document.addEventListener('DOMContentLoaded', async () => {
             const savedAdmin = sessionStorage.getItem('isAdmin');
             const savedLembaga = sessionStorage.getItem('loggedInLembaga');
-            
             isAdminLoggedIn = savedAdmin === 'true';
-
             await loadDataFromServer(isAdminLoggedIn);
-            
             const savedTrial = sessionStorage.getItem('isTrial');
 
             if (savedLembaga) {
                 loggedInLembaga = JSON.parse(savedLembaga);
                 isTrialModeActive = savedTrial === 'true';
-                
                 const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
                 loginSection.classList.add('hidden');
-                
-                if (existingRegistration && !isTrialModeActive) {
-                    showRegisteredStatusPage(existingRegistration);
-                } else {
-                    showMainAppFor(loggedInLembaga);
-                }
+                if (existingRegistration && !isTrialModeActive) showRegisteredStatusPage(existingRegistration);
+                else showMainAppFor(loggedInLembaga);
                 startInactivityTimer();
-
             } else if (isAdminLoggedIn) {
                 loginSection.classList.add('hidden');
                 showAdminDashboard();
@@ -2171,8 +1939,6 @@
                 loginSection.classList.remove('hidden');
             }
         });
-
     </script>
-
 </body>
 </html>
