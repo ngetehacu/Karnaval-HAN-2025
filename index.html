@@ -168,7 +168,7 @@
                         <h4 class="font-bold text-gray-800 mb-1">Jadwal Penting</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li><strong>Pendaftaran Dibuka:</strong> 02 September 2025, Pukul 08:00 WITA</li>
-                            <li><strong>Pendaftaran Ditutup:</strong> 07 September 2025, Pukul 23:59 WITA</li>
+                            <li><strong>Pendaftaran Ditutup:</strong> 04 September 2025, Pukul 17:00 WITA</li>
                             <li><strong>Pelaksanaan Karnaval:</strong> Kamis, 11 September 2025</li>
                         </ul>
                     </div>
@@ -565,12 +565,12 @@
     </div>
 
     <script>
-        const TANGGAL_MULAI = '2025-09-02T08:08:00';
-        const TANGGAL_SELESAI = '2025-09-07T23:17:00'; 
+        const TANGGAL_MULAI = '2025-09-02T08:00:00';
+        const TANGGAL_SELESAI = '2025-09-04T17:00:00'; 
         const SPIN_DURATION = 1500;
         const SPIN_INTERVAL = 50;
         const INACTIVITY_TIMEOUT = 5 * 60 * 1000;
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycby-phX1oVT-I0dtAF7-cRhOEWe9s1yszayjwhGtDTQMc21vd_6BR_zUd9pFPcipFNDzbw/exec';
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzOYLhgLqEdjjdesd2mKsgzkCtf3kO0jMAJTH54PNNyTXOB20UkWDYP9CeAk-2M_bG8Tg/exec';
         const ADMIN_PASSWORD_FRONTEND = 'jerapah';
 
         const loadingOverlay = document.getElementById('loadingOverlay');
@@ -1028,7 +1028,7 @@
                 const headers = ['No. Urut', 'Nama Lembaga', 'NPSN', 'Status', 'Kecamatan', 'Jumlah Peserta', 'Guru 1', 'Jabatan 1', 'Guru 2', 'Jabatan 2', 'Guru 3', 'Jabatan 3'];
                 const rows = dataToExport.sort((a,b) => a.nomor - b.nomor).map(p => {
                     const master = masterDataMap.get(p.npsn) || {};
-                    return [`'${String(p.nomor).padStart(3, '0')}`, `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`, master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`, `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`];
+                    return [`'${String(p.nomor).padStart(3, '0')}`, `"${p.nama_lembaga}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`, master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`, `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`];
                 });
                 let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
                 var encodedUri = encodeURI(csvContent);
@@ -1145,7 +1145,7 @@
             aktivitasTerkiniContainer.innerHTML = '';
             if (daftarPeserta.length > 0) {
                  [...daftarPeserta].reverse().slice(0, 5).forEach(p => {
-                    aktivitasTerkiniContainer.innerHTML += `<div class="bg-gray-100 p-2 rounded-md"><span class="font-semibold">${p.nama}</span> baru saja mendaftar dengan nomor urut <span class="font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</span>.</div>`;
+                    aktivitasTerkiniContainer.innerHTML += `<div class="bg-gray-100 p-2 rounded-md"><span class="font-semibold">${p.nama_lembaga}</span> baru saja mendaftar dengan nomor urut <span class="font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</span>.</div>`;
                 });
             } else {
                 aktivitasTerkiniContainer.innerHTML = '<p class="text-gray-500 text-center">Belum ada aktivitas.</p>';
@@ -1224,12 +1224,12 @@
                 let headerAksi = isAdminLoggedIn ? '<th class="p-3 font-semibold text-gray-600 text-center">Aksi</th>' : '';
                 tableHeaders = `<tr><th class="p-3 font-semibold text-gray-600">No. Urut</th><th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th><th class="p-3 font-semibold text-gray-600 text-left">NPSN</th><th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th>${headerAksi}</tr>`;
                 rowRenderer = (l) => {
-                    let cellAksi = isAdminLoggedIn ? `<td class="p-3 text-center"><button class="text-red-500 hover:text-red-700 text-xs font-bold py-1 px-2 rounded-md bg-red-100 hover:bg-red-200 transition-all" data-npsn-delete="${l.npsn}" data-nama="${l.nama}">Batalkan</button></td>` : '';
-                    return `<tr class="hover:bg-yellow-50"><td class="p-3 text-center font-bold text-blue-600">${String(l.nomor).padStart(3, '0')}</td><td class="p-3 text-left break-words">${l.nama}</td><td class="p-3 text-left">${l.npsn}</td><td class="p-3 text-left">${l.kecamatan}</td>${cellAksi}</tr>`;
+                    let cellAksi = isAdminLoggedIn ? `<td class="p-3 text-center"><button class="text-red-500 hover:text-red-700 text-xs font-bold py-1 px-2 rounded-md bg-red-100 hover:bg-red-200 transition-all" data-npsn-delete="${l.npsn}" data-nama="${l.nama_lembaga}">Batalkan</button></td>` : '';
+                    return `<tr class="hover:bg-yellow-50"><td class="p-3 text-center font-bold text-blue-600">${String(l.nomor).padStart(3, '0')}</td><td class="p-3 text-left break-words">${l.nama_lembaga}</td><td class="p-3 text-left">${l.npsn}</td><td class="p-3 text-left">${l.kecamatan}</td>${cellAksi}</tr>`;
                 };
             }
             const filteredData = sourceData.filter(item => {
-                const searchFields = [item.nama, item.npsn, item.kode_akses].filter(Boolean).join(' ').toLowerCase();
+                const searchFields = [item.nama, item.nama_lembaga, item.npsn, item.kode_akses].filter(Boolean).join(' ').toLowerCase();
                 const matchesSearch = searchFields.includes(searchTerm);
                 const matchesKecamatan = !selectedKecamatan || item.kecamatan === selectedKecamatan;
                 return matchesSearch && matchesKecamatan;
@@ -1245,7 +1245,7 @@
             const startTime = new Date(TANGGAL_MULAI);
             const isBeforeStart = now < startTime;
             daftarPeserta.sort((a, b) => a.nomor - b.nomor);
-            let rowsHtmlResult = daftarPeserta.length === 0 ? '<tr><td colspan="3" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>' : daftarPeserta.map(p => `<tr class="hover:bg-yellow-50 even:bg-blue-50/50"><td class="p-3 text-center font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</td><td class="p-3 text-left">${p.nama}</td><td class="p-3 text-left">${p.kecamatan}</td></tr>`).join('');
+            let rowsHtmlResult = daftarPeserta.length === 0 ? '<tr><td colspan="3" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>' : daftarPeserta.map(p => `<tr class="hover:bg-yellow-50 even:bg-blue-50/50"><td class="p-3 text-center font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</td><td class="p-3 text-left">${p.nama_lembaga}</td><td class="p-3 text-left">${p.kecamatan}</td></tr>`).join('');
             daftarBodyResult.innerHTML = rowsHtmlResult;
             if (isAdminLoggedIn) {
                 viewDaftarAdminControls.classList.remove('hidden');
@@ -1397,7 +1397,7 @@
             const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(registrationData.npsn));
             if (!fullLembagaData) {
                 console.error("Data master tidak ditemukan untuk NPSN:", registrationData.npsn);
-                statusNamaLembaga.textContent = registrationData.nama;
+                statusNamaLembaga.textContent = registrationData.nama_lembaga;
                 statusNpsn.textContent = `: ${registrationData.npsn}`;
                 statusKecamatan.textContent = `: ${registrationData.kecamatan}`;
                 statusStatus.textContent = ": -"; statusJumlah.textContent = ": -";
@@ -1682,5 +1682,3 @@
     </script>
 </body>
 </html>
-
-
