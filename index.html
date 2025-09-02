@@ -6,7 +6,7 @@
     <title>Lomba Hari Anak Nasional 2025 - Kab. Tabalong</title>
     <link rel="icon" href="https://disdik.tabalongkab.go.id/wp-content/uploads/2022/12/logo-tabalong-1.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" xintegrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -29,7 +29,7 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f9ff; /* sky-50 */
+            background-color: #f0f9ff;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23f8b195' fill-opacity='0.1'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.1'%3E%3Cpolygon fill='%23f67280' points='100 100 0 100 0 0 100 0 100 100'/%3E%3Cpolygon fill='%23c06c84' points='100 100 100 200 200 200 200 100 100 100'/%3E%3C/g%3E%3C/svg%3E"),
                               url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-opacity='0.1' fill='%236c5b7b'%3E%3Ccircle cx='34' cy='15' r='6'/%3E%3Cpath d='M180 40 a10 10 0 0 1 0 20 a10 10 0 0 1 0 -20'/%3E%3Cpath d='M10 180 a12 12 0 0 1 0 24 a12 12 0 0 1 0 -24'/%3E%3Ccircle cx='150' cy='160' r='8'/%3E%3Cpath d='M50 80 l10 10 l-10 10 l-10 -10z'/%3E%3C/g%3E%3C/svg%3E");
             animation: floaty-background 80s linear infinite;
@@ -46,60 +46,29 @@
             backdrop-filter: blur(4px);
         }
         .timer-box {
-            display: inline-block;
-            padding: 0.5rem 0.75rem;
-            margin: 0 0.25rem;
-            background-color: rgba(255,255,255,0.5);
-            border-radius: 0.5rem;
-            border: 1px solid rgba(0,0,0,0.1);
-            text-align: center;
+            display: inline-block; padding: 0.5rem 0.75rem; margin: 0 0.25rem;
+            background-color: rgba(255,255,255,0.5); border-radius: 0.5rem;
+            border: 1px solid rgba(0,0,0,0.1); text-align: center;
         }
-        .timer-box span {
-            display: block;
-            font-weight: bold;
-        }
-        .timer-box span:first-child {
-            font-size: 1.75rem;
-            line-height: 1;
-        }
-        .timer-box span:last-child {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: #4b5563; /* gray-600 */
-        }
-        /* Custom Alert Animation */
-        @keyframes alert-fade-in {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes alert-zoom-in {
-            from { transform: scale(0.9); }
-            to { transform: scale(1); }
-        }
-        
-        /* -- ANIMASI BARU -- */
+        .timer-box span { display: block; font-weight: bold; }
+        .timer-box span:first-child { font-size: 1.75rem; line-height: 1; }
+        .timer-box span:last-child { font-size: 0.75rem; text-transform: uppercase; color: #4b5563; }
+        @keyframes alert-fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes alert-zoom-in { from { transform: scale(0.9); } to { transform: scale(1); } }
         @keyframes confetti-fall {
             0% { transform: translateY(-100px) rotateZ(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotateZ(720deg); opacity: 0; }
         }
         #confetti-container {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 10000;
-            overflow: hidden;
+            pointer-events: none; z-index: 10000; overflow: hidden;
         }
         .confetti {
-            position: absolute;
-            top: -20px;
-            width: 10px;
-            height: 20px;
-            opacity: 0;
-            animation: confetti-fall 4s linear forwards;
+            position: absolute; top: -20px; width: 10px; height: 20px;
+            opacity: 0; animation: confetti-fall 4s linear forwards;
         }
         .sparkle-container {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
+            position: absolute; inset: 0; overflow: hidden; pointer-events: none;
         }
         @keyframes sparkle-anim {
             0% { transform: scale(0); opacity: 0.5; }
@@ -107,40 +76,19 @@
             100% { transform: scale(1.5); opacity: 0; }
         }
         .sparkle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background-color: white;
-            border-radius: 50%;
-            animation: sparkle-anim 0.8s ease-out forwards;
+            position: absolute; width: 8px; height: 8px; background-color: white;
+            border-radius: 50%; animation: sparkle-anim 0.8s ease-out forwards;
             box-shadow: 0 0 10px 2px #fff;
         }
         .pie-chart {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
+            width: 120px; height: 120px; border-radius: 50%;
             background-image: conic-gradient(from 0deg, var(--gradient-colors));
         }
-        
-        /* STYLE UNTUK CETAK */
         @media print {
-            body * {
-                visibility: hidden;
-            }
-            #print-container, #print-container * {
-                visibility: visible;
-            }
-            #print-container {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-            }
-            @page {
-                size: A4 portrait;
-                margin: 0;
-            }
+            body * { visibility: hidden; }
+            #print-container, #print-container * { visibility: visible; }
+            #print-container { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+            @page { size: A4 portrait; margin: 0; }
         }
     </style>
 </head>
@@ -157,14 +105,12 @@
     <div id="customAlertModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full z-[10000] flex items-center justify-center p-4" style="animation: alert-fade-in 0.3s ease;">
         <div class="relative mx-auto p-6 border w-full max-w-sm shadow-xl rounded-2xl bg-white" style="animation: alert-zoom-in 0.3s ease;">
             <div class="mt-3 text-center">
-                <div id="customAlertIcon" class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4">
-                    </div>
+                <div id="customAlertIcon" class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100 mb-4"></div>
                 <h3 id="customAlertTitle" class="text-lg leading-6 font-bold text-gray-900"></h3>
                 <div class="mt-2 px-2 py-3">
                     <p id="customAlertMessage" class="text-sm text-gray-500"></p>
                 </div>
-                <div id="customAlertButtons" class="items-center px-4 py-3 gap-2 flex">
-                    </div>
+                <div id="customAlertButtons" class="items-center px-4 py-3 gap-2 flex"></div>
             </div>
         </div>
     </div>
@@ -174,21 +120,15 @@
             <div class="mt-3 text-center">
                 <h3 class="text-lg leading-6 font-bold text-gray-900">Akses Terbatas !!!</h3>
                 <div class="mt-2 px-7 py-3">
-                    <p class="text-sm text-gray-500">
-                        Masukkan kata sandi untuk melanjutkan proses export.
-                    </p>
+                    <p class="text-sm text-gray-500">Masukkan kata sandi untuk melanjutkan proses export.</p>
                     <form id="exportPasswordForm" autocomplete="off">
                         <input type="password" id="exportPasswordInput" autocomplete="new-password" placeholder="******" class="w-full px-4 py-3 mt-3 text-center bg-gray-100 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-lg">
                         <p id="exportPasswordError" class="text-red-500 text-sm mt-2 hidden">Kata sandi salah.</p>
                     </form>
                 </div>
                 <div class="items-center px-4 py-3 gap-2 flex">
-                    <button id="cancelExport" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">
-                        Batal
-                    </button>
-                    <button id="submitExport" type="button" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all">
-                        Export
-                    </button>
+                    <button id="cancelExport" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">Batal</button>
+                    <button id="submitExport" type="button" class="w-full px-4 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all">Export</button>
                 </div>
             </div>
         </div>
@@ -199,21 +139,15 @@
             <div class="mt-3 text-center">
                 <h3 class="text-lg leading-6 font-bold text-gray-900">Login Admin</h3>
                 <div class="mt-2 px-7 py-3">
-                    <p class="text-sm text-gray-500">
-                        Masukkan kata sandi admin untuk mengakses fitur khusus.
-                    </p>
+                    <p class="text-sm text-gray-500">Masukkan kata sandi admin untuk mengakses fitur khusus.</p>
                     <form id="adminLoginForm" autocomplete="off">
                         <input type="password" id="adminPasswordInput" autocomplete="new-password" placeholder="******" class="w-full px-4 py-3 mt-3 text-center bg-gray-100 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all text-lg">
                         <p id="adminLoginError" class="text-red-500 text-sm mt-2 hidden">Kata sandi salah.</p>
                     </form>
                 </div>
                 <div class="items-center px-4 py-3 gap-2 flex">
-                    <button id="cancelAdminLogin" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">
-                        Batal
-                    </button>
-                    <button id="submitAdminLogin" type="button" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all">
-                        Login
-                    </button>
+                    <button id="cancelAdminLogin" type="button" class="w-full px-4 py-2 bg-gray-200 text-gray-800 rounded-lg shadow-sm hover:bg-gray-300 transition-all">Batal</button>
+                    <button id="submitAdminLogin" type="button" class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition-all">Login</button>
                 </div>
             </div>
         </div>
@@ -224,21 +158,17 @@
             <div class="mt-3">
                 <div class="flex justify-between items-center mb-4 border-b pb-3">
                     <h3 class="text-xl leading-6 font-bold text-gray-900 flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         Pusat Informasi & Bantuan
                     </h3>
-                    <button id="closeInfoModalBtn" class="text-gray-400 hover:text-gray-600">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                    </button>
+                    <button id="closeInfoModalBtn" class="text-gray-400 hover:text-gray-600"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
                 <div class="text-sm text-gray-600 space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                     <div>
                         <h4 class="font-bold text-gray-800 mb-1">Jadwal Penting</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li><strong>Pendaftaran Dibuka:</strong> 02 September 2025, Pukul 08:00 WITA</li>
-                            <li><strong>Pendaftaran Ditutup:</strong> 04 September 2025, Pukul 17:00 WITA</li>
+                            <li><strong>Pendaftaran Ditutup:</strong> 07 September 2025, Pukul 23:59 WITA</li>
                             <li><strong>Pelaksanaan Karnaval:</strong> Kamis, 11 September 2025</li>
                         </ul>
                     </div>
@@ -259,9 +189,7 @@
                     </div>
                 </div>
                 <div class="items-center px-4 py-3 mt-4 text-right">
-                    <button id="okInfoModalBtn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full sm:w-auto shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">
-                        Tutup
-                    </button>
+                    <button id="okInfoModalBtn" class="px-4 py-2 bg-blue-500 text-white text-base font-medium rounded-md w-full sm:w-auto shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300">Tutup</button>
                 </div>
             </div>
         </div>
@@ -306,6 +234,7 @@
             </div>
         </div>
     </div>
+    
     <div id="editLembagaModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full z-50 flex items-center justify-center p-4">
         <div class="relative mx-auto p-5 border w-full max-w-lg shadow-lg rounded-2xl bg-white">
             <form id="editLembagaForm">
@@ -365,11 +294,10 @@
         </div>
     </div>
 
-
     <div class="w-full max-w-md mx-auto bg-white/80 backdrop-blur-lg rounded-3xl shadow-2xl p-6 sm:p-8 border-4 border-white">
 
         <div id="loginSection" class="hidden">
-             <div id="pengumumanContainer" class="hidden mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-r-lg">
+            <div id="pengumumanContainer" class="hidden mb-6 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded-r-lg">
                 <h4 id="pengumumanJudul" class="font-bold"></h4>
                 <p id="pengumumanIsi" class="text-sm"></p>
             </div>
@@ -382,11 +310,8 @@
                 <h1 class="text-3xl font-fredoka text-blue-600">Selamat Datang!</h1>
                 <p class="text-gray-600 mt-2 font-semibold">Silakan login untuk mengambil Nomor Urut Peserta Karnaval HAN 2025</p>
             </div>
-
             <div id="timeRestrictionMessage" class="text-center font-semibold p-4 rounded-lg my-4 hidden"></div>
-            
             <div id="trialButtonsContainer" class="hidden space-y-2"></div>
-
             <form id="userLoginForm" class="space-y-4 hidden">
                 <div>
                     <label for="npsnLoginInput" class="block text-sm font-medium text-gray-700 mb-2">NPSN</label>
@@ -397,11 +322,8 @@
                     <input type="password" id="kodeAksesLoginInput" placeholder="Masukkan Kode Akses" class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
                 </div>
                 <p id="loginError" class="text-red-500 text-sm hidden">NPSN atau Kode Akses salah. Coba lagi.</p>
-                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">
-                    Login
-                </button>
+                <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">Login</button>
             </form>
-
             <div class="text-center mt-3">
                 <button id="forgotPasswordBtn" type="button" class="text-sm text-blue-600 hover:underline hover:text-blue-800 transition-all">Lupa Kode Akses?</button>
             </div>
@@ -409,7 +331,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" /></svg>
                 Informasi & Bantuan
             </button>
-
              <div class="text-center mt-4 border-t-2 border-gray-100 pt-4">
                 <p class="text-sm font-semibold text-gray-600">Dinas Pendidikan & Kebudayaan</p>
                 <p class="text-sm font-medium text-gray-500">Bidang PAUD & DIKMAS</p>
@@ -423,7 +344,6 @@
                 <h1 class="text-2xl font-bold text-gray-800">Dashboard Admin</h1>
                 <button id="logoutFromDashboardBtn" class="text-sm bg-red-100 text-red-700 font-semibold py-2 px-3 rounded-lg hover:bg-red-200 transition-all">Logout</button>
             </div>
-
             <div class="grid grid-cols-2 gap-4 mb-6">
                 <div class="bg-blue-100 p-4 rounded-lg text-center">
                     <p class="text-sm text-blue-800 font-semibold">Total Pendaftar</p>
@@ -434,7 +354,6 @@
                     <p id="statsSisaKuota" class="text-3xl font-bold text-green-600"></p>
                 </div>
             </div>
-
             <div class="bg-white p-4 rounded-lg border mb-6">
                 <h3 class="font-bold mb-3 text-center">Pendaftar per Kecamatan</h3>
                 <div class="flex items-center justify-center gap-4">
@@ -442,12 +361,10 @@
                     <div id="pieChartLegend" class="text-xs space-y-1"></div>
                 </div>
             </div>
-
             <div class="mb-6">
                 <h3 class="font-bold mb-2">Aktivitas Terkini</h3>
                 <div id="aktivitasTerkiniContainer" class="space-y-2 text-sm max-h-32 overflow-y-auto"></div>
             </div>
-            
             <div class="bg-gray-50 p-4 rounded-lg border mb-6">
                 <h3 class="font-bold mb-2">Buat Pengumuman Baru</h3>
                 <form id="pengumumanForm" class="space-y-2">
@@ -456,10 +373,8 @@
                     <button type="submit" class="w-full bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-blue-700">Publikasikan</button>
                 </form>
             </div>
-            
             <button id="goToDaftarPesertaBtn" class="w-full bg-gray-700 text-white font-bold py-3 px-4 rounded-xl hover:bg-gray-800 transition-all">Lihat & Kelola Daftar Peserta</button>
         </div>
-
 
         <div id="mainAppSection" class="hidden">
             <div class="flex justify-between items-center mb-6">
@@ -472,24 +387,15 @@
                  </div>
                  <button id="logoutBtn" class="text-sm bg-red-100 text-red-700 font-semibold py-2 px-3 rounded-lg hover:bg-red-200 transition-all">Logout</button>
             </div>
-            
-            <div id="adminModeBanner" class="hidden text-center font-bold p-3 rounded-lg my-4 bg-blue-100 text-blue-800 border border-blue-300">
-                👑 ANDA LOGIN SEBAGAI ADMIN 👑
-            </div>
-            <div id="trialModeBanner" class="hidden text-center font-bold p-3 rounded-lg my-4 bg-purple-100 text-purple-800 border border-purple-300">
-                ⚠️ ANDA DALAM MODE UJI COBA ⚠️
-            </div>
-
+            <div id="adminModeBanner" class="hidden text-center font-bold p-3 rounded-lg my-4 bg-blue-100 text-blue-800 border border-blue-300">👑 ANDA LOGIN SEBAGAI ADMIN 👑</div>
+            <div id="trialModeBanner" class="hidden text-center font-bold p-3 rounded-lg my-4 bg-purple-100 text-purple-800 border border-purple-300">⚠️ ANDA DALAM MODE UJI COBA ⚠️</div>
             <div id="sisaWaktuContainer" class="text-center p-3 rounded-lg my-4 hidden"></div>
-
             <form id="dataForm" class="space-y-4">
                 <div class="relative hidden" id="searchContainer">
                     <label for="searchLembaga" class="block text-sm font-medium text-gray-700 mb-2">Cari PAUD / TK (Admin)</label>
                     <input type="text" id="searchLembaga" placeholder="Ketik untuk mencari..." class="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
-                    <div id="dropdownMenu" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto p-1">
-                    </div>
+                    <div id="dropdownMenu" class="hidden absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-48 overflow-y-auto p-1"></div>
                 </div>
-
                 <div id="detailSekolah" class="space-y-3 text-sm bg-blue-50 p-4 rounded-lg border border-blue-200">
                     <div id="welcomeMessage" class="text-center text-lg font-bold text-blue-800 mb-4 p-3 bg-blue-100 rounded-lg"></div>
                     <div class="grid grid-cols-3 gap-x-2">
@@ -503,16 +409,12 @@
                         <div id="detailGuru" class="text-gray-700 space-y-1"></div>
                     </div>
                 </div>
-                
                 <div id="adminSudahTerdaftarInfo" class="hidden text-center bg-green-100 border-2 border-green-200 rounded-2xl p-6 my-4">
                     <p class="text-gray-800 mb-4 text-lg font-semibold">Lembaga ini sudah terdaftar dengan nomor urut:</p>
                     <div id="adminInfoNomorUrut" class="text-8xl font-fredoka text-green-600 my-2"></div>
                 </div>
-
                  <div id="error-message" class="text-red-500 text-sm hidden">Mohon pilih lembaga dari daftar (Admin).</div>
-                <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">
-                    Ambil Nomor
-                </button>
+                <button type="submit" class="w-full bg-gradient-to-r from-red-500 to-yellow-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">Ambil Nomor</button>
                 <button type="button" id="viewDaftarBtn" class="w-full bg-white text-gray-700 font-semibold py-3 px-4 rounded-xl hover:shadow-lg hover:bg-gray-50 transform transition-all border-2 border-gray-200 shadow-sm flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" /><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" /></svg>
                     Lihat Daftar
@@ -536,13 +438,11 @@
                  </div>
                  <button id="logoutFromStatusBtn" class="text-sm bg-red-100 text-red-700 font-semibold py-2 px-3 rounded-lg hover:bg-red-200 transition-all">Logout</button>
             </div>
-            
             <div class="text-center bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 relative">
                  <div class="sparkle-container"></div>
                 <p class="text-gray-600 mb-2 text-lg">Anda sudah terdaftar dengan nomor urut:</p>
                 <div id="statusNomorUrut" class="text-8xl font-fredoka text-blue-600 my-2"></div>
                 <div id="statusNamaLembaga" class="text-2xl font-bold text-gray-800 mt-4 mb-4 p-3 bg-blue-100 rounded-lg"></div>
-
                 <div class="mt-4 border-t border-blue-200 pt-4 text-left text-sm text-gray-700 space-y-2">
                     <div class="grid grid-cols-3 gap-x-2">
                         <strong class="col-span-1">NPSN</strong><span id="statusNpsn" class="col-span-2"></span>
@@ -556,7 +456,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
                  <button type="button" id="downloadBtn" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl hover:shadow-lg transform transition-all shadow-md flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" /></svg>
@@ -589,16 +488,10 @@
             <p class="text-gray-600 mb-4 font-fredoka text-2xl">Ayo kita ambil nomor!</p>
             <div id="spinnerDisplay" class="text-8xl font-fredoka text-gray-800 my-8 bg-gray-100 p-6 rounded-2xl pulse-bg-animation">000</div>
             <div class="space-y-3">
-                <button id="spinBtn" class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">
-                    Ambil Nomor!
-                </button>
-                <button id="cancelBtn" class="w-full bg-transparent text-gray-600 font-semibold py-2 px-4 rounded-xl hover:bg-gray-100 transition-all text-sm">
-                    Batalkan & Kembali
-                </button>
+                <button id="spinBtn" class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white font-bold py-3 px-4 rounded-xl hover:shadow-lg hover:scale-105 transform transition-all shadow-md text-lg">Ambil Nomor!</button>
+                <button id="cancelBtn" class="w-full bg-transparent text-gray-600 font-semibold py-2 px-4 rounded-xl hover:bg-gray-100 transition-all text-sm">Batalkan & Kembali</button>
             </div>
-            <div id="nomorHabisMessage" class="hidden mt-4 text-red-500 font-semibold">
-                Maaf, semua nomor urut sudah terambil.
-            </div>
+            <div id="nomorHabisMessage" class="hidden mt-4 text-red-500 font-semibold">Maaf, semua nomor urut sudah terambil.</div>
         </div>
 
         <div id="resultSection" class="hidden text-center relative">
@@ -640,14 +533,10 @@
                     <h1 id="viewDaftarTitle" class="text-3xl font-fredoka text-blue-600"></h1>
                     <p id="viewDaftarSubtitle" class="text-gray-600 mt-1"></p>
                 </div>
-                <button id="backToDashboardBtn" class="hidden flex-shrink-0 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-lg hover:bg-gray-300 transition-all">
-                    &larr; Kembali ke Dashboard
-                </button>
+                <button id="backToDashboardBtn" class="hidden flex-shrink-0 text-sm bg-gray-200 text-gray-800 font-semibold py-2 px-3 rounded-lg hover:bg-gray-300 transition-all">&larr; Kembali ke Dashboard</button>
              </div>
-
             <div id="viewDaftarAdminControls" class="hidden mb-4 p-4 bg-gray-50 rounded-lg border space-y-3">
-                <div id="viewToggleContainer" class="flex items-center gap-2 border-b pb-3 mb-3">
-                    </div>
+                <div id="viewToggleContainer" class="flex items-center gap-2 border-b pb-3 mb-3"></div>
                 <div class="sm:flex sm:items-center sm:gap-4">
                     <input type="text" id="searchInputView" placeholder="Cari nama lembaga..." class="w-full sm:w-1/2 px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-2 sm:mb-0">
                     <select id="filterKecamatan" class="w-full sm:w-auto px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 mb-2 sm:mb-0">
@@ -656,11 +545,9 @@
                     <button id="resetFilterBtn" class="w-full sm:w-auto px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-all">Reset</button>
                 </div>
             </div>
-
             <div class="overflow-x-auto bg-white rounded-lg border max-h-96">
                 <table class="min-w-full text-sm table-auto">
-                    <thead id="viewDaftarThead" class="bg-gray-50 sticky top-0">
-                        </thead>
+                    <thead id="viewDaftarThead" class="bg-gray-50 sticky top-0"></thead>
                     <tbody id="daftarBodyView" class="divide-y divide-gray-200"></tbody>
                 </table>
             </div>
@@ -678,30 +565,20 @@
     </div>
 
     <script>
-        // ===============================================================
-        // KONFIGURASI APLIKASI
-        // ===============================================================
         const TANGGAL_MULAI = '2025-09-02T08:08:00';
-        const TANGGAL_SELESAI = '2025-09-04T23:17:00'; 
+        const TANGGAL_SELESAI = '2025-09-07T23:17:00'; 
         const SPIN_DURATION = 1500;
         const SPIN_INTERVAL = 50;
-        const INACTIVITY_TIMEOUT = 5 * 60 * 1000; // 5 menit
+        const INACTIVITY_TIMEOUT = 5 * 60 * 1000;
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyO_cBfdjz57bY3xrYEgRttijXdVbbzNOYYq81sZ_qr479er94hgfAJ9FrZCF3UVDERNQ/exec';
+        const ADMIN_PASSWORD_FRONTEND = 'jerapah';
 
-        // --- URL Google Apps Script Web App ---
-        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyl6AzGa085_AmgEnrMrw1NIy0yVpwNTrPRfDUT65Cd2ZKxy_-z_eRfpfl62nbj8C0VdQ/exec';
-        const ADMIN_PASSWORD_FRONTEND = 'jerapah'; // Simpan password di frontend untuk request data admin
-
-        // ===============================================================
-        // MENGAMBIL ELEMEN DARI DOM
-        // ===============================================================
         const loadingOverlay = document.getElementById('loadingOverlay');
         const customAlertModal = document.getElementById('customAlertModal');
         const customAlertTitle = document.getElementById('customAlertTitle');
         const customAlertMessage = document.getElementById('customAlertMessage');
         const customAlertButtons = document.getElementById('customAlertButtons');
         const customAlertIcon = document.getElementById('customAlertIcon');
-        
-        // Sections
         const loginSection = document.getElementById('loginSection');
         const mainAppSection = document.getElementById('mainAppSection');
         const registeredStatusSection = document.getElementById('registeredStatusSection');
@@ -709,21 +586,15 @@
         const resultSection = document.getElementById('resultSection');
         const viewDaftarSection = document.getElementById('viewDaftarSection');
         const adminDashboardSection = document.getElementById('adminDashboardSection');
-        
-        // Login elements
         const userLoginForm = document.getElementById('userLoginForm');
         const npsnLoginInput = document.getElementById('npsnLoginInput');
         const kodeAksesLoginInput = document.getElementById('kodeAksesLoginInput');
         const loginError = document.getElementById('loginError');
         const adminLoginBtn = document.getElementById('adminLoginBtn');
-        const forgotPasswordBtn = document.getElementById('forgotPasswordBtn'); // Tombol lupa password
-
-        // Logout Buttons
+        const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
         const logoutBtn = document.getElementById('logoutBtn');
         const logoutFromStatusBtn = document.getElementById('logoutFromStatusBtn');
         const logoutFromDashboardBtn = document.getElementById('logoutFromDashboardBtn');
-
-        // Main App elements
         const adminModeBanner = document.getElementById('adminModeBanner');
         const trialModeBanner = document.getElementById('trialModeBanner');
         const welcomeMessage = document.getElementById('welcomeMessage');
@@ -758,8 +629,6 @@
         const sisaWaktuContainer = document.getElementById('sisaWaktuContainer');
         const adminSudahTerdaftarInfo = document.getElementById('adminSudahTerdaftarInfo');
         const adminInfoNomorUrut = document.getElementById('adminInfoNomorUrut');
-        
-        // Registered Status Elements
         const statusNomorUrut = document.getElementById('statusNomorUrut');
         const statusNamaLembaga = document.getElementById('statusNamaLembaga');
         const viewDaftarFromStatusBtn = document.getElementById('viewDaftarFromStatusBtn');
@@ -770,8 +639,6 @@
         const statusGuru = document.getElementById('statusGuru');
         const printBtn = document.getElementById('printBtn');
         const downloadBtn = document.getElementById('downloadBtn');
-
-        // Modals
         const exportPasswordModal = document.getElementById('exportPasswordModal');
         const exportPasswordForm = document.getElementById('exportPasswordForm');
         const cancelExport = document.getElementById('cancelExport');
@@ -801,8 +668,6 @@
         const resetStep1Error = document.getElementById('resetStep1Error');
         const resetStep2Error = document.getElementById('resetStep2Error');
         const npsnForFinalize = document.getElementById('npsnForFinalize');
-
-        // Admin Dashboard Elements
         const goToDaftarPesertaBtn = document.getElementById('goToDaftarPesertaBtn');
         const backToDashboardBtn = document.getElementById('backToDashboardBtn');
         const statsTotalPendaftar = document.getElementById('statsTotalPendaftar');
@@ -810,38 +675,29 @@
         const pieChart = document.getElementById('pieChart');
         const pieChartLegend = document.getElementById('pieChartLegend');
         const aktivitasTerkiniContainer = document.getElementById('aktivitasTerkiniContainer');
-        
-        // Pengumuman Elements
         const pengumumanContainer = document.getElementById('pengumumanContainer');
         const pengumumanJudul = document.getElementById('pengumumanJudul');
         const pengumumanIsi = document.getElementById('pengumumanIsi');
         const pengumumanForm = document.getElementById('pengumumanForm');
         const pengumumanJudulInput = document.getElementById('pengumumanJudulInput');
         const pengumumanIsiInput = document.getElementById('pengumumanIsiInput');
-
-        // Admin Filter Elements
         const viewDaftarAdminControls = document.getElementById('viewDaftarAdminControls');
         const searchInputView = document.getElementById('searchInputView');
         const filterKecamatan = document.getElementById('filterKecamatan');
         const resetFilterBtn = document.getElementById('resetFilterBtn');
         const viewToggleContainer = document.getElementById('viewToggleContainer');
-
-        // Edit Modal Elements
         const editLembagaModal = document.getElementById('editLembagaModal');
         const editLembagaForm = document.getElementById('editLembagaForm');
         const cancelEditBtn = document.getElementById('cancelEditBtn');
         const submitEditBtn = document.getElementById('submitEditBtn');
         
-        // ===============================================================
-        // VARIABEL STATE APLIKASI
-        // ===============================================================
         let maxNumber = 0, daftarPeserta = [], masterLembagaData = [], lembagaTersedia = [];
         let selectedLembaga = null, countdownInterval = null, reliableCurrentTime = null;
         let loggedInLembaga = null;
         let isTrialModeActive = false;
         let isAdminLoggedIn = false;
         let inactivityTimer;
-        let adminViewMode = 'pendaftar'; // 'pendaftar' atau 'master'
+        let adminViewMode = 'pendaftar';
         
         const ICONS = {
             success: `<svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
@@ -849,10 +705,6 @@
             error: `<svg class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" /></svg>`,
             info: `<svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>`
         };
-
-        // ===============================================================
-        // FUNGSI UTAMA & INTERAKSI DENGAN SERVER
-        // ===============================================================
 
         function showCustomNotice(message, title = 'Informasi', type = 'info') {
             return new Promise(resolve => {
@@ -888,7 +740,6 @@
             });
         }
         
-        // **** PENAMBAHAN FUNGSI BARU: displayPengumuman ****
         function displayPengumuman(pengumuman) {
             if (pengumuman && pengumuman.judul && pengumuman.isi) {
                 pengumumanJudul.textContent = pengumuman.judul;
@@ -898,11 +749,9 @@
                 pengumumanContainer.classList.add('hidden');
             }
         }
-        // **** AKHIR FUNGSI BARU ****
 
         async function loadDataFromServer(isAdmin = false) {
             loadingOverlay.style.display = 'flex';
-            
             try {
                 const timeResponse = await fetch('https://worldtimeapi.org/api/timezone/Asia/Makassar');
                 if (!timeResponse.ok) throw new Error('Gagal mengambil waktu dari server API.');
@@ -912,40 +761,30 @@
                 console.warn('Gagal mengambil waktu dari worldtimeapi, menggunakan waktu lokal.', error);
                 reliableCurrentTime = new Date();
             }
-
             try {
-                // **** PERUBAHAN DI SINI: Fetch Pengumuman ****
                 const [pesertaRes, lembagaRes, pengumumanRes] = await Promise.all([
                     fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`),
                     isAdmin 
                         ? fetch(WEB_APP_URL, { method: 'POST', body: JSON.stringify({ action: 'getFullLembagaList', password: ADMIN_PASSWORD_FRONTEND }) })
                         : fetch(`${WEB_APP_URL}?action=getLembagaList&t=${new Date().getTime()}`),
-                    fetch(`${WEB_APP_URL}?action=getPengumuman&t=${new Date().getTime()}`) // Fetch pengumuman
+                    fetch(`${WEB_APP_URL}?action=getPengumuman&t=${new Date().getTime()}`)
                 ]);
-
                 if (!pesertaRes.ok) throw new Error(`Gagal mengambil daftar peserta (Status: ${pesertaRes.status})`);
                 if (!lembagaRes.ok) throw new Error(`Gagal mengambil daftar lembaga (Status: ${lembagaRes.status})`);
                 if (!pengumumanRes.ok) throw new Error(`Gagal mengambil pengumuman (Status: ${pengumumanRes.status})`);
-
                 const pesertaData = await pesertaRes.json();
                 const lembagaData = await lembagaRes.json();
                 const pengumumanData = await pengumumanRes.json();
-
                 if (lembagaData.status && lembagaData.status !== 'success') throw new Error(lembagaData.message);
-                
                 daftarPeserta = pesertaData.data || [];
                 masterLembagaData = lembagaData.data || [];
-                displayPengumuman(pengumumanData.data); // Panggil fungsi untuk menampilkan pengumuman
-                // **** AKHIR PERUBAHAN ****
-
+                displayPengumuman(pengumumanData.data);
                 maxNumber = masterLembagaData.length;
                 const lembagaTerdaftarNpsn = new Set(daftarPeserta.map(p => String(p.npsn)));
                 lembagaTersedia = masterLembagaData.filter(l => !lembagaTerdaftarNpsn.has(String(l.npsn)));
-                
                 updateDaftarTampilan(reliableCurrentTime);
                 renderLembagaList(lembagaTersedia);
                 checkTimeRestriction(reliableCurrentTime); 
-                
             } catch (error) {
                 console.error('Error saat memuat data dari Google Script:', error);
                 await showCustomNotice(`Gagal terhubung ke server. Pastikan skrip Google Anda telah di-deploy dengan benar.<br><br><b>Detail Error:</b> ${error.message}`, 'Kesalahan Jaringan', 'error');
@@ -954,32 +793,26 @@
             }
         }
 
-
         async function handleUserLogin(event) {
             event.preventDefault();
             const npsn = npsnLoginInput.value.trim();
             const kodeAkses = kodeAksesLoginInput.value.trim();
-
             if (!npsn || !kodeAkses) {
                 loginError.textContent = "NPSN dan Kode Akses tidak boleh kosong.";
                 loginError.classList.remove('hidden');
                 return;
             }
-
             const loginButton = userLoginForm.querySelector('button[type="submit"]');
             loginButton.disabled = true;
             loginButton.innerHTML = `<div class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><span>Memverifikasi...</span></div>`;
             loginError.classList.add('hidden');
-
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'verifyUserLogin', npsn: npsn, kodeAkses: kodeAkses })
                 });
-
                 if (!response.ok) throw new Error(`Server Error! Status: ${response.status}`);
                 const result = await response.json();
-
                 if (result.status === 'success') {
                     loggedInLembaga = result.data;
                     const now = reliableCurrentTime;
@@ -987,7 +820,6 @@
                     isTrialModeActive = now < startTime;
                     sessionStorage.setItem('loggedInLembaga', JSON.stringify(loggedInLembaga));
                     if (isTrialModeActive) sessionStorage.setItem('isTrial', 'true');
-                    
                     const existingRegistration = daftarPeserta.find(p => String(p.npsn) === String(loggedInLembaga.npsn));
                     loginSection.classList.add('hidden');
                     if (existingRegistration && !isTrialModeActive) {
@@ -1020,7 +852,6 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Server gagal menghapus data.');
-                
                 await loadDataFromServer(true);
                 applyFiltersAndRenderViewDaftar();
                 await showCustomNotice(`Pendaftaran untuk "${namaLembaga}" berhasil dibatalkan.`, 'Berhasil', 'success');
@@ -1039,10 +870,8 @@
                 adminLoginError.textContent = 'Kata sandi tidak boleh kosong.';
                 return;
             }
-            
             submitAdminLogin.disabled = true;
             submitAdminLogin.textContent = 'Memverifikasi...';
-
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
@@ -1050,14 +879,12 @@
                 });
                 if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
                 const result = await response.json();
-
                 if (result.status === 'success') {
                     isAdminLoggedIn = true;
                     isTrialModeActive = false;
                     adminLoginModal.classList.add('hidden');
                     adminPasswordInput.value = '';
                     sessionStorage.setItem('isAdmin', 'true');
-                    
                     loginSection.classList.add('hidden');
                     await loadDataFromServer(true);
                     showAdminDashboard();
@@ -1084,7 +911,6 @@
                 guru2: document.getElementById('editGuru2').value, jabatan2: document.getElementById('editJabatan2').value,
                 guru3: document.getElementById('editGuru3').value, jabatan3: document.getElementById('editJabatan3').value,
             };
-
             loadingOverlay.style.display = 'flex';
             editLembagaModal.classList.add('hidden');
             try {
@@ -1095,7 +921,6 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Server gagal memperbarui data.');
-                
                 await loadDataFromServer(true);
                 applyFiltersAndRenderViewDaftar();
                 await showCustomNotice('Data lembaga berhasil diperbarui.', 'Berhasil', 'success');
@@ -1106,11 +931,9 @@
             }
         }
 
-        // **** PENAMBAHAN FUNGSI BARU: handleAdminResetKodeAkses ****
         async function handleAdminResetKodeAkses(npsn, namaLembaga) {
             const confirmed = await showCustomNotice(`Anda akan membuat Kode Akses baru untuk <b>${namaLembaga}</b>. Kode yang lama tidak akan berlaku lagi. Lanjutkan?`, 'Konfirmasi Reset Kode', 'confirm');
             if (!confirmed) return;
-
             loadingOverlay.style.display = 'flex';
             try {
                 const response = await fetch(WEB_APP_URL, {
@@ -1120,8 +943,7 @@
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Gagal mereset kode di server.');
-                
-                await loadDataFromServer(true); // Muat ulang data untuk menampilkan kode baru
+                await loadDataFromServer(true);
                 applyFiltersAndRenderViewDaftar();
                 await showCustomNotice(`Kode Akses untuk ${namaLembaga} berhasil direset.<br><br>Kode Baru: <b class="font-mono text-lg">${result.newCode}</b>`, 'Reset Berhasil', 'success');
             } catch (error) {
@@ -1130,19 +952,15 @@
                 loadingOverlay.style.display = 'none';
             }
         }
-        // **** AKHIR FUNGSI BARU ****
 
-        // **** PENAMBAHAN FUNGSI BARU: handleSendVerificationCode ****
         async function handleSendVerificationCode(event) {
             event.preventDefault();
             const npsn = document.getElementById('resetNpsnInput').value.trim();
             const email = document.getElementById('resetEmailInput').value.trim();
             const sendBtn = document.getElementById('sendCodeBtn');
-
             resetStep1Error.classList.add('hidden');
             sendBtn.disabled = true;
             sendBtn.textContent = 'Mengirim...';
-
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
@@ -1151,12 +969,10 @@
                 if (!response.ok) throw new Error('Kesalahan jaringan saat mengirim kode.');
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message);
-
                 npsnForFinalize.value = npsn;
                 resetStep1.classList.add('hidden');
                 resetStep2.classList.remove('hidden');
                 document.getElementById('verificationCodeInput').focus();
-
             } catch (error) {
                 resetStep1Error.textContent = error.message;
                 resetStep1Error.classList.remove('hidden');
@@ -1165,19 +981,15 @@
                 sendBtn.textContent = 'Kirim Kode';
             }
         }
-        // **** AKHIR FUNGSI BARU ****
 
-        // **** PENAMBAHAN FUNGSI BARU: handleFinalizeReset ****
         async function handleFinalizeReset(event) {
             event.preventDefault();
             const npsn = npsnForFinalize.value;
             const verificationCode = document.getElementById('verificationCodeInput').value.trim();
             const finalizeBtn = document.getElementById('finalizeResetBtn');
-
             resetStep2Error.classList.add('hidden');
             finalizeBtn.disabled = true;
             finalizeBtn.textContent = 'Memverifikasi...';
-
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
@@ -1186,10 +998,8 @@
                 if (!response.ok) throw new Error('Kesalahan jaringan saat finalisasi.');
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message);
-
                 resetKodeModal.classList.add('hidden');
                 await showCustomNotice(`Reset berhasil! Kode Akses baru Anda adalah:<br><br><b class="font-mono text-lg">${result.newKodeAkses}</b><br><br>Silakan login menggunakan kode baru ini.`, 'Berhasil', 'success');
-
             } catch (error) {
                 resetStep2Error.textContent = error.message;
                 resetStep2Error.classList.remove('hidden');
@@ -1198,8 +1008,6 @@
                 finalizeBtn.textContent = 'Reset Sekarang';
             }
         }
-        // **** AKHIR FUNGSI BARU ****
-
 
         async function exportToExcel() {
             loadingOverlay.style.display = 'flex';
@@ -1208,26 +1016,19 @@
                  if (!res.ok) throw new Error(`Gagal mengambil data lembaga (Status: ${res.status})`);
                  const lembagaResult = await res.json();
                  const masterData = lembagaResult.data || [];
-
                  const pesertaRes = await fetch(`${WEB_APP_URL}?action=getDaftarPeserta&t=${new Date().getTime()}`);
                  if (!pesertaRes.ok) throw new Error(`Gagal mengambil data peserta (Status: ${pesertaRes.status})`);
                  const pesertaResult = await pesertaRes.json();
                  const dataToExport = pesertaResult.data || [];
-                
                 if (dataToExport.length === 0) { 
                     await showCustomNotice("Tidak ada data untuk di-export.", "Informasi", "info");
                     return; 
                 };
-                
                 const masterDataMap = new Map(masterData.map(item => [item.npsn, item]));
                 const headers = ['No. Urut', 'Nama Lembaga', 'NPSN', 'Status', 'Kecamatan', 'Jumlah Peserta', 'Guru 1', 'Jabatan 1', 'Guru 2', 'Jabatan 2', 'Guru 3', 'Jabatan 3'];
                 const rows = dataToExport.sort((a,b) => a.nomor - b.nomor).map(p => {
                     const master = masterDataMap.get(p.npsn) || {};
-                    return [
-                        `'${String(p.nomor).padStart(3, '0')}`, `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`,
-                        master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`,
-                        `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`
-                    ];
+                    return [`'${String(p.nomor).padStart(3, '0')}`, `"${p.nama}"`, `"${p.npsn}"`, `"${p.status}"`, `"${p.kecamatan}"`, master.jumlah || '', `"${master.guru1 || ''}"`, `"${master.jabatan1 || ''}"`, `"${master.guru2 || ''}"`, `"${master.jabatan2 || ''}"`, `"${master.guru3 || ''}"`, `"${master.jabatan3 || ''}"`];
                 });
                 let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.map(e => e.join(",")).join("\n");
                 var encodedUri = encodeURI(csvContent);
@@ -1260,7 +1061,6 @@
                 const randomNumber = Math.floor(Math.random() * maxNumber) + 1 || 1;
                 spinnerDisplay.textContent = String(randomNumber).padStart(3, '0');
             }, SPIN_INTERVAL);
-
             if (isStillInTrialPeriod) {
                 setTimeout(() => {
                     clearInterval(spinInterval);
@@ -1273,7 +1073,6 @@
                 }, SPIN_DURATION);
                 return;
             }
-            
             try {
                 const response = await fetch(WEB_APP_URL, {
                     method: 'POST',
@@ -1282,7 +1081,6 @@
                 if (!response.ok) throw new Error(`Server merespon dengan status: ${response.status}`);
                 const result = await response.json();
                 if (result.status !== 'success') throw new Error(result.message || 'Terjadi kesalahan di server.');
-                
                 clearInterval(spinInterval);
                 const finalNumber = result.assignedNumber;
                 spinnerDisplay.textContent = String(finalNumber).padStart(3, '0');
@@ -1299,9 +1097,6 @@
             }
         }
         
-        // ===============================================================
-        // FUNGSI PENGATUR TAMPILAN (UI/UX)
-        // ===============================================================
         function handleEditLembaga(npsn) {
             const lembaga = masterLembagaData.find(l => String(l.npsn) === String(npsn));
             if (!lembaga) {
@@ -1321,18 +1116,15 @@
             editLembagaModal.classList.remove('hidden');
         }
 
-
         function showAdminDashboard() {
             loginSection.classList.add('hidden'); mainAppSection.classList.add('hidden');
             registeredStatusSection.classList.add('hidden'); spinnerSection.classList.add('hidden');
             resultSection.classList.add('hidden'); viewDaftarSection.classList.add('hidden');
             adminDashboardSection.classList.remove('hidden');
-
             const totalPendaftar = daftarPeserta.length;
             const sisaKuota = maxNumber - totalPendaftar;
             statsTotalPendaftar.textContent = totalPendaftar;
             statsSisaKuota.textContent = sisaKuota > 0 ? sisaKuota : 0;
-
             const pendaftarPerKecamatan = daftarPeserta.reduce((acc, curr) => {
                 acc[curr.kecamatan] = (acc[curr.kecamatan] || 0) + 1;
                 return acc;
@@ -1350,7 +1142,6 @@
                 pieChartLegend.innerHTML += `<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full" style="background-color: ${color};"></div><span>${kecamatan} (${count})</span></div>`;
             });
             pieChart.style.setProperty('--gradient-colors', gradientString || '#e5e7eb 0% 100%');
-
             aktivitasTerkiniContainer.innerHTML = '';
             if (daftarPeserta.length > 0) {
                  [...daftarPeserta].reverse().slice(0, 5).forEach(p => {
@@ -1384,7 +1175,6 @@
             const startTime = new Date(TANGGAL_MULAI);
             const endTime = new Date(TANGGAL_SELESAI);
             const onTimerEnd = () => location.reload();
-
             if (now < startTime) {
                 targetContainer.classList.remove('hidden');
                 targetContainer.className = 'text-center font-semibold p-4 rounded-lg my-4 bg-yellow-100 text-yellow-800';
@@ -1404,7 +1194,7 @@
                 targetContainer.classList.remove('hidden');
                 trialButtonsContainer.classList.add('hidden');
                 userLoginForm.classList.add('hidden');
-                forgotPasswordBtn.classList.add('hidden'); // Sembunyikan tombol lupa password
+                forgotPasswordBtn.classList.add('hidden');
                 return false;
             } else {
                  if (loggedInLembaga) { 
@@ -1416,7 +1206,7 @@
                     timeRestrictionMessage.classList.add('hidden'); sisaWaktuContainer.classList.add('hidden');
                  }
                 trialButtonsContainer.classList.add('hidden'); userLoginForm.classList.remove('hidden');
-                forgotPasswordBtn.classList.remove('hidden'); // Tampilkan tombol lupa password
+                forgotPasswordBtn.classList.remove('hidden');
                 return true;
             }
         }
@@ -1425,49 +1215,19 @@
             const searchTerm = searchInputView.value.toLowerCase();
             const selectedKecamatan = filterKecamatan.value;
             let sourceData, tableHeaders, rowRenderer;
-
-            // **** PERUBAHAN DI SINI: Template Baris Tabel Admin Diupdate ****
             if (isAdminLoggedIn && adminViewMode === 'master') {
                 sourceData = masterLembagaData;
-                tableHeaders = `<tr>
-                    <th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th>
-                    <th class="p-3 font-semibold text-gray-600 text-left">NPSN</th>
-                    <th class="p-3 font-semibold text-gray-600 text-center">Kode Akses</th>
-                    <th class="p-3 font-semibold text-gray-600 text-center">Aksi</th>
-                </tr>`;
-                rowRenderer = (l) => `<tr class="hover:bg-yellow-50">
-                    <td class="p-3 text-left break-words">${l.nama}</td>
-                    <td class="p-3 text-left">${l.npsn}</td>
-                    <td class="p-3 text-center font-mono">${l.kode_akses || 'N/A'}</td>
-                    <td class="p-3 text-center">
-                        <div class="flex justify-center gap-1">
-                            <button class="text-blue-500 hover:text-blue-700 text-xs font-bold py-1 px-2 rounded-md bg-blue-100 hover:bg-blue-200 transition-all" data-npsn-edit="${l.npsn}">Edit</button>
-                            <button class="text-green-500 hover:text-green-700 text-xs font-bold py-1 px-2 rounded-md bg-green-100 hover:bg-green-200 transition-all" data-npsn-reset="${l.npsn}" data-nama="${l.nama}">Reset Kode</button>
-                        </div>
-                    </td>
-                </tr>`;
-            // **** AKHIR PERUBAHAN ****
+                tableHeaders = `<tr><th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th><th class="p-3 font-semibold text-gray-600 text-left">NPSN</th><th class="p-3 font-semibold text-gray-600 text-center">Kode Akses</th><th class="p-3 font-semibold text-gray-600 text-center">Aksi</th></tr>`;
+                rowRenderer = (l) => `<tr class="hover:bg-yellow-50"><td class="p-3 text-left break-words">${l.nama}</td><td class="p-3 text-left">${l.npsn}</td><td class="p-3 text-center font-mono">${l.kode_akses || 'N/A'}</td><td class="p-3 text-center"><div class="flex justify-center gap-1"><button class="text-blue-500 hover:text-blue-700 text-xs font-bold py-1 px-2 rounded-md bg-blue-100 hover:bg-blue-200 transition-all" data-npsn-edit="${l.npsn}">Edit</button><button class="text-green-500 hover:text-green-700 text-xs font-bold py-1 px-2 rounded-md bg-green-100 hover:bg-green-200 transition-all" data-npsn-reset="${l.npsn}" data-nama="${l.nama}">Reset Kode</button></div></td></tr>`;
             } else {
                 sourceData = daftarPeserta;
                 let headerAksi = isAdminLoggedIn ? '<th class="p-3 font-semibold text-gray-600 text-center">Aksi</th>' : '';
-                tableHeaders = `<tr>
-                    <th class="p-3 font-semibold text-gray-600">No. Urut</th>
-                    <th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th>
-                    <th class="p-3 font-semibold text-gray-600 text-left">NPSN</th>
-                    <th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th>
-                    ${headerAksi}
-                </tr>`;
+                tableHeaders = `<tr><th class="p-3 font-semibold text-gray-600">No. Urut</th><th class="p-3 font-semibold text-gray-600 text-left">Nama Lembaga</th><th class="p-3 font-semibold text-gray-600 text-left">NPSN</th><th class="p-3 font-semibold text-gray-600 text-left">Kecamatan</th>${headerAksi}</tr>`;
                 rowRenderer = (l) => {
-                    let cellAksi = isAdminLoggedIn ? `<td class="p-3 text-center">
-                        <button class="text-red-500 hover:text-red-700 text-xs font-bold py-1 px-2 rounded-md bg-red-100 hover:bg-red-200 transition-all" data-npsn-delete="${l.npsn}" data-nama="${l.nama}">Batalkan</button>
-                    </td>` : '';
-                    return `<tr class="hover:bg-yellow-50">
-                        <td class="p-3 text-center font-bold text-blue-600">${String(l.nomor).padStart(3, '0')}</td>
-                        <td class="p-3 text-left break-words">${l.nama}</td><td class="p-3 text-left">${l.npsn}</td>
-                        <td class="p-3 text-left">${l.kecamatan}</td>${cellAksi}</tr>`;
+                    let cellAksi = isAdminLoggedIn ? `<td class="p-3 text-center"><button class="text-red-500 hover:text-red-700 text-xs font-bold py-1 px-2 rounded-md bg-red-100 hover:bg-red-200 transition-all" data-npsn-delete="${l.npsn}" data-nama="${l.nama}">Batalkan</button></td>` : '';
+                    return `<tr class="hover:bg-yellow-50"><td class="p-3 text-center font-bold text-blue-600">${String(l.nomor).padStart(3, '0')}</td><td class="p-3 text-left break-words">${l.nama}</td><td class="p-3 text-left">${l.npsn}</td><td class="p-3 text-left">${l.kecamatan}</td>${cellAksi}</tr>`;
                 };
             }
-
             const filteredData = sourceData.filter(item => {
                 const searchFields = [item.nama, item.npsn, item.kode_akses].filter(Boolean).join(' ').toLowerCase();
                 const matchesSearch = searchFields.includes(searchTerm);
@@ -1475,15 +1235,10 @@
                 return matchesSearch && matchesKecamatan;
             });
             viewDaftarThead.innerHTML = tableHeaders;
-            daftarBodyView.innerHTML = filteredData.length === 0 
-                ? `<tr><td colspan="5" class="p-4 text-center text-gray-500">Tidak ada data yang cocok.</td></tr>` 
-                : filteredData.map(rowRenderer).join('');
-            
-            // **** PERUBAHAN DI SINI: Event Listener untuk Tombol Baru ****
+            daftarBodyView.innerHTML = filteredData.length === 0 ? `<tr><td colspan="5" class="p-4 text-center text-gray-500">Tidak ada data yang cocok.</td></tr>` : filteredData.map(rowRenderer).join('');
             document.querySelectorAll('#daftarBodyView button[data-npsn-delete]').forEach(button => button.addEventListener('click', (e) => handleDeleteRegistration(e.target.dataset.npsnDelete, e.target.dataset.nama)));
             document.querySelectorAll('#daftarBodyView button[data-npsn-edit]').forEach(button => button.addEventListener('click', (e) => handleEditLembaga(e.target.dataset.npsnEdit)));
             document.querySelectorAll('#daftarBodyView button[data-npsn-reset]').forEach(button => button.addEventListener('click', (e) => handleAdminResetKodeAkses(e.target.dataset.npsnReset, e.target.dataset.nama)));
-            // **** AKHIR PERUBAHAN ****
         }
         
         function updateDaftarTampilan(now) {
@@ -1492,7 +1247,6 @@
             daftarPeserta.sort((a, b) => a.nomor - b.nomor);
             let rowsHtmlResult = daftarPeserta.length === 0 ? '<tr><td colspan="3" class="p-4 text-center text-gray-500">Belum ada peserta terdaftar.</td></tr>' : daftarPeserta.map(p => `<tr class="hover:bg-yellow-50 even:bg-blue-50/50"><td class="p-3 text-center font-bold text-blue-600">${String(p.nomor).padStart(3, '0')}</td><td class="p-3 text-left">${p.nama}</td><td class="p-3 text-left">${p.kecamatan}</td></tr>`).join('');
             daftarBodyResult.innerHTML = rowsHtmlResult;
-            
             if (isAdminLoggedIn) {
                 viewDaftarAdminControls.classList.remove('hidden');
                 viewToggleContainer.innerHTML = `<button id="viewPendaftarBtn" class="px-3 py-1 text-sm font-semibold rounded-md transition-all">Lihat Pendaftar</button><button id="viewMasterLembagaBtn" class="px-3 py-1 text-sm font-semibold rounded-md transition-all">Semua Lembaga</button>`;
@@ -1515,10 +1269,7 @@
                 const kecamatanSet = new Set(sourceDataForFilter.map(p => p.kecamatan));
                 const currentFilterValue = filterKecamatan.value;
                 filterKecamatan.innerHTML = '<option value="">Semua Kecamatan</option>';
-                kecamatanSet.forEach(kecamatan => {
-                    const option = document.createElement('option');
-                    option.value = kecamatan; option.textContent = kecamatan; filterKecamatan.appendChild(option);
-                });
+                kecamatanSet.forEach(kecamatan => { const option = document.createElement('option'); option.value = kecamatan; option.textContent = kecamatan; filterKecamatan.appendChild(option); });
                 filterKecamatan.value = currentFilterValue;
                 applyFiltersAndRenderViewDaftar();
             } else {
@@ -1643,7 +1394,6 @@
             loginSection.classList.add('hidden'); mainAppSection.classList.add('hidden');
             spinnerSection.classList.add('hidden'); resultSection.classList.add('hidden');
             viewDaftarSection.classList.add('hidden'); adminDashboardSection.classList.add('hidden');
-
             const fullLembagaData = masterLembagaData.find(l => String(l.npsn) === String(registrationData.npsn));
             if (!fullLembagaData) {
                 console.error("Data master tidak ditemukan untuk NPSN:", registrationData.npsn);
@@ -1756,10 +1506,6 @@
             }
         }
         
-        // ===============================================================
-        // EVENT LISTENERS
-        // ===============================================================
-
         userLoginForm.addEventListener('submit', handleUserLogin);
         logoutBtn.addEventListener('click', () => handleLogout(false));
         logoutFromStatusBtn.addEventListener('click', () => handleLogout(false));
@@ -1893,7 +1639,6 @@
         editLembagaForm.addEventListener('submit', handleUpdateLembaga);
         cancelEditBtn.addEventListener('click', () => editLembagaModal.classList.add('hidden'));
 
-        // **** PENAMBAHAN EVENT LISTENERS BARU ****
         forgotPasswordBtn.addEventListener('click', () => {
             resetKodeModal.classList.remove('hidden');
             resetStep2.classList.add('hidden');
@@ -1911,18 +1656,13 @@
         });
         sendCodeForm.addEventListener('submit', handleSendVerificationCode);
         verifyCodeForm.addEventListener('submit', handleFinalizeReset);
-        // **** AKHIR EVENT LISTENERS BARU ****
 
-        // ===============================================================
-        // INISIALISASI APLIKASI
-        // ===============================================================
         document.addEventListener('DOMContentLoaded', async () => {
             const savedAdmin = sessionStorage.getItem('isAdmin');
             const savedLembaga = sessionStorage.getItem('loggedInLembaga');
             isAdminLoggedIn = savedAdmin === 'true';
             await loadDataFromServer(isAdminLoggedIn);
             const savedTrial = sessionStorage.getItem('isTrial');
-
             if (savedLembaga) {
                 loggedInLembaga = JSON.parse(savedLembaga);
                 isTrialModeActive = savedTrial === 'true';
